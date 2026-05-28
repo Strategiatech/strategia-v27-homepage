@@ -33,8 +33,15 @@ services:
     depends_on:
       - app
     restart: unless-stopped
+    networks:
+      - default
+      - web
 
 volumes:
   mongo_data:
   caddy_data:
   caddy_config:
+
+networks:
+  web:
+    external: true

@@ -2,6 +2,14 @@ strategiatech.refari.work {
     reverse_proxy app:3000
 }
 
+# Lateralus Group co-hosts on this server. Its app+mongo run from a separate
+# compose project (/opt/lateralus), and its `app` container joins the shared
+# external Docker network `web` so this Caddy can reach it by name. See the
+# Co-hosted sites section in DEPLOY.md.
+lateralus.refari.work {
+    reverse_proxy lateralus-app-1:3000
+}
+
 http://5.223.89.179 {
     reverse_proxy app:3000
 }
