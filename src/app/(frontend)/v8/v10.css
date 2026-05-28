@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════════════
+   V10 — HERO SHOWCASE PAGE STYLES
+   Five new atmospheric hero section variants
+   ═══════════════════════════════════════════════════════ */
+
+.v10-page {
+  background: #FFFFFF;
+  color: #4a4a4a;
+  min-height: 100vh;
+}
+
+/* ── Variant labels ── */
+.v10-variant-label {
+  position: relative;
+  z-index: 20;
+  padding: 20px 48px;
+  border-bottom: 1px solid rgba(6,41,62,0.06);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #FFFFFF;
+}
+
+.v10-variant-label .tag {
+  font-family: var(--font-tight);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #06293E;
+  padding: 4px 12px;
+  border: 1px solid rgba(6,41,62,0.2);
+}
+
+.v10-variant-label .desc {
+  font-family: var(--font-tight);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #6b6b6b;
+}
+
+/* ── Divider between variants ── */
+.v10-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(6,41,62,0.08), rgba(19,181,177,0.06), transparent);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .v10-variant-label {
+    padding: 16px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

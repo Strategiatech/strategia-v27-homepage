@@ -1,0 +1,511 @@
+/* ==========================================================================
+   Brand V3 — Teal Aurora
+   The brand page itself IS the brand: teal gradient, glass surfaces, navy text
+   ========================================================================== */
+
+.bv3-root {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 70% 0%, rgba(74,226,183,0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 18%, rgba(11,100,119,0.3) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 35%, rgba(0,201,183,0.25) 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 55%, rgba(86,200,195,0.3) 0%, transparent 45%),
+    radial-gradient(ellipse at 65% 70%, rgba(11,100,119,0.2) 0%, transparent 45%),
+    radial-gradient(ellipse at 30% 90%, rgba(74,226,183,0.3) 0%, transparent 45%),
+    linear-gradient(160deg, #0B6477 0%, #00897B 18%, #00C9B7 38%, #4AE2B7 58%, #56C8C3 72%, #00C9B7 88%, #0B6477 100%);
+  color: #06293E;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Hero ---- */
+.bv3-hero {
+  position: relative;
+  padding: 140px 0 120px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 70%, rgba(255,255,255,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 50%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #0B6477 0%, #00897B 25%, #00C9B7 50%, #4AE2B7 75%, #56C8C3 100%);
+}
+.bv3-hero-gradient {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(11,100,119,0.2) 0%, transparent 50%);
+}
+.bv3-hero-glow {
+  position: absolute; top: -10%; left: 50%; transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%);
+  pointer-events: none;
+}
+.bv3-hero-eyebrow {
+  font-family: var(--font-monospace); font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85); margin-bottom: 24px;
+}
+.bv3-hero-title {
+  font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  font-size: clamp(44px, 7vw, 80px);
+  font-weight: 400; letter-spacing: -0.035em; color: #FFFFFF;
+  line-height: 0.98; margin: 0 auto 28px; max-width: 14ch;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.12);
+}
+.bv3-hero-sub {
+  font-size: 18px; color: rgba(255,255,255,0.92);
+  max-width: 52ch; margin: 0 auto 44px; line-height: 1.6;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.bv3-nav-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.bv3-nav-pill {
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85);
+  padding: 7px 16px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: color 180ms, border-color 180ms, background 180ms;
+  text-decoration: none;
+}
+.bv3-nav-pill:hover {
+  color: #fff; border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.15);
+}
+
+/* ---- Sections — glass panels on gradient ---- */
+.bv3-section {
+  padding: clamp(80px, 10vw, 120px) clamp(1.5rem, 6vw, 6rem);
+}
+.bv3-section--alt {
+  padding: clamp(80px, 10vw, 120px) clamp(1.5rem, 6vw, 6rem);
+}
+.bv3-section > .container,
+.bv3-section--alt > .container {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 24px;
+  padding: clamp(32px, 6vw, 64px);
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.bv3-section-label { scroll-margin-top: 80px; margin-bottom: 12px; }
+.bv3-section-label span {
+  font-family: var(--font-monospace); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(6,41,62,0.72); background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(6,41,62,0.12);
+  padding: 5px 12px; border-radius: 999px; display: inline-block;
+  font-weight: 600;
+}
+.bv3-h2 {
+  font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400; letter-spacing: -0.025em;
+  color: #06293E; margin: 0 0 8px;
+}
+.bv3-desc {
+  font-size: 16px; color: rgba(6,41,62,0.88);
+  max-width: 62ch; margin: 0 0 48px; line-height: 1.7;
+}
+.bv3-group-label {
+  font-family: var(--font-tight); font-size: 14px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(6,41,62,0.72); margin-bottom: 16px;
+}
+.bv3-grid { display: grid; gap: 16px; margin-bottom: 40px; }
+.bv3-grid--colors { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.bv3-grid--radii { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+/* ---- Color Cards — glass inner cards ---- */
+.bv3-color-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+  transition: transform 200ms, box-shadow 200ms, background 200ms;
+}
+.bv3-color-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 8px 32px -8px rgba(255,255,255,0.15);
+}
+.bv3-color-swatch {
+  height: 110px; display: flex; align-items: flex-end; padding: 12px 16px;
+}
+.bv3-color-swatch-name {
+  font-family: var(--font-tight); font-size: 15px; font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.bv3-color-info { padding: 14px 16px; }
+.bv3-color-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px;
+}
+.bv3-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--font-monospace); font-size: 11px;
+  color: rgba(6,41,62,0.72); background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(6,41,62,0.12); border-radius: 999px;
+  padding: 4px 10px; cursor: pointer;
+  transition: border-color 180ms, background 180ms, color 180ms;
+  white-space: nowrap;
+}
+.bv3-chip:hover {
+  border-color: rgba(6,41,62,0.35); color: #06293E; background: rgba(255,255,255,0.7);
+}
+.bv3-color-desc {
+  margin: 10px 0 0; font-size: 12px; color: rgba(6,41,62,0.65); line-height: 1.5;
+}
+
+/* ---- Text Hierarchy ---- */
+.bv3-hierarchy-list {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.bv3-hierarchy-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.bv3-hierarchy-demo {
+  padding: 24px 28px;
+}
+.bv3-hierarchy-demo--glass {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.bv3-hierarchy-demo--gradient {
+  background: linear-gradient(135deg, #0B6477 0%, #00897B 50%, #00C9B7 100%);
+}
+.bv3-hierarchy-meta {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 20px; flex-wrap: wrap;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.bv3-hierarchy-role {
+  font-family: var(--font-monospace, monospace);
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: #06293E; min-width: 76px;
+}
+.bv3-hierarchy-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+/* ---- Gradient Cards ---- */
+.bv3-gradient-grid {
+  display: grid; grid-template-columns: 1fr; gap: 24px;
+}
+.bv3-gradient-card {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+  transition: transform 200ms, box-shadow 200ms;
+}
+.bv3-gradient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(255,255,255,0.15);
+}
+.bv3-gradient-preview {
+  height: 160px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.bv3-gradient-copy-overlay {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-monospace); font-size: 13px;
+  color: rgba(255,255,255,0.9); font-weight: 600;
+  background: rgba(0,0,0,0.2); backdrop-filter: blur(4px);
+  padding: 8px 18px; border-radius: 999px;
+  transition: background 180ms, color 180ms;
+  letter-spacing: 0.02em;
+}
+.bv3-gradient-preview:hover .bv3-gradient-copy-overlay {
+  background: rgba(0,0,0,0.4); color: #fff;
+}
+.bv3-gradient-body { padding: 24px; }
+.bv3-gradient-title-row {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;
+}
+.bv3-gradient-title-row h3 {
+  font-family: var(--font-tight); font-size: 20px; font-weight: 700;
+  color: #06293E; margin: 0;
+}
+.bv3-gradient-title-row code {
+  font-family: var(--font-monospace); font-size: 11px; color: rgba(6,41,62,0.55);
+  letter-spacing: 0.04em;
+}
+.bv3-gradient-desc {
+  font-size: 14px; color: rgba(6,41,62,0.75); line-height: 1.55; margin: 0 0 16px;
+}
+.bv3-gradient-stops {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.bv3-gradient-stop {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px 4px 6px; border-radius: 999px;
+  border: 1px solid rgba(6,41,62,0.12); cursor: pointer;
+  transition: border-color 150ms; background: rgba(255,255,255,0.4);
+}
+.bv3-gradient-stop:hover { border-color: rgba(6,41,62,0.35); }
+.bv3-gradient-stop-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+}
+.bv3-gradient-stop code {
+  font-family: var(--font-monospace); font-size: 11px; color: rgba(6,41,62,0.65);
+}
+
+/* ---- Typography (hierarchy cards replace old type-scale + text-color) ---- */
+
+/* ---- Surfaces ---- */
+.bv3-surfaces-grid {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.bv3-surface-item {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.bv3-surface-backdrop {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(74,226,183,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 70%, rgba(86,200,195,0.2) 0%, transparent 45%),
+    linear-gradient(135deg, #0B6477 0%, #00897B 25%, #00C9B7 50%, #4AE2B7 75%, #56C8C3 100%);
+  padding: 32px;
+}
+.bv3-surface-mock {
+  padding: 28px;
+}
+.bv3-surface-meta {
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.bv3-surface-meta-row {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.bv3-surface-meta h4 {
+  font-family: var(--font-tight); font-size: 14px; font-weight: 700;
+  color: #06293E; margin: 0;
+}
+.bv3-surface-specs {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.bv3-surface-desc {
+  font-size: 13px; color: rgba(6,41,62,0.65); line-height: 1.5; margin: 0;
+}
+
+/* ---- Effects ---- */
+.bv3-effects-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+}
+.bv3-effect-card {
+  background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px; padding: 24px;
+  backdrop-filter: blur(8px);
+  transition: border-color 200ms, background 200ms;
+}
+.bv3-effect-card:hover {
+  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.55);
+}
+.bv3-effect-card h4 {
+  font-family: var(--font-tight); font-size: 15px; font-weight: 700;
+  color: #06293E; margin: 0 0 8px;
+}
+.bv3-effect-card p {
+  font-size: 13px; color: rgba(6,41,62,0.75); line-height: 1.6; margin: 0;
+}
+
+/* ---- Spacing & Radii ---- */
+.bv3-spacing-blocks {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-bottom: 56px; align-items: flex-end;
+}
+.bv3-spacing-item {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.bv3-spacing-item span {
+  font-family: var(--font-monospace); font-size: 10px; color: rgba(6,41,62,0.6); font-weight: 500;
+}
+.bv3-radius-card {
+  background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px; padding: 24px; text-align: center;
+  backdrop-filter: blur(8px);
+  transition: border-color 180ms, background 180ms;
+}
+.bv3-radius-card:hover {
+  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.55);
+}
+.bv3-radius-preview {
+  width: 56px; height: 56px; border: 2px solid rgba(6,41,62,0.6);
+  margin: 0 auto 12px;
+}
+.bv3-radius-name {
+  font-family: var(--font-tight); font-size: 13px;
+  color: #06293E; font-weight: 600; margin-bottom: 4px;
+}
+.bv3-radius-value {
+  font-family: var(--font-monospace); font-size: 11px; color: rgba(6,41,62,0.55);
+}
+
+/* ---- Principles ---- */
+.bv3-principles-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+}
+.bv3-principle {
+  background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px; padding: 28px;
+  backdrop-filter: blur(8px);
+  transition: background 200ms;
+}
+.bv3-principle:hover { background: rgba(255,255,255,0.55); }
+.bv3-principle h4 {
+  font-family: var(--font-tight); font-size: 16px; font-weight: 700;
+  color: #06293E; margin: 0 0 10px;
+}
+.bv3-principle p {
+  font-size: 14px; color: rgba(6,41,62,0.75); line-height: 1.6; margin: 0;
+}
+
+/* ---- Footer ---- */
+.bv3-footer {
+  padding: 48px clamp(1.5rem, 6vw, 6rem);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15), rgba(255,255,255,0.4)) 1;
+  background: linear-gradient(180deg, rgba(6,41,62,0.4) 0%, rgba(6,41,62,0.7) 30%, rgba(4,30,46,0.85) 100%);
+  text-align: center;
+}
+.bv3-footer p {
+  font-family: var(--font-monospace); font-size: 12px;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.06em; margin: 0;
+}
+
+/* ---- Logo & Brand Mark ---- */
+.bv3-logo-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.bv3-logo-hero-card {
+  border-radius: 20px;
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.bv3-logo-hero-card img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+}
+.bv3-logo-hero-card--dark {
+  background: linear-gradient(135deg, #0B6477 0%, #00897B 50%, #00C9B7 100%);
+}
+.bv3-logo-hero-card--light {
+  background: #ffffff;
+}
+.bv3-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.bv3-logo-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.45);
+}
+.bv3-logo-card-preview {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.bv3-logo-card-preview img {
+  max-height: 80px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.bv3-logo-card-preview--dark {
+  background: linear-gradient(135deg, #0B6477 0%, #00897B 50%, #00C9B7 100%);
+}
+.bv3-logo-card-preview--light {
+  background: #ffffff;
+}
+.bv3-logo-card-label {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(6,41,62,0.72);
+}
+.bv3-logo-card-label span {
+  display: block;
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  color: rgba(6,41,62,0.5);
+  margin-top: 2px;
+}
+.bv3-clearspace {
+  margin-bottom: 48px;
+}
+.bv3-clearspace-demo {
+  border-radius: 20px;
+  padding: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0B6477 0%, #00897B 50%, #00C9B7 100%);
+  border: 1px solid rgba(255,255,255,0.15);
+  margin-bottom: 16px;
+}
+.bv3-clearspace-inner {
+  position: relative;
+  padding: 40px;
+  border: 2px dashed rgba(255,255,255,0.5);
+  border-radius: 8px;
+}
+.bv3-clearspace-inner img {
+  display: block;
+  height: 56px;
+  width: auto;
+}
+.bv3-clearspace-label {
+  position: absolute;
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+}
+.bv3-clearspace-label--top {
+  top: 8px; left: 50%; transform: translateX(-50%);
+}
+.bv3-clearspace-label--side {
+  right: 8px; top: 50%; transform: translateY(-50%) rotate(90deg);
+}
+.bv3-clearspace-note {
+  font-size: 14px;
+  color: rgba(6,41,62,0.75);
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 860px) {
+  .bv3-logo-hero { grid-template-columns: 1fr; }
+  .bv3-logo-grid { grid-template-columns: 1fr; }
+  .bv3-hierarchy-meta { flex-direction: column; align-items: flex-start; }
+  .bv3-surface-meta-row { flex-direction: column; align-items: flex-start; }
+  .bv3-surface-backdrop { padding: 20px; }
+  .bv3-effects-grid { grid-template-columns: 1fr; }
+  .bv3-principles-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .bv3-gradient-stops { flex-direction: column; }
+}

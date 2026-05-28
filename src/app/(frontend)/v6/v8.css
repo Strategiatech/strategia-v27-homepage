@@ -1,0 +1,473 @@
+/* ═══════════════════════════════════════════════════════
+   V8 — FULL HOMEPAGE WITH DARK/LIGHT ALTERNATING BANDS
+   Dark bands use Option D orb float effects
+   Light bands override V3 dark variables to a white palette
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Override page-level dark backgrounds ── */
+.v3-page.v8-page {
+  background: #FFFFFF;
+}
+
+.v8-page .v3-stage,
+.v8-page .v3-stage-net,
+.v8-page .v3-stage-grain {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BAND WRAPPERS
+   ═══════════════════════════════════════════════════════ */
+
+.v8-dark {
+  position: relative;
+  overflow: hidden;
+  background: #0A0A0A;
+  /* Keep dark v3 variables (inherited from .v3-page) */
+}
+
+.v8-light {
+  position: relative;
+  overflow: hidden;
+  background: #FFFFFF;
+
+  /* Override v3 dark variables for light theme */
+  --v3-bg: #FFFFFF;
+  --v3-surface: rgba(241,241,241,0.6);
+  --v3-surface-light: rgba(241,241,241,0.35);
+  --v3-line: rgba(6,41,62,0.06);
+  --v3-line-2: rgba(6,41,62,0.12);
+  --v3-text: #4a4a4a;
+  --v3-text-bright: #06293E;
+  --v3-text-muted: #6b6b6b;
+  --v3-accent: var(--teal);
+  color: #4a4a4a;
+}
+
+/* Ensure section content sits above orbs */
+.v8-dark > section,
+.v8-dark > div:not(.v8-orb-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   LIGHT BAND — ELEMENT OVERRIDES
+   ═══════════════════════════════════════════════════════ */
+
+/* Typography */
+.v8-light h1, .v8-light h2, .v8-light h3, .v8-light h4 {
+  color: var(--navy);
+}
+
+.v8-light .accent {
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(135deg, var(--navy), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Eyebrow */
+.v8-light .v3-eyebrow {
+  color: var(--graphite-400);
+}
+
+.v8-light .v3-eyebrow::before {
+  background: var(--graphite-300);
+}
+
+.v8-light .v3-eyebrow .dot {
+  background: var(--teal);
+  box-shadow: 0 0 10px rgba(19,181,177,0.4);
+}
+
+/* Section labels */
+.v8-light .v3-section-label {
+  color: var(--graphite-400);
+}
+
+.v8-light .v3-section-label::before {
+  background: var(--graphite-300);
+}
+
+/* Section sub */
+.v8-light .v3-section-sub {
+  color: var(--graphite-400);
+}
+
+/* Buttons */
+.v8-light .v3-btn-primary {
+  background: linear-gradient(135deg, var(--lemon), var(--lemon-600));
+  color: var(--navy);
+  border-color: var(--lemon-600);
+}
+
+.v8-light .v3-btn-primary:hover {
+  border-color: var(--navy);
+  box-shadow: 0 0 40px rgba(252,240,153,0.25);
+}
+
+.v8-light .v3-btn-ghost {
+  color: var(--navy);
+  border-bottom-color: rgba(6,41,62,0.3);
+}
+
+.v8-light .v3-btn-ghost:hover {
+  color: var(--navy);
+  border-bottom-color: var(--navy);
+}
+
+/* Cards */
+.v8-light .v3-card {
+  background: rgba(255,255,255,0.6);
+  border-color: rgba(6,41,62,0.08);
+}
+
+.v8-light .v3-card::before,
+.v8-light .v3-card::after {
+  border-color: rgba(6,41,62,0.12);
+}
+
+/* Problem cards */
+.v8-light .v3-problem-card {
+  border-color: rgba(6,41,62,0.06);
+}
+
+.v8-light .v3-problem-num {
+  color: var(--teal);
+}
+
+/* Infra band (Enterprise section) — remove dark gradient */
+.v8-light .v3-infra-band {
+  background: none;
+}
+
+.v8-light .v3-infra-card {
+  background: rgba(255,255,255,0.6);
+  border-color: rgba(6,41,62,0.08);
+}
+
+.v8-light .v3-infra-card::before,
+.v8-light .v3-infra-card::after {
+  border-color: rgba(6,41,62,0.12);
+}
+
+.v8-light .v3-infra-icon {
+  color: var(--teal);
+}
+
+/* ROI Calculator */
+.v8-light .v3-roi-card {
+  background: linear-gradient(135deg, rgba(241,241,241,0.8), rgba(248,248,248,0.6));
+  border-color: rgba(6,41,62,0.08);
+}
+
+.v8-light .v3-roi-card::before,
+.v8-light .v3-roi-card::after {
+  border-color: rgba(6,41,62,0.12);
+}
+
+.v8-light .v3-roi-left {
+  border-right-color: rgba(6,41,62,0.06);
+}
+
+.v8-light .v3-roi-output-value .dollar {
+  color: var(--teal);
+}
+
+.v8-light .v3-roi-input-row input[type="range"] {
+  background: rgba(6,41,62,0.12);
+}
+
+.v8-light .v3-roi-input-row input[type="range"]::-webkit-slider-thumb {
+  background: var(--teal);
+}
+
+.v8-light .v3-roi-input-row input[type="range"]::-moz-range-thumb {
+  background: var(--teal);
+}
+
+/* Implementation cards */
+.v8-light .v3-impl-card {
+  border-color: rgba(6,41,62,0.06);
+}
+
+.v8-light .v3-impl-step {
+  color: var(--teal);
+}
+
+/* Stats / Traction */
+.v8-light .v3-big-stat {
+  color: var(--navy);
+}
+
+.v8-light .v3-big-stat-lbl {
+  color: var(--graphite-400);
+}
+
+/* DeepDive tabs */
+.v8-light .v3-tab-item {
+  border-color: rgba(6,41,62,0.08);
+}
+
+.v8-light .v3-tab-item.active {
+  border-color: var(--teal);
+}
+
+.v8-light .v3-tab-screen {
+  background: rgba(241,241,241,0.6);
+  border-color: rgba(6,41,62,0.08);
+}
+
+/* HowItWorks */
+.v8-light .v5-step-line {
+  background: rgba(6,41,62,0.08);
+}
+
+.v8-light .v5-step-line-fill {
+  background: var(--teal);
+}
+
+.v8-light .v5-step-num {
+  color: var(--teal);
+}
+
+/* Module cards */
+.v8-light .v5-module-card {
+  border-color: rgba(6,41,62,0.06);
+  background: rgba(255,255,255,0.6);
+}
+
+.v8-light .v5-module-card::before,
+.v8-light .v5-module-card::after {
+  border-color: rgba(6,41,62,0.1);
+}
+
+.v8-light .v5-module-icon {
+  color: var(--teal);
+}
+
+/* Outcomes comparison table */
+.v8-light .v5-comparison-table th,
+.v8-light .v5-comparison-table td {
+  border-color: rgba(6,41,62,0.06);
+}
+
+.v8-light .v5-case-study {
+  border-color: rgba(6,41,62,0.06);
+}
+
+/* Hero sub text & stats in light */
+.v8-light .v5-hero-sub {
+  color: var(--graphite-500);
+}
+
+.v8-light .v5-hero-sub strong {
+  color: var(--navy);
+}
+
+.v8-light .v5-hero-stats {
+  border-color: rgba(6,41,62,0.06);
+}
+
+.v8-light .v5-hero-stat {
+  border-right-color: rgba(6,41,62,0.06);
+}
+
+.v8-light .v5-hero-stat-val .accent {
+  font-style: normal;
+  color: var(--teal);
+  -webkit-text-fill-color: var(--teal);
+  background: none;
+}
+
+.v8-light .v5-hero-stat-lbl {
+  color: var(--graphite-400);
+}
+
+/* ═══════════════════════════════════════════════════════
+   DARK BAND — TRANSPARENT OVERRIDES
+   Make band-level backgrounds more transparent so orbs show
+   ═══════════════════════════════════════════════════════ */
+
+.v8-dark .v3-method-band {
+  background: linear-gradient(180deg, transparent, rgba(6,41,62,0.15) 50%, transparent);
+}
+
+.v8-dark .v3-contact-band {
+  background: linear-gradient(180deg, transparent, rgba(6,41,62,0.12) 50%, transparent);
+}
+
+/* ═══════════════════════════════════════════════════════
+   ORB FLOAT EFFECT — Option D adapted for section bands
+   ═══════════════════════════════════════════════════════ */
+
+.v8-orb-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.v8-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+/* ── Hero orbs — largest, most vivid ── */
+.v8-orb-hero .v8-orb:nth-child(1) {
+  width: 800px; height: 700px; top: 5%; right: -5%; filter: blur(120px);
+  animation: v8-orb-hero-1 7s ease-in-out infinite;
+  background: rgba(252,240,153,0.25);
+}
+.v8-orb-hero .v8-orb:nth-child(2) {
+  width: 500px; height: 500px; bottom: -5%; left: 0%;
+  animation: v8-orb-hero-2 9s ease-in-out infinite;
+  background: rgba(6,41,62,0.9);
+}
+.v8-orb-hero .v8-orb:nth-child(3) {
+  width: 350px; height: 350px; top: 35%; left: 35%;
+  animation: v8-orb-hero-3 6s ease-in-out infinite;
+  background: rgba(19,181,177,0.2);
+}
+.v8-orb-hero .v8-orb:nth-child(4) {
+  width: 400px; height: 400px; top: 10%; left: 15%; filter: blur(100px);
+  animation: v8-orb-hero-4 8s ease-in-out infinite;
+  background: rgba(19,181,177,0.12);
+}
+
+@keyframes v8-orb-hero-1 {
+  0% { transform: translate(0,0) scale(1); background: rgba(252,240,153,0.25); }
+  20% { transform: translate(-100px,60px) scale(1.15); background: rgba(252,240,153,0.35); }
+  40% { transform: translate(-160px,30px) scale(1.25); background: rgba(19,181,177,0.25); }
+  60% { transform: translate(-60px,80px) scale(1.1); background: rgba(252,240,153,0.3); }
+  80% { transform: translate(-120px,-20px) scale(1.2); background: rgba(236,237,235,0.15); }
+  100% { transform: translate(0,0) scale(1); background: rgba(252,240,153,0.25); }
+}
+@keyframes v8-orb-hero-2 {
+  0% { transform: translate(0,0) scale(1); background: rgba(6,41,62,0.9); }
+  25% { transform: translate(120px,-80px) scale(1.2); background: rgba(6,41,62,0.6); }
+  50% { transform: translate(60px,-140px) scale(1.1); background: rgba(19,181,177,0.35); }
+  75% { transform: translate(180px,-60px) scale(1.25); background: rgba(6,41,62,0.75); }
+  100% { transform: translate(0,0) scale(1); background: rgba(6,41,62,0.9); }
+}
+@keyframes v8-orb-hero-3 {
+  0% { transform: translate(0,0) scale(1); background: rgba(19,181,177,0.2); }
+  25% { transform: translate(80px,-50px) scale(1.35); background: rgba(252,240,153,0.2); }
+  50% { transform: translate(-40px,60px) scale(0.9); background: rgba(19,181,177,0.3); }
+  75% { transform: translate(100px,30px) scale(1.2); background: rgba(252,240,153,0.15); }
+  100% { transform: translate(0,0) scale(1); background: rgba(19,181,177,0.2); }
+}
+@keyframes v8-orb-hero-4 {
+  0% { transform: translate(0,0) scale(1); background: rgba(19,181,177,0.12); }
+  33% { transform: translate(140px,80px) scale(1.3); background: rgba(252,240,153,0.18); }
+  66% { transform: translate(-60px,120px) scale(0.95); background: rgba(19,181,177,0.22); }
+  100% { transform: translate(0,0) scale(1); background: rgba(19,181,177,0.12); }
+}
+
+/* ── Section orbs — subtler, varied per section ── */
+.v8-orb-a .v8-orb:nth-child(1) {
+  width: 600px; height: 500px; top: -10%; right: 10%; filter: blur(120px);
+  animation: v8-orb-a1 8s ease-in-out infinite;
+  background: rgba(252,240,153,0.15);
+}
+.v8-orb-a .v8-orb:nth-child(2) {
+  width: 400px; height: 400px; bottom: 10%; left: -5%; filter: blur(100px);
+  animation: v8-orb-a2 10s ease-in-out infinite;
+  background: rgba(19,181,177,0.12);
+}
+.v8-orb-a .v8-orb:nth-child(3) {
+  width: 300px; height: 300px; top: 40%; left: 50%;
+  animation: v8-orb-a3 7s ease-in-out infinite;
+  background: rgba(6,41,62,0.5);
+}
+
+@keyframes v8-orb-a1 {
+  0% { transform: translate(0,0) scale(1); opacity: 0.5; }
+  33% { transform: translate(-120px,60px) scale(1.2); opacity: 0.7; }
+  66% { transform: translate(60px,-40px) scale(0.9); opacity: 0.4; }
+  100% { transform: translate(0,0) scale(1); opacity: 0.5; }
+}
+@keyframes v8-orb-a2 {
+  0% { transform: translate(0,0) scale(1); opacity: 0.4; }
+  50% { transform: translate(100px,-60px) scale(1.3); opacity: 0.6; }
+  100% { transform: translate(0,0) scale(1); opacity: 0.4; }
+}
+@keyframes v8-orb-a3 {
+  0% { transform: translate(0,0) scale(1); opacity: 0.4; }
+  33% { transform: translate(-80px,40px) scale(1.25); opacity: 0.6; }
+  66% { transform: translate(60px,-80px) scale(0.85); opacity: 0.35; }
+  100% { transform: translate(0,0) scale(1); opacity: 0.4; }
+}
+
+/* Variant B — flipped positions */
+.v8-orb-b .v8-orb:nth-child(1) {
+  width: 550px; height: 450px; top: 5%; left: -5%; filter: blur(110px);
+  animation: v8-orb-a1 9s ease-in-out infinite;
+  background: rgba(19,181,177,0.15);
+}
+.v8-orb-b .v8-orb:nth-child(2) {
+  width: 450px; height: 350px; bottom: -5%; right: 10%; filter: blur(100px);
+  animation: v8-orb-a2 7s ease-in-out infinite;
+  background: rgba(252,240,153,0.12);
+}
+.v8-orb-b .v8-orb:nth-child(3) {
+  width: 350px; height: 350px; top: 30%; right: 30%;
+  animation: v8-orb-a3 6s ease-in-out infinite;
+  background: rgba(6,41,62,0.6);
+}
+
+/* Variant C — center-heavy */
+.v8-orb-c .v8-orb:nth-child(1) {
+  width: 700px; height: 600px; top: 10%; left: 20%; filter: blur(130px);
+  animation: v8-orb-a1 10s ease-in-out infinite;
+  background: rgba(252,240,153,0.1);
+}
+.v8-orb-c .v8-orb:nth-child(2) {
+  width: 400px; height: 400px; bottom: 0%; right: 5%; filter: blur(100px);
+  animation: v8-orb-a2 8s ease-in-out infinite;
+  background: rgba(19,181,177,0.1);
+}
+.v8-orb-c .v8-orb:nth-child(3) {
+  width: 300px; height: 300px; top: 60%; left: 10%;
+  animation: v8-orb-a3 7s ease-in-out infinite;
+  background: rgba(6,41,62,0.45);
+}
+
+/* ═══════════════════════════════════════════════════════
+   LIGHT BAND — SUBTLE TEXTURE
+   A very faint grid to give light sections visual depth
+   ═══════════════════════════════════════════════════════ */
+
+.v8-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(6,41,62,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6,41,62,0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+}
+
+.v8-light > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .v8-orb-hero .v8-orb:nth-child(1) { width: 500px; height: 400px; }
+  .v8-orb-hero .v8-orb:nth-child(2) { width: 300px; height: 300px; }
+}

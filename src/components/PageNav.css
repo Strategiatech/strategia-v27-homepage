@@ -1,0 +1,202 @@
+.pnav-toggle {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 999;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #06293E;
+  color: #fff;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  padding: 10px 10px 10px 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -8px rgba(11,37,69,.12), 0 2px 6px rgba(11,37,69,.05);
+  font-family: var(--font-monospace, monospace);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 180ms, padding 180ms;
+}
+.pnav-toggle:hover {
+  background: #07324d;
+  padding-right: 14px;
+}
+.pnav-toggle-label {
+  display: none;
+}
+.pnav-toggle:hover .pnav-toggle-label {
+  display: inline;
+}
+
+.pnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 260px;
+  background: #06293E;
+  color: #ECEDEB;
+  transform: translateX(-100%);
+  transition: transform 280ms cubic-bezier(.2,.7,.2,1);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: none;
+}
+.pnav--open {
+  transform: translateX(0);
+  box-shadow: 8px 0 40px rgba(0,0,0,0.3);
+}
+
+.pnav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.pnav-title {
+  font-family: var(--font-tight, sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.pnav-close {
+  color: rgba(255,255,255,0.5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  transition: color 150ms, background 150ms;
+}
+.pnav-close:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+
+.pnav-group-label {
+  font-family: var(--font-monospace, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FCF099;
+  padding: 20px 20px 8px;
+}
+
+.pnav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pnav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 150ms, background 150ms;
+  font-family: var(--font-sans, sans-serif);
+  font-weight: 500;
+}
+.pnav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+.pnav-link--active {
+  color: #fff;
+  background: rgba(252,240,153,0.12);
+}
+.pnav-link--active .pnav-link-tag {
+  background: #FCF099;
+  color: #06293E;
+}
+.pnav-link-tag {
+  font-family: var(--font-monospace, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  padding: 3px 7px;
+  border-radius: 6px;
+  min-width: 36px;
+  text-align: center;
+  transition: background 150ms, color 150ms;
+}
+
+/* ---- Early Versions Accordion ---- */
+.pnav-accordion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: calc(100% - 16px);
+  margin: 4px 8px 2px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.45);
+  font-family: var(--font-monospace, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 150ms, background 150ms;
+}
+.pnav-accordion:hover {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.06);
+}
+.pnav-accordion-chevron {
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+.pnav-accordion--open .pnav-accordion-chevron {
+  transform: rotate(90deg);
+}
+.pnav-accordion-count {
+  margin-left: auto;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.35);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+.pnav-accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms ease;
+}
+.pnav-accordion-body > .pnav-list {
+  overflow: hidden;
+}
+.pnav-accordion-body--open {
+  grid-template-rows: 1fr;
+}
+
+.pnav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}

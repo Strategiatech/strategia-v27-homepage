@@ -1,0 +1,360 @@
+/* /vx-hero-concepts — stacks four standalone hero variants. Each variant
+   gets its own copy of VxNav, so the nav has to be non-fixed inside this
+   page (otherwise four navs would stack at scroll=0).
+
+   Geometry rule: every visible angled line on this page is at 60° from
+   horizontal — the angle of an equilateral triangle's side.
+
+   Anchoring rule: the diagonal slashes (A and D) start at the right edge
+   of the headline text ("Intelligence."), and the video fills the entire
+   region from that line to the hero's right edge. The equilateral
+   variants (B and C) sit centred on the right-column centre line. */
+
+/* ============================================================
+   CUSTOM PROPERTIES — shared geometry constants
+   ============================================================ */
+.vx-concept {
+  /* Hero padding (left/right) used by the v25 grid. */
+  --pad: clamp(1.5rem, 6vw, 6rem);
+
+  /* Right edge of the headline text. The text container is 38rem wide,
+     centred inside a 1.1fr-of-2.1fr grid column with horizontal padding
+     of --pad. Derivation: text_right = pad + (left_col + 38rem) / 2
+                                      = 0.476 * pad + 26.19vw + 19rem.
+     This is where Variant A's diagonal anchors at the bottom and
+     Variant D's diagonal anchors at the top. */
+  --text-right: calc(0.4762 * var(--pad) + 26.19vw + 19rem);
+
+  /* Stage = hero minus the 72px nav row. */
+  --stage-h: calc(100vh - 72px);
+
+  /* Horizontal run of a 60° line spanning the full stage height.
+     tan(60°) = √3 ≈ 1.7320508, so a 60° line that rises by stage_h
+     travels stage_h / √3 horizontally. */
+  --diag-run: calc(var(--stage-h) / 1.7320508);
+
+  /* Length of the 60° diagonal line (= hypotenuse of the 30-60-90).
+     stage_h * 2/√3 ≈ stage_h * 1.1547. */
+  --diag-length: calc(var(--stage-h) * 1.1547005);
+}
+
+/* ============================================================
+   NAV — non-fixed inside the concepts page so each variant
+   gets its own visible nav at its own top edge.
+   ============================================================ */
+.vx-concepts .v25-nav {
+  position: relative;
+  z-index: 4;
+}
+
+/* ============================================================
+   VARIANT WRAPPER
+   ============================================================ */
+.vx-concept {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 80% 70%, rgba(0, 198, 193, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 50%, rgba(0, 61, 107, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(0, 25, 46, 0.2) 0%, transparent 45%),
+    linear-gradient(135deg, #1C1C1C 0%, #00162E 25%, #003D6B 50%, #005072 80%, #006A93 100%);
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.vx-concept:first-of-type {
+  border-top: 0;
+}
+
+/* ============================================================
+   HERO LAYOUT
+   ============================================================ */
+.vx-concept-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem clamp(1.5rem, 6vw, 6rem) 5rem;
+  min-height: calc(100vh - 72px);
+  isolation: isolate;
+}
+
+.vx-concept-copy {
+  position: relative;
+  z-index: 3;
+  justify-self: center;
+  width: min(100%, 38rem);
+}
+
+/* ============================================================
+   VARIANT BADGE — tiny letter beside Book a demo
+   ============================================================ */
+.vx-concept-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 198, 193, 0.55);
+  background: rgba(0, 198, 193, 0.10);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+/* ============================================================
+   VIDEO STAGE
+   ============================================================ */
+.vx-concept-video-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.vx-concept-tri-box {
+  position: absolute;
+  /* Each variant sets its own positioning. */
+}
+
+.vx-concept-tri-clip {
+  position: absolute;
+  inset: 0;
+}
+
+.vx-concept-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  background: #012236;
+}
+.vx-concept-video-tint {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg,
+      rgba(1, 34, 54, 0.60) 0%,
+      rgba(0, 80, 114, 0.28) 45%,
+      rgba(0, 198, 193, 0.10) 100%);
+}
+
+/* SVG stroke for equilateral variants (B and C). */
+.vx-concept-tri-stroke {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.vx-concept-tri-stroke polyline {
+  fill: none;
+  stroke: var(--v25-teal, #00C6C1);
+  stroke-width: 2.25;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter:
+    drop-shadow(0 0 6px rgba(0, 198, 193, 0.85))
+    drop-shadow(0 0 16px rgba(0, 198, 193, 0.45))
+    drop-shadow(0 0 32px rgba(0, 198, 193, 0.20));
+}
+
+/* Diagonal line stroke for the slash variants (A and D). Hidden by
+   default — only A and D opt in. Implemented as a rotated rect so we
+   can position it precisely with calc-based coordinates that SVG
+   attribute values can't accept directly. */
+.vx-concept-diag-line {
+  display: none;
+  position: absolute;
+  width: var(--diag-length);
+  height: 2.25px;
+  background: var(--v25-teal, #00C6C1);
+  transform-origin: 0 50%;
+  filter:
+    drop-shadow(0 0 6px rgba(0, 198, 193, 0.85))
+    drop-shadow(0 0 16px rgba(0, 198, 193, 0.45))
+    drop-shadow(0 0 32px rgba(0, 198, 193, 0.20));
+}
+
+/* ============================================================
+   VARIANT A — RISING DIAGONAL SLASH (60°)
+   Diagonal anchored at the bottom edge in line with the end of
+   "Intelligence." Video fills the quadrilateral region from that
+   line all the way to the hero's right edge.
+   ============================================================ */
+.vx-concept--rising-diag .vx-concept-tri-box {
+  inset: 0 0 0 var(--text-right);
+}
+.vx-concept--rising-diag .vx-concept-tri-clip {
+  /* (0, 100%)            : bottom-left = line bottom at end-of-Intelligence
+     (var(--diag-run), 0) : line top, run units to the right
+     (100%, 0)            : top-right corner of hero
+     (100%, 100%)         : bottom-right corner of hero */
+  -webkit-clip-path: polygon(0 100%, var(--diag-run) 0, 100% 0, 100% 100%);
+          clip-path: polygon(0 100%, var(--diag-run) 0, 100% 0, 100% 100%);
+}
+.vx-concept--rising-diag .vx-concept-diag-line {
+  display: block;
+  left: 0;
+  top: 100%;
+  transform: rotate(-60deg);
+}
+.vx-concept--rising-diag .vx-concept-tri-stroke { display: none; }
+
+/* ============================================================
+   VARIANT B — UP-POINTING EQUILATERAL (true 60-60-60)
+   Centred on the right-column centre line.
+   Subject in source video is at the vertical centre, which by
+   default lands at 50% of the bounding box (geometric centre) but
+   the equilateral's centroid is at 67% from the apex. Shifting the
+   video down by 17% of its height aligns the subject with the
+   centroid (the triangle's visual centre).
+   ============================================================ */
+.vx-concept--up-eq .vx-concept-tri-box {
+  top: 50%;
+  left: 73vw;
+  height: 50vh;
+  aspect-ratio: 1.1547005 / 1;
+  transform: translate(-50%, -50%);
+}
+.vx-concept--up-eq .vx-concept-tri-clip {
+  -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
+          clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.vx-concept--up-eq .vx-concept-video {
+  transform: translateY(17%);
+}
+
+/* ============================================================
+   VARIANT C — UP-POINTING EQUILATERAL, LARGER (true 60-60-60)
+   Same orientation/aspect as B, sized 65vh tall so it dominates the
+   hero. Same centroid-alignment shift on the video.
+   ============================================================ */
+.vx-concept--right-eq .vx-concept-tri-box {
+  top: 50%;
+  left: 73vw;
+  height: 65vh;
+  aspect-ratio: 1.1547005 / 1;
+  transform: translate(-50%, -50%);
+}
+.vx-concept--right-eq .vx-concept-tri-clip {
+  -webkit-clip-path: polygon(50% 0, 100% 100%, 0 100%);
+          clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.vx-concept--right-eq .vx-concept-video {
+  transform: translateY(17%);
+}
+
+/* ============================================================
+   VARIANT D — FALLING DIAGONAL SLASH (60°)
+   Mirror of Variant A. Diagonal anchored at the top edge in line
+   with the end of "Intelligence." Video fills the quadrilateral.
+   ============================================================ */
+.vx-concept--falling-diag .vx-concept-tri-box {
+  inset: 0 0 0 var(--text-right);
+}
+.vx-concept--falling-diag .vx-concept-tri-clip {
+  /* (0, 0)               : top-left = line top at end-of-Intelligence
+     (100%, 0)            : top-right corner of hero
+     (100%, 100%)         : bottom-right corner of hero
+     (var(--diag-run), 100%) : line bottom, run units to the right */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, var(--diag-run) 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, var(--diag-run) 100%);
+}
+.vx-concept--falling-diag .vx-concept-diag-line {
+  display: block;
+  left: 0;
+  top: 0;
+  transform: rotate(60deg);
+}
+.vx-concept--falling-diag .vx-concept-tri-stroke { display: none; }
+
+/* ============================================================
+   VARIANT E — SOFT FADE
+   Video covers the right portion of the hero (from the right edge
+   of the headline text inward) and its left edge dissolves into the
+   dark hero via a horizontal mask, so there is no hard edge at all.
+   No stroke.
+   ============================================================ */
+.vx-concept--fade .vx-concept-tri-box {
+  /* Start a little left of the headline end so the fade has room to
+     resolve before it reaches the text. */
+  inset: 0 0 0 calc(var(--text-right) - 8vw);
+}
+.vx-concept--fade .vx-concept-tri-clip {
+  /* No clip-path; mask the left edge to transparent. The mask covers
+     both the video and the tint, so the whole panel dissolves. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 42%);
+}
+.vx-concept--fade .vx-concept-tri-stroke { display: none; }
+.vx-concept--fade .vx-concept-diag-line { display: none; }
+
+/* ============================================================
+   VARIANT F — HALF AND HALF
+   Video fills the right half of the hero with a hard vertical edge
+   at 50%. A vertical teal stroke marks the split line.
+   ============================================================ */
+.vx-concept--split .vx-concept-tri-box {
+  inset: 0 0 0 50%;
+}
+.vx-concept--split .vx-concept-tri-clip {
+  /* Rectangular — no clip-path. */
+}
+.vx-concept--split .vx-concept-tri-stroke {
+  display: block;
+}
+.vx-concept--split .vx-concept-diag-line { display: none; }
+
+/* ============================================================
+   RESPONSIVE — collapse to a single-column hero with a full-width
+   diagonal-topped video panel below the copy.
+   ============================================================ */
+@media (max-width: 860px) {
+  .vx-concept-hero {
+    grid-template-columns: 1fr;
+    padding-top: 140px;
+    min-height: auto;
+  }
+  .vx-concept-video-stage {
+    position: relative;
+    height: clamp(280px, 56vw, 480px);
+    margin-top: 1.5rem;
+    order: 2;
+  }
+  .vx-concept-copy { order: 1; }
+
+  .vx-concept-tri-box {
+    inset: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    transform: none !important;
+  }
+  .vx-concept-tri-clip {
+    -webkit-clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%) !important;
+            clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%) !important;
+  }
+  .vx-concept-tri-stroke { display: none !important; }
+  .vx-concept-diag-line { display: none !important; }
+  .vx-concept--up-eq .vx-concept-video,
+  .vx-concept--right-eq .vx-concept-video {
+    transform: none;
+  }
+  /* Drop the horizontal fade mask on mobile so E uses the standard
+     stacked panel like every other variant. */
+  .vx-concept--fade .vx-concept-tri-clip {
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
+  }
+}

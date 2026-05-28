@@ -1,0 +1,83 @@
+'use client'
+
+/* V26 footer — snapshot of the VX footer as it was before the
+   2026-05-25 content pass. Same column layout so the snapshot shows
+   what the footer looked like, but every column link is inert
+   (preventDefault on click) so /v26 stays self-contained and doesn't
+   link out to /vx subpages. */
+
+import type { MouseEvent } from 'react'
+
+const inert = (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault()
+
+export default function V26Footer() {
+  return (
+    <footer className="v25-footer">
+      <div className="v25-footer-inner">
+        <div className="v25-footer-top">
+          <div className="v25-footer-brand">
+            <img
+              src="/images/brand/glow/inline/strategia-final-logo-strategia-inline-white-glow.png"
+              alt="Strategia"
+            />
+            <p>
+              The intelligence engine for the healthcare workforce. Hire defensibly.
+              Plan rigorously. Operate at scale.
+            </p>
+            <div className="v25-footer-version">Strategia Intelligence Engine v2.1 &middot; Live</div>
+          </div>
+
+          <div>
+            <h5>Platform</h5>
+            <ul>
+              <li><a href="#" onClick={inert}>Overview</a></li>
+              <li><a href="#" onClick={inert}>Modules</a></li>
+              <li><a href="#" onClick={inert}>Science</a></li>
+              <li><a href="#" onClick={inert}>Enterprise</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Solutions</h5>
+            <ul>
+              <li><a href="#" onClick={inert}>CHRO</a></li>
+              <li><a href="#" onClick={inert}>Talent Acquisition</a></li>
+              <li><a href="#" onClick={inert}>Executive Team</a></li>
+              <li><a href="#" onClick={inert}>Clinical Operations</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Resources</h5>
+            <ul>
+              <li><a href="#" onClick={inert}>Validity studies</a></li>
+              <li><a href="#" onClick={inert}>Our Process</a></li>
+              <li><a href="#" onClick={inert}>Security &amp; trust</a></li>
+              <li><a href="#" onClick={inert}>Design system</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5>Company</h5>
+            <ul>
+              <li><a href="#" onClick={inert}>About</a></li>
+              <li><a href="#" onClick={inert}>Contact</a></li>
+              <li><a href="#" onClick={inert}>Privacy</a></li>
+              <li><a href="#" onClick={inert}>Terms</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="v25-footer-bottom">
+          <div className="v25-footer-bottom-left">&copy; 2026 Strategia, Inc. All rights reserved.</div>
+          <div className="v25-footer-bottom-right">
+            <a href="#" onClick={inert}>Privacy</a>
+            <a href="#" onClick={inert}>Terms</a>
+            <a href="#" onClick={inert}>Security</a>
+            <a href="#" onClick={inert}>Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}

@@ -1,0 +1,7 @@
+strategiatech.refari.work {
+    reverse_proxy app:3000
+}
+
+http://5.223.89.179 {
+    reverse_proxy app:3000
+}

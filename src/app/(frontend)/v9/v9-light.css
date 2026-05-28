@@ -1,0 +1,317 @@
+/* =============================================
+   V9 — "Light & Open" theme override
+   Accent: Burnt Orange replaces Lemon
+   Navy brought back for Problem, CTA, Footer
+   ============================================= */
+
+/* ── Burnt-orange palette ── */
+/* Primary:  #D4622B
+   Darker:   #B84E1F
+   Lighter:  #E8955E
+   Tint:     #FDF0E8  */
+
+/* ── Topbar: Keep navy — gives the page a strong navy anchor at top ── */
+
+/* ── Nav logo: Much more prominent ── */
+.theme-light-open .logo img {
+  height: 38px !important;
+}
+
+/* ── Hero: Silver-dominant background, orange glow ── */
+.theme-light-open .hero {
+  background: #ECEDEB;
+}
+.theme-light-open .hero-bg {
+  background:
+    radial-gradient(900px 450px at 80% -5%, rgba(212,98,43,0.12), transparent 55%),
+    radial-gradient(700px 500px at 15% 0%, rgba(191,191,190,0.4), transparent 50%),
+    linear-gradient(180deg, #ECEDEB 0%, #fff 70%);
+}
+.theme-light-open .hero-grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(6,41,62,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6,41,62,0.04) 1px, transparent 1px);
+}
+
+/* ── Hero stats bar ── */
+.theme-light-open .hero-stats {
+  background: #fff;
+  border-color: #BFBFBE;
+}
+
+/* ── Problem: KEEP NAVY — this is the main navy section ── */
+.theme-light-open .problem .eyebrow {
+  background: rgba(212,98,43,0.18);
+  color: #D4622B;
+}
+.theme-light-open .problem .eyebrow .eb-dot {
+  background: #D4622B;
+}
+.theme-light-open .problem-tagline .highlight {
+  background: linear-gradient(180deg, transparent 62%, rgba(212,98,43,0.4) 62%, rgba(212,98,43,0.4) 92%, transparent 92%);
+}
+
+/* ── OCEAN cards: orange letters instead of lemon ── */
+.theme-light-open .ocean-letter {
+  color: #D4622B;
+}
+
+/* ── Triangulate ── */
+.theme-light-open .triangulate-label {
+  color: #D4622B;
+}
+.theme-light-open .triangulate-arrow {
+  color: #D4622B;
+}
+
+/* ── Pillars: Silver cards ── */
+.theme-light-open .pillars {
+  background: #fff;
+}
+.theme-light-open .pillar-card {
+  background: #ECEDEB;
+  border-color: #BFBFBE;
+}
+.theme-light-open .pillar-card:hover {
+  border-color: #D4622B;
+  background: #fff;
+}
+.theme-light-open .pillar-card::before {
+  background: radial-gradient(400px 180px at 50% 0%, rgba(212,98,43,0.12), transparent 55%);
+}
+.theme-light-open .pillar-icon {
+  background: linear-gradient(135deg, #FDF0E8, #fce4d4);
+  border-color: #E8955E;
+}
+.theme-light-open .pillar-tag {
+  background: #BFBFBE;
+  color: #06293E;
+}
+
+/* ── How It Works: orange active step ── */
+.theme-light-open .how {
+  background: #ECEDEB;
+}
+.theme-light-open .step-num {
+  border-color: #BFBFBE;
+}
+.theme-light-open .step.in .step-num {
+  background: #06293E;
+  color: #fff;
+  border-color: #06293E;
+}
+.theme-light-open .step.in .step-num::after {
+  border-color: #D4622B;
+}
+.theme-light-open .step-line-fill {
+  background: linear-gradient(90deg, #D4622B, #E8955E) !important;
+}
+
+/* ── Deep Dive: orange active tab ── */
+.theme-light-open .deepdive {
+  background: #fff;
+}
+.theme-light-open .tab-item.active {
+  border-left-color: #D4622B;
+}
+
+/* ── Outcomes: orange bar fills ── */
+.theme-light-open .outcomes {
+  background: linear-gradient(180deg, #ECEDEB 0%, #fff 100%);
+}
+.theme-light-open .outcome-bar-fill {
+  background: linear-gradient(90deg, #D4622B, #E8955E) !important;
+}
+.theme-light-open .comparison-table th {
+  background: #ECEDEB;
+  color: #06293E;
+}
+
+/* ── Enterprise: Silver bg, orange badges ── */
+.theme-light-open .enterprise-section {
+  background: #ECEDEB;
+}
+.theme-light-open .enterprise-card {
+  background: #fff;
+  border-color: #BFBFBE;
+}
+.theme-light-open .trust-badges .trust-badge {
+  background: #D4622B;
+  color: #fff;
+}
+
+/* ── Security: Orange badge marks ── */
+.theme-light-open .security-section {
+  background: #fff;
+}
+.theme-light-open .sec-badge {
+  background: #ECEDEB;
+  border-color: #BFBFBE;
+}
+.theme-light-open .sec-badge:hover {
+  background: #fff;
+}
+.theme-light-open .sec-badge-mark {
+  background: #06293E;
+  color: #D4622B;
+}
+
+/* ── ROI Calculator: Steel/silver card ── */
+.theme-light-open .roi-section {
+  background: #ECEDEB;
+}
+.theme-light-open .roi-card {
+  background: linear-gradient(135deg, #BFBFBE 0%, #ECEDEB 100%);
+  color: #06293E;
+  box-shadow: 0 24px 48px -16px rgba(6,41,62,0.12), 0 8px 16px -8px rgba(6,41,62,0.06);
+}
+.theme-light-open .roi-card::before {
+  background:
+    radial-gradient(500px 350px at 100% 0%, rgba(212,98,43,0.12), transparent 55%),
+    radial-gradient(400px 300px at 0% 100%, rgba(212,98,43,0.06), transparent 50%);
+}
+.theme-light-open .roi-left h2 {
+  color: #06293E;
+}
+.theme-light-open .roi-left p {
+  color: #4a4a4a;
+}
+.theme-light-open .roi-output {
+  border-left-color: rgba(6,41,62,0.1);
+}
+.theme-light-open .roi-output-label {
+  color: #D4622B;
+  font-weight: 700;
+}
+.theme-light-open .roi-output-value {
+  color: #06293E;
+}
+.theme-light-open .roi-output-value .dollar {
+  color: #D4622B;
+}
+.theme-light-open .roi-output-sub {
+  color: #6b6b6b;
+}
+.theme-light-open .roi-breakdown {
+  border-top-color: rgba(6,41,62,0.1);
+}
+.theme-light-open .roi-bd-row .k {
+  color: #4a4a4a;
+}
+.theme-light-open .roi-bd-row .v {
+  color: #06293E;
+}
+.theme-light-open .roi-input-row .k {
+  color: #06293E;
+}
+.theme-light-open .roi-input-row .hint {
+  color: #6b6b6b;
+}
+.theme-light-open .roi-value {
+  color: #D4622B;
+}
+.theme-light-open .roi-input-row input[type="range"] {
+  background: rgba(6,41,62,0.12);
+}
+.theme-light-open .roi-input-row input[type="range"]::-webkit-slider-thumb {
+  background: #D4622B;
+  border-color: #fff;
+  box-shadow: 0 0 0 4px rgba(212,98,43,0.2);
+}
+.theme-light-open .roi-input-row input[type="range"]::-moz-range-thumb {
+  background: #D4622B;
+  border-color: #fff;
+}
+
+/* ── Final CTA: KEEP NAVY — second navy anchor ── */
+.theme-light-open .final-cta .eyebrow {
+  background: rgba(212,98,43,0.18);
+  color: #D4622B;
+}
+.theme-light-open .final-cta .eyebrow .eb-dot {
+  background: #D4622B;
+}
+.theme-light-open .final-cta::before {
+  background:
+    radial-gradient(700px 400px at 50% 0%, rgba(212,98,43,0.12), transparent 50%),
+    radial-gradient(350px 250px at 20% 100%, rgba(212,98,43,0.06), transparent 45%);
+}
+.theme-light-open .final-cta .btn-ghost-light {
+  color: #fff;
+  border-color: rgba(255,255,255,0.28);
+}
+.theme-light-open .final-cta .btn-ghost-light:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* ── Footer: KEEP NAVY — grounds the page ── */
+.theme-light-open .footer-brand .logo img {
+  /* white logo on navy — no filter needed, original is white */
+}
+.theme-light-open .newsletter-form:focus-within {
+  border-color: #D4622B;
+}
+.theme-light-open .newsletter-form button {
+  background: #D4622B;
+  color: #fff;
+}
+.theme-light-open .newsletter-form button:hover {
+  background: #B84E1F;
+}
+.theme-light-open .footer-social a:hover {
+  background: rgba(212,98,43,0.15);
+  color: #fff;
+  border-color: #D4622B;
+}
+
+/* ── Mobile CTA: Orange ── */
+.theme-light-open .mobile-cta {
+  background: #D4622B;
+  color: #fff;
+}
+
+/* ── Eyebrow: Orange tint globally ── */
+.theme-light-open .eyebrow {
+  background: #FDF0E8;
+  color: #06293E;
+}
+.theme-light-open .eyebrow .eb-dot {
+  background: #D4622B;
+}
+
+/* ── Buttons: Burnt orange primary ── */
+.theme-light-open .btn-primary {
+  background: #D4622B;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(212,98,43,.2), 0 8px 16px -8px rgba(212,98,43,.35);
+}
+.theme-light-open .btn-primary:hover {
+  background: #B84E1F;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(212,98,43,.3), 0 14px 24px -8px rgba(212,98,43,.45);
+}
+
+/* ── Hero kicker tag: navy → orange ── */
+.theme-light-open .hero-kicker .kick-tag {
+  background: #D4622B;
+  color: #fff;
+}
+
+/* ── Pillar link hover color ── */
+.theme-light-open .pillar-link {
+  color: #D4622B;
+}
+
+/* ── Case study side link ── */
+.theme-light-open .case-side-link {
+  color: #D4622B;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .theme-light-open .roi-output {
+    border-left: none;
+    border-top-color: rgba(6,41,62,0.1);
+  }
+}

@@ -1,0 +1,1105 @@
+/* VX-only overrides that augment V25 without modifying v25.css.
+   v25.css ships .v25-science-stat with dark-band styling only. When the
+   stat grid is used inside a .v25-section--light band (a common VX
+   composition), the white-alpha text fails contrast on #ECEDEB. These
+   rules flip text and surface to AA-pass values, mirroring V25's own
+   light-band handling for .v25-stat-card. */
+
+/* ============================================================
+   HERO — secondary descriptor paragraph
+   ============================================================ */
+.vx-hero-sub {
+  font-size: clamp(0.98rem, 1.2vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 16px 0 0;
+  max-width: 56ch;
+}
+
+/* ============================================================
+   INDUSTRIES — 6-sector grid on a light section
+   ============================================================ */
+.vx-industries-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.vx-industries-lead .v25-h2 { margin: 0; }
+.vx-industries-tagline {
+  margin-top: 24px;
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--v25-abyss);
+  line-height: 1.5;
+}
+@media (min-width: 1101px) {
+  .vx-industries-lead {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+}
+
+/* ------------------------------------------------------------
+   Industry switcher: a horizontal tab strip across six sectors
+   with a sliding teal underline, paired with a single editorial
+   panel below that cross-fades to show the active sector's copy.
+   ------------------------------------------------------------ */
+.vx-industries-tabs {
+  position: relative;
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(1, 34, 54, 0.10);
+  margin-bottom: 28px;
+}
+.vx-industries-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 18px 10px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(1, 34, 54, 0.62);
+  cursor: pointer;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.vx-industries-tab:hover { color: var(--v25-abyss, #012236); }
+.vx-industries-tab.is-active { color: #006D6A; font-weight: 700; }
+.vx-industries-underline {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: calc(100% / var(--total, 6));
+  height: 2px;
+  background: var(--v25-teal, #00C6C1);
+  transform: translateX(calc(var(--idx, 0) * 100%));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.vx-industries-panel {
+  background: #ffffff;
+  border: 1px solid rgba(1, 34, 54, 0.10);
+  border-radius: 20px;
+  padding: clamp(28px, 3.5vw, 44px);
+  min-height: 200px;
+  animation: vx-industries-fade 0.4s ease-out both;
+}
+.vx-industries-panel-tag {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #006D6A;
+  margin-bottom: 20px;
+}
+.vx-industries-panel p {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--v25-abyss, #012236);
+  margin: 0;
+  max-width: 64ch;
+}
+
+@keyframes vx-industries-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1100px) {
+  .vx-industries-layout { grid-template-columns: 1fr; }
+  .vx-industries-lead { position: static; }
+}
+@media (max-width: 720px) {
+  .vx-industries-tabs { overflow-x: auto; scrollbar-width: none; }
+  .vx-industries-tabs::-webkit-scrollbar { display: none; }
+  .vx-industries-tab { flex: 0 0 auto; padding: 16px 14px; }
+  .vx-industries-underline { display: none; }
+  .vx-industries-tab.is-active { box-shadow: inset 0 -2px 0 var(--v25-teal, #00C6C1); }
+}
+
+/* ============================================================
+   THREE PILLARS — Acquire / Elevate / Empower
+   ============================================================ */
+.vx-pillars-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.vx-pillar-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(0, 25, 46, 0.40) 0%, rgba(0, 61, 107, 0.18) 55%, rgba(0, 198, 193, 0.10) 100%),
+    rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  padding: clamp(28px, 3.5vw, 40px);
+  display: flex;
+  flex-direction: column;
+}
+.vx-pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--v25-accent), transparent);
+  border-radius: 20px 20px 0 0;
+  opacity: 0.65;
+}
+.vx-pillar-num {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 18px;
+}
+.vx-pillar-title {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+.vx-pillar-italic {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--v25-accent-text);
+  margin-bottom: 20px;
+}
+.vx-pillar-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+.vx-pillar-foot {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+@media (max-width: 980px) {
+  .vx-pillars-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   V-AGENT FUTURE STATE
+   ============================================================ */
+/* Tighten the band: the shared .v25-section padding (clamp 96-180px top
+   & bottom) leaves too much air above the V-Agent panel and between it
+   and the carousel below. Halve it just for this section. */
+#v-agent {
+  padding-top: clamp(48px, 7vw, 90px);
+  padding-bottom: clamp(48px, 7vw, 90px);
+}
+.vx-agent-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(12px, 2vw, 28px) 0;
+}
+.vx-agent-side .v25-h2 { margin: 0; }
+.vx-agent-sub {
+  margin-top: 16px;
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: rgba(1, 34, 54, 0.65);
+}
+.vx-agent-panel {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(1, 34, 54, 0.10);
+  border-radius: 20px;
+  padding: clamp(28px, 3.5vw, 44px);
+  box-shadow: 0 30px 60px -40px rgba(1, 34, 54, 0.25);
+}
+.vx-agent-panel::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 24px; right: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00C6C1, transparent);
+  border-radius: 3px;
+}
+.vx-agent-panel-head {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 400;
+  color: var(--v25-abyss);
+  margin-bottom: 18px;
+  letter-spacing: -0.015em;
+}
+.vx-agent-panel p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(1, 34, 54, 0.78);
+  margin: 0;
+}
+@media (max-width: 980px) {
+  .vx-agent-wrap { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   V-AGENT VIDEO CAROUSEL — placeholder candidate clips
+   Full-bleed marquee underneath the V-Agent panel. Hovering a card
+   pauses the scroll and plays that card's video; mouseleave rewinds
+   and resumes the scroll.
+   ============================================================ */
+.vx-carousel-section {
+  padding-top: 0;
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+.vx-carousel-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 96px, #000 calc(100% - 96px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 96px, #000 calc(100% - 96px), transparent 100%);
+}
+.vx-carousel-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: vx-carousel-scroll 60s linear infinite;
+  will-change: transform;
+}
+.vx-carousel-track--paused {
+  animation-play-state: paused;
+}
+@keyframes vx-carousel-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-50% - 9px), 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vx-carousel-track { animation-duration: 240s; }
+}
+
+.vx-carousel-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(180px, 18vw, 240px);
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #013956 0%, #012236 100%);
+  box-shadow: 0 18px 36px -28px rgba(1, 34, 54, 0.45);
+  cursor: pointer;
+  transform: translateZ(0);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.vx-carousel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 56px -28px rgba(1, 34, 54, 0.55), 0 0 0 1px rgba(0, 198, 193, 0.45);
+}
+.vx-carousel-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #012236;
+}
+.vx-carousel-card::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 55%;
+  background: linear-gradient(180deg, transparent 0%, rgba(1, 34, 54, 0.85) 100%);
+  pointer-events: none;
+}
+.vx-carousel-card-meta {
+  position: absolute;
+  left: 14px; right: 14px; bottom: 14px;
+  color: #ffffff;
+  z-index: 1;
+}
+.vx-carousel-card-name {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+.vx-carousel-card-role {
+  margin-top: 4px;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 680px) {
+  .vx-carousel-card { width: 150px; }
+  .vx-carousel-track { gap: 12px; }
+}
+
+/* ============================================================
+   SOLUTIONS — questions bigger and bolder (client slide 5)
+   ============================================================ */
+.vx-solutions-grid {
+  /* keep the V25 base grid styles; just need the inner card adjustments */
+}
+.vx-solution-card { /* anchor for selector specificity */ }
+.vx-solution-card .v25-solution-title {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 0;
+}
+.vx-solution-quote {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 18px 0 0;
+  text-wrap: balance;
+}
+.vx-solution-quote::before { content: '“'; margin-right: 2px; }
+.vx-solution-quote::after { content: '”'; margin-left: 2px; }
+
+/* ============================================================
+   STATS — 4-up variant (PDF slide 6)
+   The 4-up squeezes each card to ~220px usable. V25's value font
+   (clamp up to 4.5rem) wraps "<25mins" onto two lines at that
+   width, which breaks the rhythm across the row. Pin a smaller
+   clamp and force a single line so all four numbers sit on one
+   row at the same baseline.
+   ============================================================ */
+.vx-stats-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.vx-stats-grid-4 .v25-stat-value {
+  font-size: clamp(2.25rem, 3.6vw, 3.4rem);
+  white-space: nowrap;
+}
+@media (max-width: 980px) {
+  .vx-stats-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vx-stats-grid-4 .v25-stat-value {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+}
+@media (max-width: 520px) {
+  .vx-stats-grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   SCIENCE — three framework cards (Big Five / STAR / Triangulation)
+   ============================================================ */
+.vx-science-frameworks {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.vx-science-framework {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  padding: clamp(24px, 3vw, 36px);
+}
+.vx-science-framework-title {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: clamp(1.4rem, 2.1vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+.vx-science-framework-tag {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.vx-science-framework p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+@media (max-width: 900px) {
+  .vx-science-frameworks { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   WHY IT MATTERS — comparison table
+   ============================================================ */
+.vx-compare {
+  margin-top: 48px;
+  border: 1px solid rgba(1, 34, 54, 0.10);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+}
+.vx-compare-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1.6fr));
+  gap: 0;
+  border-top: 1px solid rgba(1, 34, 54, 0.08);
+}
+.vx-compare-row:first-child {
+  border-top: 0;
+}
+.vx-compare-row--head {
+  background: rgba(1, 34, 54, 0.04);
+}
+.vx-compare-factor,
+.vx-compare-cell {
+  padding: 22px 24px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(1, 34, 54, 0.78);
+}
+.vx-compare-row:not(.vx-compare-row--head) .vx-compare-factor {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-weight: 600;
+  color: var(--v25-abyss);
+}
+.vx-compare-row--head .vx-compare-factor,
+.vx-compare-row--head .vx-compare-cell {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(1, 34, 54, 0.65);
+}
+.vx-compare-row--head .vx-compare-cell--strategia {
+  color: #006D6A;
+}
+.vx-compare-cell--strategia {
+  background: rgba(0, 198, 193, 0.07);
+  font-weight: 500;
+  color: var(--v25-abyss);
+}
+@media (max-width: 900px) {
+  .vx-compare-row {
+    grid-template-columns: 1fr;
+  }
+  .vx-compare-row--head { display: none; }
+  .vx-compare-row > .vx-compare-factor {
+    background: rgba(1, 34, 54, 0.04);
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(1, 34, 54, 0.7);
+  }
+  .vx-compare-cell::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(1, 34, 54, 0.45);
+    margin-bottom: 6px;
+  }
+}
+
+/* ============================================================
+   DEPLOYMENT (Process) — 5 phase cards
+   ============================================================ */
+.vx-deploy-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+.vx-deploy-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  padding: 24px 22px 26px;
+  display: flex;
+  flex-direction: column;
+}
+.vx-deploy-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 24px; right: 24px;
+  height: 2px;
+  border-radius: 2px;
+}
+.vx-deploy-grid .vx-deploy-card:nth-child(1)::before { background: #0089B8; }
+.vx-deploy-grid .vx-deploy-card:nth-child(2)::before { background: var(--v25-sky); }
+.vx-deploy-grid .vx-deploy-card:nth-child(3)::before { background: var(--v25-accent); }
+.vx-deploy-grid .vx-deploy-card:nth-child(4)::before { background: #50D4BC; }
+.vx-deploy-grid .vx-deploy-card:nth-child(5)::before { background: var(--v25-lime); }
+.vx-deploy-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+.vx-deploy-phase {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.vx-deploy-weeks {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+.vx-deploy-title {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-size: clamp(1.3rem, 1.8vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+.vx-deploy-desc {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+@media (max-width: 1100px) {
+  .vx-deploy-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .vx-deploy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .vx-deploy-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   SECURITY — 3 intro cards + trust block (slide 14)
+   ============================================================ */
+.vx-security-tri {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.vx-security-card {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  padding: 24px;
+}
+.vx-security-card-title {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+.vx-security-card p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+.vx-trust-block {
+  margin-top: 56px;
+  padding: clamp(28px, 4vw, 48px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  background:
+    linear-gradient(120deg, rgba(0, 198, 193, 0.10) 0%, rgba(0, 25, 46, 0.30) 60%, rgba(0, 61, 107, 0.18) 100%),
+    rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+.vx-trust-block .v25-h2 { margin: 12px 0 20px; }
+.vx-trust-block p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.80);
+  max-width: 78ch;
+}
+@media (max-width: 900px) {
+  .vx-security-tri { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   FAQs — lightweight accordion
+   ============================================================ */
+.vx-faq-list {
+  margin-top: 48px;
+  border-top: 1px solid rgba(1, 34, 54, 0.10);
+}
+.vx-faq-item {
+  border-bottom: 1px solid rgba(1, 34, 54, 0.10);
+}
+.vx-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 4px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--v25-abyss);
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+.vx-faq-q:hover { color: #006D6A; }
+.vx-faq-q-num {
+  flex-shrink: 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(1, 34, 54, 0.50);
+  width: 28px;
+}
+.vx-faq-q-text {
+  flex-grow: 1;
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+.vx-faq-q-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(1, 34, 54, 0.20);
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(1, 34, 54, 0.65);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.vx-faq-item--open .vx-faq-q-icon {
+  border-color: #006D6A;
+  color: #006D6A;
+  background: rgba(0, 198, 193, 0.08);
+}
+.vx-faq-a {
+  padding: 0 4px 26px calc(28px + 18px);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(1, 34, 54, 0.75);
+  max-width: 80ch;
+}
+
+/* ============================================================
+   MODULES — VX has 6 phases (added Assess+ between Decide and Operate).
+   V25's color ramp only covers 5 nth-of-type rules, so the 6th block
+   falls back to the default teal. Re-map so Operate keeps the lime
+   anchor and Assess+ reads as the premium tier.
+   ============================================================ */
+.v25-modules-phased .v25-module-phase:nth-of-type(5) .v25-module-phase-name {
+  color: #7BD9C5;
+}
+.v25-modules-phased .v25-module-phase:nth-of-type(5) .v25-module-phase-step {
+  color: var(--v25-lime);
+  font-weight: 700;
+}
+.v25-modules-phased .v25-module-phase:nth-of-type(6) .v25-module-phase-name {
+  color: var(--v25-lime);
+}
+
+/* ============================================================
+   ROI calculator — light-mode overrides (PDF puts ROI on white)
+   ============================================================ */
+.v25-section--light .v25-roi-input-header .k { color: rgba(1, 34, 54, 0.85); }
+.v25-section--light .v25-roi-input-header .v { color: #006D6A; }
+.v25-section--light .v25-roi-slider {
+  background: linear-gradient(90deg, rgba(0, 109, 106, 0.30), rgba(0, 109, 106, 0.55));
+}
+.v25-section--light .v25-roi-slider::-webkit-slider-thumb {
+  background: #006D6A;
+  border-color: #ffffff;
+  box-shadow: 0 1px 6px rgba(0, 109, 106, 0.40);
+}
+.v25-section--light .v25-roi-slider::-moz-range-thumb {
+  background: #006D6A;
+  border-color: #ffffff;
+  box-shadow: 0 1px 6px rgba(0, 109, 106, 0.40);
+}
+.v25-section--light .v25-roi-output {
+  border-color: rgba(1, 34, 54, 0.10);
+  background:
+    linear-gradient(135deg, rgba(0, 198, 193, 0.10) 0%, rgba(0, 90, 140, 0.10) 55%, rgba(1, 34, 54, 0.06) 100%),
+    #ffffff;
+  box-shadow: 0 30px 60px -40px rgba(1, 34, 54, 0.20);
+}
+.v25-section--light .v25-roi-output-label { color: rgba(1, 34, 54, 0.60); }
+.v25-section--light .v25-roi-output-value { color: var(--v25-abyss); }
+.v25-section--light .v25-roi-output-value .dollar { color: #006D6A; }
+.v25-section--light .v25-roi-output-sub { color: rgba(1, 34, 54, 0.65); }
+
+/* ============================================================
+   FINAL CTA — italic subhead
+   ============================================================ */
+.vx-cta-italic {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 8px 0 28px;
+  letter-spacing: -0.012em;
+}
+
+
+.v25-section--light .v25-science-stat {
+  background: #ffffff;
+  backdrop-filter: none;
+}
+.v25-section--light .v25-science-stat .value { color: #006D6A; }
+.v25-section--light .v25-science-stat .evidence { color: rgba(1, 34, 54, 0.60); }
+.v25-section--light .v25-science-stat .label { color: var(--v25-abyss); }
+.v25-section--light .v25-science-stat .sub { color: rgba(1, 34, 54, 0.65); }
+.v25-section--light .v25-science-grid {
+  background: rgba(1, 34, 54, 0.06);
+  border-color: rgba(1, 34, 54, 0.10);
+}
+
+/* ============================================================
+   /vx/platform — architecture-page-only components
+   These augment V25's class system for sections unique to the
+   platform page: a data-flow rail, an API integrations grid,
+   the flat module catalogue, and the deployment meta strip.
+   None of these classes are referenced from V25 itself.
+   ============================================================ */
+
+/* Data-flow rail */
+.vx-flow {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 24px;
+  background:
+    linear-gradient(115deg, rgba(0, 25, 46, 0.32) 0%, rgba(0, 61, 107, 0.18) 55%, rgba(0, 198, 193, 0.14) 100%),
+    rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px);
+}
+.vx-flow-rail {
+  position: absolute;
+  top: calc(clamp(28px, 4vw, 48px) + 56px);
+  left: clamp(36px, 5vw, 60px);
+  right: clamp(36px, 5vw, 60px);
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(92, 200, 232, 0.45) 0%,
+    rgba(0, 198, 193, 0.65) 50%,
+    rgba(161, 226, 183, 0.55) 100%);
+  pointer-events: none;
+}
+.vx-flow-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 12px;
+}
+.vx-flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding-top: 40px;
+}
+.vx-flow-node-step {
+  position: absolute;
+  top: 0;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.vx-flow-node-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--v25-accent);
+  box-shadow: 0 0 0 4px rgba(0, 198, 193, 0.18), 0 0 22px rgba(0, 198, 193, 0.55);
+  margin-bottom: 14px;
+}
+.vx-flow-node--input .vx-flow-node-dot { background: var(--v25-sky); box-shadow: 0 0 0 4px rgba(92, 200, 232, 0.18), 0 0 22px rgba(92, 200, 232, 0.5); }
+.vx-flow-node--engine .vx-flow-node-dot { background: #0089B8; box-shadow: 0 0 0 4px rgba(0, 137, 184, 0.20), 0 0 22px rgba(0, 137, 184, 0.45); }
+.vx-flow-node--synthesis .vx-flow-node-dot { background: #50D4BC; box-shadow: 0 0 0 4px rgba(80, 212, 188, 0.22), 0 0 22px rgba(80, 212, 188, 0.55); }
+.vx-flow-node--output .vx-flow-node-dot { background: var(--v25-lime); box-shadow: 0 0 0 4px rgba(161, 226, 183, 0.22), 0 0 22px rgba(161, 226, 183, 0.55); }
+.vx-flow-node--loop .vx-flow-node-dot { background: rgba(255, 255, 255, 0.85); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.14), 0 0 22px rgba(255, 255, 255, 0.35); }
+.vx-flow-node-label {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.vx-flow-node-sub {
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 14ch;
+}
+.vx-flow-loop-meta {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+.vx-flow-loop-arrow {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  color: var(--v25-accent);
+  font-size: 18px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+@media (max-width: 1100px) {
+  .vx-flow-rail { display: none; }
+  .vx-flow-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 16px;
+  }
+}
+@media (max-width: 640px) {
+  .vx-flow-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* API integrations grid */
+.vx-integrations {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(1, 34, 54, 0.10);
+  border: 1px solid rgba(1, 34, 54, 0.10);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.vx-integration {
+  background: #ffffff;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vx-integration-kind {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(1, 34, 54, 0.60);
+}
+.vx-integration-name {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--v25-abyss);
+}
+@media (max-width: 860px) {
+  .vx-integrations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* API claims (Inbound / Outbound / Auth) */
+.vx-api-claims {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.vx-api-claim {
+  padding: 24px;
+  border: 1px solid rgba(1, 34, 54, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.vx-api-claim-key {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(1, 34, 54, 0.60);
+  margin-bottom: 12px;
+}
+.vx-api-claim-value {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--v25-abyss);
+  margin-bottom: 8px;
+}
+.vx-api-claim-sub {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(1, 34, 54, 0.65);
+}
+@media (max-width: 860px) {
+  .vx-api-claims { grid-template-columns: 1fr; }
+}
+
+/* Module index — flat catalogue cards (no phase grouping) */
+.vx-module-index {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.vx-module-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 22px 22px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              background 0.3s ease;
+}
+.vx-module-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--v25-accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.vx-module-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 198, 193, 0.40);
+  background: rgba(255, 255, 255, 0.06);
+}
+.vx-module-card:hover::before { opacity: 1; }
+.vx-module-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.vx-module-card-num {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.60);
+}
+.vx-module-card-arrow {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 14px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.vx-module-card:hover .vx-module-card-arrow {
+  color: var(--v25-accent-text);
+  transform: translate(3px, -3px);
+}
+.vx-module-card-title {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.vx-module-card-blurb {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+.vx-module-card-cta {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--v25-accent-text);
+}
+@media (max-width: 1100px) {
+  .vx-module-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .vx-module-index { grid-template-columns: 1fr; }
+}
+
+/* Deployment meta strip */
+.vx-deployment-meta {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(1, 34, 54, 0.12);
+  border: 1px solid rgba(1, 34, 54, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.vx-deployment-meta > div {
+  background: #ffffff;
+  padding: 22px 24px;
+}
+.vx-deployment-meta-key {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(1, 34, 54, 0.60);
+  margin-bottom: 8px;
+}
+.vx-deployment-meta-value {
+  font-family: var(--font-tight, 'Inter Tight', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--v25-abyss);
+}
+@media (max-width: 860px) {
+  .vx-deployment-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .vx-deployment-meta { grid-template-columns: 1fr; }
+}

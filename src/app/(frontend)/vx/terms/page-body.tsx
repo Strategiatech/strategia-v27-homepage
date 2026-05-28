@@ -1,0 +1,286 @@
+'use client'
+
+import { useEffect } from 'react'
+import VxNav from '@/components/vx/VxNav'
+import VxFooter from '@/components/vx/VxFooter'
+
+/* eslint-disable @next/next/no-img-element */
+
+// Long-form text styles. Reused across every <h2> and <p> so the document
+// reads as one consistent column on the dark V25 surface.
+const H2_STYLE: React.CSSProperties = {
+  fontFamily: 'var(--font-display, "Literata", Georgia, serif)',
+  fontSize: 'clamp(1.5rem, 2.6vw, 1.875rem)',
+  fontWeight: 400,
+  lineHeight: 1.2,
+  letterSpacing: '-0.015em',
+  color: '#ffffff',
+  margin: '64px 0 20px',
+  maxWidth: '34ch',
+  textWrap: 'balance',
+}
+
+const P_STYLE: React.CSSProperties = {
+  fontFamily: 'var(--font-inter, system-ui)',
+  fontSize: '1rem',
+  lineHeight: 1.75,
+  color: 'rgba(255, 255, 255, 0.78)',
+  margin: '0 0 16px',
+  maxWidth: '70ch',
+}
+
+const NOTE_STYLE: React.CSSProperties = {
+  display: 'inline-block',
+  marginLeft: 8,
+  padding: '2px 10px',
+  borderRadius: 999,
+  fontFamily: 'var(--font-mono, monospace)',
+  fontSize: 10,
+  fontWeight: 600,
+  letterSpacing: '0.12em',
+  textTransform: 'uppercase',
+  color: 'rgba(255, 255, 255, 0.65)',
+  background: 'rgba(255, 255, 255, 0.06)',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  verticalAlign: 'middle',
+}
+
+export default function VxTermsBody() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>('.v25-reveal')
+    if (!els.length) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15 },
+    )
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div className="v25 v25--complete">
+      <VxNav />
+
+      {/* ================================================================
+          HERO
+          ================================================================ */}
+      <section
+        className="v25-section"
+        style={{ paddingTop: 'clamp(140px, 18vw, 220px)', paddingBottom: 48 }}
+      >
+        <div className="v25-section-inner v25-reveal">
+          <div className="v25-eyebrow">Legal · Last updated 21 May 2026</div>
+          <h1
+            style={{
+              fontFamily: 'var(--font-display, "Literata", Georgia, serif)',
+              fontSize: 'clamp(2.5rem, 6.4vw, 5.6rem)',
+              fontWeight: 400,
+              lineHeight: 0.98,
+              letterSpacing: '-0.025em',
+              color: '#ffffff',
+              margin: '0 0 1.5rem',
+              maxWidth: '22ch',
+              textWrap: 'balance',
+            }}
+          >
+            Terms of <span className="accent accent--teal">Service</span>.
+          </h1>
+          <p
+            className="v25-desc"
+            style={{ maxWidth: '64ch', fontSize: '1.15rem' }}
+          >
+            These terms govern your use of the Strategia Tech platform and
+            website, operated by Strategia Technology Partners Pty Limited.
+          </p>
+        </div>
+      </section>
+
+      {/* ================================================================
+          BODY
+          ================================================================ */}
+      <section
+        className="v25-section"
+        style={{ paddingTop: 0, paddingBottom: 'clamp(96px, 14vw, 180px)' }}
+      >
+        <div className="v25-section-inner">
+          <article style={{ maxWidth: '70ch' }}>
+            <h2 style={{ ...H2_STYLE, marginTop: 0 }}>1. Acceptance of Terms</h2>
+            <p style={P_STYLE}>
+              By accessing or using the Strategia platform, you agree to be
+              bound by these Terms of Service. If you do not agree, you may not
+              use the service.
+            </p>
+            <p style={P_STYLE}>
+              You must be at least 18 years old to use the service. You are
+              responsible for maintaining the confidentiality of your account
+              credentials and for all activity that occurs under your account.
+            </p>
+
+            <h2 style={H2_STYLE}>2. Eligibility</h2>
+            <p style={P_STYLE}>
+              You must provide accurate and complete information when
+              registering for and using the service. You may not use the
+              service for any unlawful purpose or in violation of any
+              applicable law or regulation.
+            </p>
+
+            <h2 style={H2_STYLE}>3. Use of the Service</h2>
+            <p style={P_STYLE}>
+              The Strategia platform enables candidates to upload resumes and
+              complete assessments for job applications. Employers and
+              authorised organisations may post jobs, review candidates, and
+              conduct assessments using the platform.
+            </p>
+            <p style={P_STYLE}>
+              Assessment results are generated by AI and should be used as one
+              factor in hiring decisions. You may not attempt to reverse
+              engineer, decompile, or manipulate the assessment algorithms or
+              any other component of the platform.
+            </p>
+
+            <h2 style={H2_STYLE}>4. Account Registration</h2>
+            <p style={P_STYLE}>
+              To use most features of the service you must create an account.
+              You agree to provide truthful, current, and complete information
+              during registration and to keep that information up to date. You
+              are solely responsible for safeguarding your password and for any
+              activity carried out under your account.
+            </p>
+
+            <h2 style={H2_STYLE}>5. Intellectual Property</h2>
+            <p style={P_STYLE}>
+              Strategia owns all platform content, features, and functionality,
+              including software, designs, text, graphics, and the underlying
+              technology. These materials are protected by intellectual
+              property laws.
+            </p>
+            <p style={P_STYLE}>
+              You retain ownership of the content you upload to the platform.
+              By uploading content, you grant Strategia a worldwide,
+              non-exclusive licence to process that content for the purpose of
+              providing the service to you.
+            </p>
+            <p style={P_STYLE}>
+              You may not copy, modify, distribute, sell, or lease any part of
+              the service or the materials it contains without express written
+              permission from Strategia.
+            </p>
+
+            <h2 style={H2_STYLE}>6. Acceptable Use</h2>
+            <p style={P_STYLE}>
+              You agree not to use the service to upload, transmit, or
+              distribute any content that is unlawful, harassing, defamatory,
+              fraudulent, or otherwise objectionable. You agree not to
+              interfere with the operation of the service, attempt to gain
+              unauthorised access to any part of the service, or use the
+              service to send unsolicited communications.
+            </p>
+
+            <h2 style={H2_STYLE}>
+              7. Disclaimer of Warranties
+              <span style={NOTE_STYLE}>Strategia to confirm</span>
+            </h2>
+            <p style={P_STYLE}>
+              The service is provided on an "as is" and "as available" basis,
+              without warranties of any kind, whether express or implied.
+              Strategia does not warrant that the service will be uninterrupted,
+              error-free, or free of harmful components, or that the results
+              produced by the platform will be accurate or reliable.
+            </p>
+            <p style={P_STYLE}>
+              Assessment results are recommendations, not guarantees of job
+              fit. Hiring decisions remain the sole responsibility of
+              employers.
+            </p>
+
+            <h2 style={H2_STYLE}>
+              8. Limitation of Liability
+              <span style={NOTE_STYLE}>Strategia to confirm</span>
+            </h2>
+            <p style={P_STYLE}>
+              To the maximum extent permitted by law, Strategia disclaims
+              liability for any indirect, incidental, special, consequential,
+              or punitive damages, including loss of profits, revenue, data, or
+              goodwill, arising out of or in connection with your use of the
+              service. Strategia disclaims liability for employment outcomes.
+            </p>
+
+            <h2 style={H2_STYLE}>
+              9. Indemnification
+              <span style={NOTE_STYLE}>Strategia to complete</span>
+            </h2>
+            <p style={P_STYLE}>
+              You agree to indemnify and hold harmless Strategia, its
+              affiliates, officers, employees, and agents from any claims,
+              losses, liabilities, damages, costs, or expenses arising out of
+              your use of the service, your violation of these Terms, or your
+              violation of any rights of a third party.
+            </p>
+
+            <h2 style={H2_STYLE}>10. Termination</h2>
+            <p style={P_STYLE}>
+              You may delete your account at any time by contacting Strategia.
+              Strategia may suspend or terminate your access to the service if
+              you violate these Terms or engage in conduct that Strategia
+              reasonably believes is harmful to other users, third parties, or
+              the service.
+            </p>
+            <p style={P_STYLE}>
+              Data retention following termination is governed by the Privacy
+              Policy.
+            </p>
+
+            <h2 style={H2_STYLE}>11. Dispute Resolution</h2>
+            <p style={P_STYLE}>
+              Disputes arising under these Terms will be resolved through
+              good-faith negotiation. If negotiation is unsuccessful, the
+              parties agree to attempt mediation before pursuing binding
+              arbitration as a final resolution method.
+            </p>
+
+            <h2 style={H2_STYLE}>
+              12. Governing Law
+              <span style={NOTE_STYLE}>Strategia to confirm</span>
+            </h2>
+            <p style={P_STYLE}>
+              These Terms are governed by the laws of Australia and the State
+              in which Strategia Technology Partners Pty Limited is registered,
+              without regard to its conflict of laws principles.
+            </p>
+
+            <h2 style={H2_STYLE}>13. Changes to These Terms</h2>
+            <p style={P_STYLE}>
+              Strategia may update these Terms from time to time. Updated
+              versions will be published on the website and will apply to all
+              use of the service from the publication date. Material changes
+              will be communicated through the platform or by email where
+              appropriate.
+            </p>
+
+            <h2 style={H2_STYLE}>14. Contact Us</h2>
+            <p style={P_STYLE}>
+              For questions about these Terms, contact Strategia Technology
+              Partners Pty Limited at{' '}
+              <a
+                href="mailto:legal@strategiatech.io"
+                style={{ color: 'var(--v25-accent-text, #A5DCD0)' }}
+              >
+                legal@strategiatech.io
+              </a>
+              .
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <VxFooter />
+    </div>
+  )
+}

@@ -1,0 +1,20 @@
+/* Active-link treatment for VX sub-page nav. Rides the V25 token system
+   and cements the colour + a 1px teal rule under the active link. */
+.v25-nav-link--active {
+  color: #ffffff;
+}
+.v25-nav-link--active::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: 4px;
+  background: var(--v25-accent, #00C6C1);
+  opacity: 0.85;
+}
+
+/* Sub-pages have no tetrahedron hand-off, so the wireframe nav icon should
+   be visible immediately rather than fading in at scrollY > 40. */
+.vx-nav-mark-visible {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}

@@ -1,0 +1,596 @@
+/* ==========================================================================
+   /demo — Book a demo form
+   --------------------------------------------------------------------------
+   Brand tokens mirror v24 (STRATEGIA_BRAND GUIDELINES_FINAL.pdf):
+     Abyss  #012236 · Cobalt #005072 · Teal #00C6C1 · Lime #A1E2B7
+     Headlines: Literata · Subheads: Inter Tight · Body: Inter
+   ========================================================================== */
+.demo {
+  --demo-abyss: #012236;
+  --demo-cobalt: #005072;
+  --demo-teal: #00C6C1;
+  --demo-teal-text: #A5DCD0; /* AA-safe teal for small text on surfaces */
+  --demo-lime: #A1E2B7;
+  --demo-text: #ffffff;
+  --demo-muted: rgba(255, 255, 255, 0.85);
+  --demo-subtle: rgba(255, 255, 255, 0.68);
+  --demo-placeholder: rgba(255, 255, 255, 0.55);
+  --demo-line: rgba(255, 255, 255, 0.14);
+  --demo-line-strong: rgba(255, 255, 255, 0.28);
+  --demo-surface: rgba(255, 255, 255, 0.05);
+  --demo-elevated: rgba(255, 255, 255, 0.08);
+  --demo-error: #ffb0b0;
+
+  min-height: 100vh;
+  color: var(--demo-text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* V24-aligned gradient, oriented vertically for this short page. Stops
+     pulled from STRATEGIA_BRAND GUIDELINES_FINAL.pdf with #006A93 as the
+     AA-safe ceiling. */
+  background:
+    radial-gradient(ellipse at 85% -5%, rgba(0, 198, 193, 0.20) 0%, transparent 55%),
+    radial-gradient(ellipse at 8% 12%,  rgba(92, 200, 232, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 92% 95%, rgba(0, 198, 193, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #012236 0%, #00162E 18%, #003D6B 55%, #005072 85%, #006A93 100%) #012236;
+  isolation: isolate;
+}
+
+/* ---------- Header (logo + back link) ---------- */
+.demo-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 24px clamp(1.25rem, 5vw, 4rem);
+  background: linear-gradient(180deg, rgba(1, 22, 46, 0.88) 0%, rgba(1, 22, 46, 0.6) 70%, rgba(1, 22, 46, 0) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.demo-header-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  /* Bump the brand glow a touch on hover for tactility. */
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+.demo-header-logo:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 6px 18px rgba(0, 198, 193, 0.35));
+}
+
+.demo-header-logo img {
+  height: 96px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 720px) {
+  .demo-header-logo img {
+    height: 64px;
+  }
+}
+
+.demo-header-back {
+  font-family: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--demo-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--demo-line-strong);
+  border-radius: 999px;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.demo-header-back:hover {
+  color: #ffffff;
+  border-color: var(--demo-teal);
+  background: rgba(0, 198, 193, 0.08);
+}
+
+.demo-wrap {
+  max-width: 1456px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vh, 4rem) clamp(1.25rem, 5vw, 4rem) 6rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+@media (min-width: 880px) {
+  .demo-wrap {
+    grid-template-columns: 1.05fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ---------- Left column: pitch ---------- */
+.demo-intro-eyebrow {
+  display: inline-block;
+  font-family: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--demo-teal);
+  margin-bottom: 1.5rem;
+}
+
+.demo-intro h1 {
+  /* Override globals.css h1 color (--navy #06293E) which would be invisible
+     on this page's abyss background. */
+  color: #ffffff;
+  font-family: var(--font-literata), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2.25rem, 4.6vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.25rem;
+}
+
+.demo-intro h1 .accent {
+  color: var(--demo-teal);
+}
+
+.demo-intro p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--demo-muted);
+  max-width: 42rem;
+  margin: 0 0 2.25rem;
+}
+
+.demo-intro-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  max-width: 36rem;
+}
+
+.demo-intro-list li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--demo-muted);
+}
+
+.demo-intro-list svg {
+  margin-top: 4px;
+  color: var(--demo-teal);
+  flex-shrink: 0;
+}
+
+.demo-intro-meta {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--demo-line);
+  font-size: 0.85rem;
+  color: var(--demo-subtle);
+  max-width: 36rem;
+  line-height: 1.55;
+}
+
+/* ---------- Right column: form card ---------- */
+.demo-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid var(--demo-line-strong);
+  border-radius: 16px;
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.demo-card-title {
+  /* Override globals.css h2 color so the title is readable on this dark card. */
+  color: #ffffff;
+  font-family: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.4rem;
+}
+
+.demo-card-sub {
+  font-size: 0.92rem;
+  color: var(--demo-muted);
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+.demo-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.demo-row {
+  display: grid;
+  gap: 1.1rem;
+}
+
+@media (min-width: 560px) {
+  .demo-row.two {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.demo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.demo-label {
+  font-family: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--demo-muted);
+}
+
+.demo-label .req {
+  color: var(--demo-teal);
+  margin-left: 4px;
+}
+
+.demo-input,
+.demo-select,
+.demo-textarea {
+  width: 100%;
+  background: var(--demo-surface);
+  border: 1px solid var(--demo-line-strong);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--demo-text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.demo-input::placeholder,
+.demo-textarea::placeholder {
+  color: var(--demo-placeholder);
+}
+
+.demo-input:hover,
+.demo-select:hover,
+.demo-textarea:hover {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.demo-input:focus,
+.demo-select:focus,
+.demo-textarea:focus {
+  outline: none;
+  border-color: var(--demo-teal);
+  background: var(--demo-elevated);
+  box-shadow: 0 0 0 3px rgba(0, 198, 193, 0.18);
+}
+
+.demo-select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.55) 50%),
+    linear-gradient(135deg, rgba(255,255,255,0.55) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 36px;
+}
+
+.demo-select option {
+  background: #002a3f;
+  color: #fff;
+}
+
+.demo-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.demo-field.invalid .demo-input,
+.demo-field.invalid .demo-select,
+.demo-field.invalid .demo-textarea {
+  border-color: var(--demo-error);
+  box-shadow: 0 0 0 3px rgba(255, 138, 138, 0.14);
+}
+
+/* ---------- Valid-state (positive validation feedback) ---------- */
+.demo-input-wrap {
+  position: relative;
+}
+
+.demo-field.valid .demo-input,
+.demo-field.valid .demo-select,
+.demo-field.valid .demo-textarea {
+  border-color: rgba(161, 226, 183, 0.55); /* Lime */
+  background: rgba(161, 226, 183, 0.04);
+}
+
+.demo-field.valid .demo-input:focus,
+.demo-field.valid .demo-select:focus,
+.demo-field.valid .demo-textarea:focus {
+  border-color: var(--demo-lime);
+  box-shadow: 0 0 0 3px rgba(161, 226, 183, 0.18);
+}
+
+.demo-valid-tick {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  /* Subtle entrance: scale up from 0.6 to 1 once mounted. */
+  animation: demo-tick-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 6px rgba(161, 226, 183, 0.35));
+}
+
+/* Selects already have a chevron at right: 12px (6px-wide gradient pseudo).
+   Slide the tick to the left of the chevron and push the chevron a bit. */
+.demo-field.valid.is-select .demo-select {
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+  /* Make room on the right for the tick: */
+  padding-right: 60px;
+}
+
+.demo-field.valid.is-select .demo-valid-tick {
+  right: 38px;
+}
+
+/* Textareas: pin the tick to the top-right corner rather than vertical center. */
+.demo-field.valid.is-textarea .demo-valid-tick {
+  top: 12px;
+  transform: none;
+}
+
+.demo-field.valid .demo-input,
+.demo-field.valid .demo-textarea {
+  /* Keep text from running under the tick. */
+  padding-right: 44px;
+}
+
+@keyframes demo-tick-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.demo-field.valid.is-textarea .demo-valid-tick {
+  /* Override translateY for textarea tick (anchored to top, not centered). */
+  animation: demo-tick-in-top 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes demo-tick-in-top {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.demo-error {
+  font-size: 0.8rem;
+  color: var(--demo-error);
+  margin-top: 2px;
+  min-height: 1em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.demo-consent {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 0.82rem;
+  color: var(--demo-muted);
+  line-height: 1.5;
+}
+
+.demo-consent input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid var(--demo-line-strong);
+  background: var(--demo-surface);
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  margin: 1px 0 0;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.demo-consent input[type="checkbox"]:hover {
+  border-color: var(--demo-teal);
+}
+
+.demo-consent input[type="checkbox"]:checked {
+  background: var(--demo-teal);
+  border-color: var(--demo-teal);
+}
+
+.demo-consent input[type="checkbox"]:checked::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid #012236;
+  border-bottom: 2px solid #012236;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.demo-consent a {
+  color: var(--demo-teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 198, 193, 0.4);
+}
+
+.demo-consent a:hover {
+  border-bottom-color: var(--demo-teal);
+}
+
+.demo-submit {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  background: #ffffff;
+  color: var(--demo-abyss);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.demo-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px -8px rgba(255, 255, 255, 0.3);
+}
+
+.demo-submit:active {
+  transform: translateY(0);
+}
+
+.demo-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  transform: none;
+  box-shadow: none;
+}
+
+.demo-form-footnote {
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  color: var(--demo-subtle);
+  text-align: center;
+}
+
+/* ---------- Success state ---------- */
+.demo-success {
+  display: grid;
+  place-items: center;
+  gap: 1.25rem;
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.demo-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 198, 193, 0.35), rgba(0, 198, 193, 0.08) 70%);
+  border: 1px solid rgba(0, 198, 193, 0.55);
+  display: grid;
+  place-content: center;
+  color: var(--demo-teal);
+  box-shadow: 0 0 32px rgba(0, 198, 193, 0.25);
+}
+
+.demo-success-logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 0.25rem;
+  opacity: 0.95;
+}
+
+.demo-success h2 {
+  /* Override globals.css h2 color (--navy) so it reads on the dark card. */
+  color: #ffffff;
+  font-family: var(--font-literata), Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.demo-success p {
+  font-size: 0.95rem;
+  color: var(--demo-muted);
+  margin: 0;
+  max-width: 28rem;
+  line-height: 1.55;
+}
+
+.demo-success-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--demo-line);
+  font-size: 0.85rem;
+  color: var(--demo-subtle);
+  width: 100%;
+}
+
+.demo-success-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.demo-success-meta-row span:first-child {
+  color: var(--demo-subtle);
+}
+
+.demo-success-meta-row span:last-child {
+  color: var(--demo-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.demo-success-back {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--demo-muted);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1px;
+  transition: color 0.18s, border-bottom-color 0.18s;
+}
+
+.demo-success-back:hover {
+  color: var(--demo-teal);
+  border-bottom-color: var(--demo-teal);
+}
