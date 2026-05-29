@@ -4,12 +4,14 @@
 
 - Name: StrategiaTech homepage
 - Root: /Users/minghao/Documents/home page
-- Current source of truth: GitHub repo Aaron-905/StrategiaTech, branch main
+- Original source: GitHub repo Aaron-905/StrategiaTech, branch main
+- Published repo: private GitHub repo Strategiatech/strategia-v27-homepage, branch main
+- Published Pages URL: https://ideal-adventure-o36vnyl.pages.github.io/
 
 ## Scope
 
 - In scope: /v27 homepage revisions from 20260529 go-live PPT annotations; v27 navigation; shared VX homepage body used by /v27.
-- Out of scope: commits, pushes, deployments, backend/Payload schema changes, old version routes unless explicitly requested.
+- Out of scope: backend/Payload schema changes and old version routes unless explicitly requested.
 
 ## Key Paths
 
@@ -18,12 +20,14 @@
 - src/app/(frontend)/vx/vx-overrides.css
 - src/components/v27/V27Nav.tsx
 - src/components/vx/VxNav.css
+- .github/workflows/deploy-pages.yml
 
 ## Decisions
 
 - Existing GitHub issues were checked read-only; no matching issue was found for v27/go-live/PPT homepage work.
 - Do not create a real GitHub issue, commit, push, or deploy without explicit user authorization.
 - /v27 uses the shared VX homepage body; content/style changes in VxPage also affect /vx unless the page is later forked.
+- Private GitHub Pages assigns a root Pages domain; the Pages workflow should build without `NEXT_PUBLIC_BASE_PATH`.
 
 ## Assumptions
 
@@ -32,5 +36,5 @@
 
 ## Open Questions
 
-- Whether to commit/push/open PR for the completed v27 revision.
 - Whether to fork `/v27` away from shared `/vx` before launch, because current body changes affect both routes.
+- Whether to add a custom domain later; no custom domain is currently configured.
