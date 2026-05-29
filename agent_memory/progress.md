@@ -6,7 +6,7 @@
 
 ## Status
 
-- Code pulled, v27 implementation pass complete, GitHub Pages static export support added, private repo created/pushed, Pages deployment verified successful, and responsive clipping fixes completed.
+- Code pulled, v27 implementation pass complete, GitHub Pages static export support added, private repo created/pushed, Pages deployment verified successful, responsive clipping fixes completed, and UI polish pass applied locally.
 
 ## Done
 
@@ -23,6 +23,9 @@
 - Added static-export base path handling for images/videos and hid the dev PageNav for published Pages builds.
 - Fixed responsive clipping by making the mobile hero non-pinned, folding industry tabs into a grid, tightening mobile nav, and clipping decorative/carousel overflow.
 - Corrected private Pages build to use the assigned root Pages URL rather than a `/strategia-v27-homepage` base path.
+- Tuned the hero section: widened the left content column, moved the headline away from the nav, reduced logo sizing, and gave the hero triangle a teal/cyan glow matching the nav mark.
+- Added UI polish pass: hero signal architecture, upgraded module active states, and higher-end Science/Security card surfaces.
+- Removed the abstract Pillar 1 module architecture/flow panel after review; the section now moves directly from module selector to spotlight.
 
 ## Next
 
@@ -38,4 +41,6 @@
 - Verified: responsive smoke at 360, 390, 576, 768, and 1440 widths showed no document horizontal overflow, no PageNav, no framework overlay, no 400 responses, and no console errors.
 - Verified: root-path static preview served CSS, logo, and carousel poster assets with HTTP 200.
 - Verified: final GitHub Pages workflow run `26621899178` completed successfully after the root-path correction.
+- Verified: local static preview at `/strategia-v27-homepage/` after hero tuning builds successfully and has no document horizontal overflow at 390px or 1954px.
+- Verified: local UI polish build passed and `/strategia-v27-homepage/` has no document horizontal overflow at 390px and 1440px; the abstract module panel is absent and module selector remains active.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

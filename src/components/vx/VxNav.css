@@ -15,6 +15,17 @@
 .v25-nav-links {
   gap: clamp(14px, 2vw, 28px);
 }
+.v25-nav-logo {
+  gap: 10px;
+}
+.v25-nav-mark {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+}
+.v25-nav-logo img {
+  height: 24px;
+}
 
 @media (max-width: 520px) {
   .v25-nav {

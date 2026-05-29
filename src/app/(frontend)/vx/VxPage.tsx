@@ -514,6 +514,16 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
           <div className="v25-brand-lockup" id="v25BrandLockup" aria-hidden="true">
             <img src={assetPath('/images/brand/strategia-wordmark-white.svg')} alt="Strategia" />
           </div>
+
+          <div className="vx-hero-signal-layer" aria-hidden="true">
+            <span className="vx-hero-signal-node vx-hero-signal-node--parse" />
+            <span className="vx-hero-signal-node vx-hero-signal-node--psych" />
+            <span className="vx-hero-signal-node vx-hero-signal-node--interview" />
+            <span className="vx-hero-signal-line vx-hero-signal-line--parse" />
+            <span className="vx-hero-signal-line vx-hero-signal-line--psych" />
+            <span className="vx-hero-signal-line vx-hero-signal-line--interview" />
+            <span className="vx-hero-signal-core" />
+          </div>
         </div>
       </section>
       <div className="v25-scroll-spacer" aria-hidden="true" />
