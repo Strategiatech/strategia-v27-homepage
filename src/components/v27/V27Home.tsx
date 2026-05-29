@@ -10,6 +10,7 @@ export default function V27Home() {
       navSlot={<V27Nav />}
       footerSlot={<V27Footer />}
       selfContained
+      disableHeroScrollLock
     />
   )
 }

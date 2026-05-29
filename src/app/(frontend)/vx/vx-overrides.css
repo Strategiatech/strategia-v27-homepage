@@ -97,6 +97,23 @@
 .v25-brand-lockup {
   z-index: 2;
 }
+.v25.vx-no-hero-scroll-lock .v25-hero {
+  position: relative;
+  inset: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.v25.vx-no-hero-scroll-lock .v25-scroll-spacer {
+  display: none;
+}
+.v25.vx-no-hero-scroll-lock .v25-cursor-aura,
+.v25.vx-no-hero-scroll-lock .v25-plasma-layer {
+  display: none;
+}
+.v25.vx-no-hero-scroll-lock .v25-reveal {
+  opacity: 1;
+  transform: none;
+}
 .vx-hero-signal-layer {
   position: absolute;
   inset: -5%;

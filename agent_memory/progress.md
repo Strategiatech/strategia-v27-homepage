@@ -26,6 +26,7 @@
 - Tuned the hero section: widened the left content column, moved the headline away from the nav, reduced logo sizing, and gave the hero triangle a teal/cyan glow matching the nav mark.
 - Added UI polish pass: hero signal architecture, upgraded module active states, and higher-end Science/Security card surfaces.
 - Removed the abstract Pillar 1 module architecture/flow panel after review; the section now moves directly from module selector to spotlight.
+- Fixed /v27 first-scroll friction by disabling the legacy pinned hero release only for the V27 snapshot, keeping /vx and /v25 default behavior unchanged.
 
 ## Next
 
@@ -43,4 +44,7 @@
 - Verified: final GitHub Pages workflow run `26621899178` completed successfully after the root-path correction.
 - Verified: local static preview at `/strategia-v27-homepage/` after hero tuning builds successfully and has no document horizontal overflow at 390px or 1954px.
 - Verified: local UI polish build passed and `/strategia-v27-homepage/` has no document horizontal overflow at 390px and 1440px; the abstract module panel is absent and module selector remains active.
+- Verified: `/v27` in Browser at `http://127.0.0.1:3000/v27` starts with normal-scroll hero mode (`vx-no-hero-scroll-lock`), first scroll stays at `scrollY=420`, and continued scroll reaches the Industries section with content visible.
+- Verified: `npm run build` passed after the /v27 scroll-lock fix.
+- Verified: focused ESLint passed for `src/app/(frontend)/v25/tetrahedron.ts`, `src/app/(frontend)/vx/VxPage.tsx`, and `src/components/v27/V27Home.tsx`.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

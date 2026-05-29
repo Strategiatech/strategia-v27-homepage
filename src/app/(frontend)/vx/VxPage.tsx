@@ -376,9 +376,17 @@ type VxPageProps = {
      descriptions and visual layout stay; only the outbound links go
      away so the page is "just the homepage". */
   selfContained?: boolean
+  /* Used by /v27 so first-scroll input moves the page immediately instead
+     of completing the legacy pinned hero sequence. */
+  disableHeroScrollLock?: boolean
 }
 
-export default function VxPage({ navSlot, footerSlot, selfContained = false }: VxPageProps = {}) {
+export default function VxPage({
+  navSlot,
+  footerSlot,
+  selfContained = false,
+  disableHeroScrollLock = false,
+}: VxPageProps = {}) {
   const navRef = useRef<HTMLElement>(null)
 
   // ROI calculator (three inputs per slide 14).
@@ -407,9 +415,9 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   useEffect(() => {
-    const cleanup = initTetrahedron()
+    const cleanup = initTetrahedron({ releaseHeroOnComplete: !disableHeroScrollLock })
     return cleanup
-  }, [])
+  }, [disableHeroScrollLock])
 
   useEffect(() => {
     const handler = () => setComplete(true)
@@ -446,7 +454,7 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
   }, [])
 
   return (
-    <div className={`v25${complete ? ' v25--complete' : ''}`}>
+    <div className={`v25${complete ? ' v25--complete' : ''}${disableHeroScrollLock ? ' vx-no-hero-scroll-lock' : ''}`}>
       <div className="v25-pulse-overlay" id="v25PulseOverlay" aria-hidden="true" />
 
       {navSlot ?? <VxNav />}

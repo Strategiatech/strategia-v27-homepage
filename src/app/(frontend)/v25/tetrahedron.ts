@@ -1,6 +1,12 @@
 const SVG_NS = 'http://www.w3.org/2000/svg'
 
-export function initTetrahedron(): () => void {
+type TetrahedronOptions = {
+  releaseHeroOnComplete?: boolean
+}
+
+export function initTetrahedron(options: TetrahedronOptions = {}): () => void {
+  const releaseHeroOnComplete = options.releaseHeroOnComplete ?? true
+
   // DOM lookups return T | null. TypeScript narrows after the guard below
   // within this scope, but widens back inside nested closures (render(),
   // spawnPulse(), etc.) — so the closures wouldn't see these as non-null
@@ -193,8 +199,10 @@ export function initTetrahedron(): () => void {
     interactionComplete = true
     scrollGlow = 1
     targetGlow = 1
-    window.scrollTo(0, 0)
-    window.dispatchEvent(new CustomEvent('v25:complete'))
+    if (releaseHeroOnComplete) {
+      window.scrollTo(0, 0)
+      window.dispatchEvent(new CustomEvent('v25:complete'))
+    }
   }
 
   function scheduleNextPlasma(now: number, proximity: number) {
