@@ -26,7 +26,7 @@
 
 ## Next
 
-- Verify the final root-path Pages workflow run after the base path correction.
+- None for the current deployment task.
 
 ## Validation
 
@@ -37,4 +37,5 @@
 - Verified: Browser was used first for /v27 render checks; Playwright was used only as viewport fallback for desktop screenshot checks.
 - Verified: responsive smoke at 360, 390, 576, 768, and 1440 widths showed no document horizontal overflow, no PageNav, no framework overlay, no 400 responses, and no console errors.
 - Verified: root-path static preview served CSS, logo, and carousel poster assets with HTTP 200.
+- Verified: final GitHub Pages workflow run `26621899178` completed successfully after the root-path correction.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
