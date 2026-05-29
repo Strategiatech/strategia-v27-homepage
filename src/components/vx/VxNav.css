@@ -12,6 +12,57 @@
   opacity: 0.85;
 }
 
+.v25-nav-links {
+  gap: clamp(14px, 2vw, 28px);
+}
+
+@media (max-width: 520px) {
+  .v25-nav {
+    height: 64px;
+    padding: 0 16px;
+  }
+  .v25-nav-logo {
+    gap: 6px;
+    min-width: 0;
+  }
+  .v25-nav-mark {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+  }
+  .v25-nav-logo img {
+    height: 22px;
+    max-width: 170px;
+  }
+  .v25-nav-cta {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .v25-nav {
+    padding: 0 12px;
+  }
+  .v25-nav-mark {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+  .v25-nav-logo img {
+    height: 18px;
+    max-width: 132px;
+  }
+  .v25-nav-cta {
+    padding: 7px 9px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+}
+
 /* Sub-pages have no tetrahedron hand-off, so the wireframe nav icon should
    be visible immediately rather than fading in at scrollY > 40. */
 .vx-nav-mark-visible {

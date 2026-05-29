@@ -5,6 +5,7 @@ import { initTetrahedron } from '../v25/tetrahedron'
 import VxNav from '@/components/vx/VxNav'
 import VxFooter from '@/components/vx/VxFooter'
 import VxVideoCarousel from '@/components/vx/VxVideoCarousel'
+import { assetPath } from '@/lib/sitePath'
 import '../v25/v25.css'
 import './vx-overrides.css'
 
@@ -107,6 +108,78 @@ function IndustrySwitcher({ items }: { items: { tag: string; body: string }[] })
   )
 }
 
+function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof PHASES }) {
+  const [activeTitle, setActiveTitle] = useState(modules[0]?.title ?? '')
+  const fallbackModule = modules[0]
+  if (!fallbackModule) return null
+  const activeModule = modules.find((m) => m.title === activeTitle) ?? fallbackModule
+  const activePhase = phases.find((p) => p.name === activeModule.tag)
+
+  return (
+    <div className="vx-module-journey">
+      <aside className="vx-module-journey-rail" aria-label="Pillar 1 acquisition phases">
+        <div className="vx-module-journey-kicker">Pillar 01 · Acquire</div>
+        <h3>From open role to defensible shortlist.</h3>
+        <p>
+          Nine modules turn every open role into a defensible hire. Three independent
+          signals triangulated; every decision evidence-led from the job description to the
+          first 90 days.
+        </p>
+        <div className="vx-module-phase-rail">
+          {phases.map((phase) => {
+            const phaseModules = modules.filter((m) => m.tag === phase.name)
+            const isActive = activeModule.tag === phase.name
+            return (
+              <button
+                key={phase.name}
+                type="button"
+                className={`vx-module-phase-pill${isActive ? ' is-active' : ''}`}
+                onClick={() => setActiveTitle(phaseModules[0]?.title ?? activeModule.title)}
+                aria-pressed={isActive}
+              >
+                <span>{phase.step === 'Premium' ? 'Premium' : `Phase ${phase.step}`}</span>
+                <strong>{phase.name}</strong>
+              </button>
+            )
+          })}
+        </div>
+      </aside>
+
+      <div className="vx-module-journey-stage">
+        <div className="vx-module-selector" aria-label="Pillar 1 modules">
+          {modules.map((mod) => (
+            <button
+              key={mod.title}
+              type="button"
+              className={`vx-module-selector-item${mod.title === activeModule.title ? ' is-active' : ''}`}
+              onClick={() => setActiveTitle(mod.title)}
+              aria-pressed={mod.title === activeModule.title}
+            >
+              <span>{mod.num}</span>
+              {mod.title}
+            </button>
+          ))}
+        </div>
+
+        <article className="vx-module-spotlight">
+          <div className="vx-module-spotlight-meta">
+            <span>{activeModule.num}</span>
+            <span>{activeModule.tag}</span>
+          </div>
+          <h3>{activeModule.title}</h3>
+          <p>{activeModule.desc}</p>
+          {activePhase && (
+            <div className="vx-module-spotlight-foot">
+              <span>{activePhase.step === 'Premium' ? 'Premium layer' : `Phase ${activePhase.step}`}</span>
+              <strong>{activePhase.desc}</strong>
+            </div>
+          )}
+        </article>
+      </div>
+    </div>
+  )
+}
+
 const PILLARS = [
   {
     num: 'Pillar 01',
@@ -135,25 +208,25 @@ const SOLUTIONS = [
   {
     role: 'Chief Executive Officer',
     title: 'Hospital CEO',
-    quote: 'Can I see, in real time, whether the workforce that delivers my margins is the workforce I will have in twelve months?',
+    quote: 'Will the workforce delivering my margins today still be here in twelve months?',
     body: 'Workforce intelligence at the level your strategy operates on, not the level your HRIS reports on. Service-line risk, retention forecasts, and capital implications in one weekly brief.',
   },
   {
     role: 'Chief Human Resources Officer',
     title: 'CHRO',
-    quote: 'How do I make every hiring decision defensible to the board, to the General Counsel, and to a regulator, on the same day?',
+    quote: 'How do I make every hire defensible, both to the board, GC, and the regulator?',
     body: 'Replace binders, disparate vendors, and gut-feel reviews with a single instrument that produces an audit packet for every requisition.',
   },
   {
     role: 'VP Talent · Recruiting Lead',
     title: 'Talent Acquisition',
-    quote: 'How do I move a recruiter managing 70 reqs from drowning to operating, without sacrificing quality?',
+    quote: 'How do my recruiters working on 70 vacancies stop drowning and start operating?',
     body: 'Interview 150 of 200 applicants, not 4. Recruiters do the relationships; the engine does the synthesis.',
   },
   {
     role: 'CMO · CNO · Service-line Chief',
     title: 'Clinical Operations',
-    quote: 'How do I keep the floor safely staffed without burning out the team I have left?',
+    quote: "How do I staff the floor without burning out the team I've got?",
     body: 'Match clinicians to roles where their cognitive, behavioural, and clinical-competence profile predicts they will perform, and stay.',
   },
 ]
@@ -308,7 +381,7 @@ type VxPageProps = {
 export default function VxPage({ navSlot, footerSlot, selfContained = false }: VxPageProps = {}) {
   const navRef = useRef<HTMLElement>(null)
 
-  // ROI calculator (new sliders per slide 13).
+  // ROI calculator (three inputs per slide 14).
   // Defaults sit at realistic mid-market values; the formula combines
   // recruiter-labour savings on cost-per-hire with the regrettable-hire
   // reduction (PDF caveat: ~70% labour automation, regrettable hire cost =
@@ -317,7 +390,6 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
   const [annualHires, setAnnualHires] = useState(500)
   const [loadedSalary, setLoadedSalary] = useState(95000)
   const [costPerHire, setCostPerHire] = useState(5500)
-  const [timeToFill, setTimeToFill] = useState(45)
 
   const recruiterLabourSavings = annualHires * costPerHire * 0.70
   const regrettableRate = 0.12
@@ -389,12 +461,16 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
         <div className="v25-hero-copy">
           <h1>
             AI Driven<br />Workforce<br />
-            <span className="accent accent--sky">Intelligence.</span>
+            <span className="accent accent--sky">Intelligence</span>
           </h1>
+          <div className="vx-hero-lines" aria-label="Platform proposition">
+            <p>Predict performance before it lands.</p>
+            <p>Build the engine that finds the next one.</p>
+          </div>
           <p>
-            Predict performance before it lands. Build the engine that finds the next one.
             A multi-module workforce intelligence platform built on structured scientific
-            frameworks, automating 80% of the recruitment lifecycle.
+            frameworks, automating 80% of the recruitment lifecycle - and compounding every
+            hire into the internal engine that finds the next one.
           </p>
           <p className="vx-hero-sub">
             For HR, Talent, and Executive teams making better, faster, more defensible
@@ -436,7 +512,7 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
           </svg>
 
           <div className="v25-brand-lockup" id="v25BrandLockup" aria-hidden="true">
-            <img src="/images/brand/strategia-wordmark-white.svg" alt="Strategia" />
+            <img src={assetPath('/images/brand/strategia-wordmark-white.svg')} alt="Strategia" />
           </div>
         </div>
       </section>
@@ -453,16 +529,24 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
               <h2 className="v25-h2">
                 Why is your largest investment still driven by <span className="accent accent--teal">instinct</span>?
               </h2>
-              <p className="v25-desc" style={{ marginTop: 24 }}>
-                Finance relies on mathematics. Medicine relies on evidence. Operations rely
-                on data. Yet workforce decisions are still shaped by intuition, fragmented
-                opinions and subjective judgement.
+              <div className="vx-instinct-proof" aria-label="Decision disciplines">
+                <p>Finance relies on mathematics.</p>
+                <p>Medicine relies on evidence.</p>
+                <p>Operations rely on data.</p>
+              </div>
+              <p className="v25-desc">
+                Yet workforce decisions are still shaped by intuition, fragmented opinions
+                and subjective judgement.
               </p>
               <p className="v25-desc">
-                The issue is not instinct. The issue is instinct without workforce
-                intelligence. Strategia brings together the art and science of workforce
-                decision-making, helping organisations make better human decisions while
-                managing risk.
+                The issue is not instinct.
+              </p>
+              <p className="v25-desc">
+                The issue is instinct without workforce intelligence.
+              </p>
+              <p className="v25-desc">
+                Strategia brings together the art and science of workforce decision-making,
+                helping organisations make better human decisions while managing risk.
               </p>
               <p className="vx-industries-tagline">
                 Intuition matters. Workforce intelligence helps guide it.
@@ -600,6 +684,10 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
               <h2 className="v25-h2">
                 Nine modules. <span className="accent accent--teal">One acquisition engine.</span>
               </h2>
+              <p className="v25-desc" style={{ marginTop: 24, maxWidth: '58ch' }}>
+                The Pillar 1 acquisition engine runs from role calibration through
+                screening, assessment, decisioning, onboarding and workforce insight.
+              </p>
             </div>
             {!selfContained && (
               <a href="/vx/platform" className="v25-link-arrow">
@@ -608,40 +696,7 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
             )}
           </div>
 
-          <div className="v25-modules-phased">
-            {PHASES.map((phase) => {
-              const phaseModules = MODULES.filter((m) => m.tag === phase.name)
-              const cardCountClass =
-                phaseModules.length === 1
-                  ? 'v25-module-phase-cards--1'
-                  : phaseModules.length === 2
-                  ? 'v25-module-phase-cards--2'
-                  : ''
-              return (
-                <div key={phase.name} className="v25-module-phase">
-                  <div className="v25-module-phase-header">
-                    <span className="v25-module-phase-step">
-                      {phase.step === 'Premium' ? 'Premium' : `Phase ${phase.step}`}
-                    </span>
-                    <span className="v25-module-phase-name">{phase.name}</span>
-                    <p className="v25-module-phase-desc">{phase.desc}</p>
-                  </div>
-                  <div className={`v25-module-phase-cards ${cardCountClass}`}>
-                    {phaseModules.map((mod) => (
-                      <div key={mod.title} className="v25-module">
-                        <div className="v25-module-header">
-                          <span className="v25-module-num">{mod.num}</span>
-                          <span className="v25-module-tag">{mod.tag}</span>
-                        </div>
-                        <div className="v25-module-title">{mod.title}</div>
-                        <p className="v25-module-desc">{mod.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <ModuleJourney modules={MODULES} phases={PHASES} />
         </div>
       </section>
 
@@ -661,6 +716,12 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
               <h2 className="v25-h2">
                 Three signals. <span className="accent accent--lime">One ranking.</span>
               </h2>
+              <div className="v25-tri-board-meta">
+                <span className="v25-tri-board-meta-key">Role</span>
+                <span className="v25-tri-board-meta-value">ICU Nurse Specialist</span>
+                <span className="v25-tri-board-meta-sep">&middot;</span>
+                <span className="v25-tri-board-meta-sub">authored by V-Job</span>
+              </div>
             </div>
             <p className="v25-tri-intro-desc">
               V-Parse, V-Psych and V-Interview, three independent signals, each measured
@@ -668,12 +729,6 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
               ranking, with the evidence trail behind every result. The trust infrastructure
               that lets V-Agent operate on your behalf.
             </p>
-            <div className="v25-tri-board-meta">
-              <span className="v25-tri-board-meta-key">Role</span>
-              <span className="v25-tri-board-meta-value">ICU Nurse Specialist</span>
-              <span className="v25-tri-board-meta-sep">&middot;</span>
-              <span className="v25-tri-board-meta-sub">authored by V-Job</span>
-            </div>
           </div>
 
           <div className="v25-tri-board v25-triE-board">
@@ -775,12 +830,20 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
               <h2 className="v25-h2">
                 Built on validated frameworks. <span className="accent accent--sky">Calibrated to your sector.</span>
               </h2>
-              <p className="v25-desc" style={{ marginTop: 24, maxWidth: '64ch' }}>
-                Every signal the platform produces comes from a peer-reviewed methodology:
-                adapted, calibrated, and applied consistently across workforces. No
-                retrofitted retail norms. No proprietary black box. Every result, defensible
-                by the framework behind it.
-              </p>
+              <div className="vx-science-copy">
+                <p>
+                  Every signal the platform produces comes from a peer-reviewed methodology:
+                  adapted, calibrated, and applied consistently across workforces.
+                </p>
+                <p>
+                  Anyone can use AI. The question is whether it is structured enough to be
+                  effective at scale.
+                </p>
+                <p>
+                  No retrofitted retail norms. No proprietary black box. Every result,
+                  defensible by the framework behind it.
+                </p>
+              </div>
             </div>
             {!selfContained && (
               <div className="v25-hero-actions">
@@ -882,7 +945,7 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
           <div className="v25-eyebrow">ROI calculator</div>
           <h2 className="v25-h2">See the savings for <span className="accent accent--teal">your&nbsp;system.</span></h2>
           <p className="v25-desc">
-            Four inputs. Conservative assumptions. A number you can take to
+            Three inputs. Conservative assumptions. A number you can take to
             your&nbsp;CFO.
           </p>
 
@@ -925,19 +988,6 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
                   min={1000} max={20000} step={100}
                   value={costPerHire}
                   onChange={(e) => setCostPerHire(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average time-to-fill (days)</span>
-                  <span className="v">{timeToFill}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={10} max={120} step={1}
-                  value={timeToFill}
-                  onChange={(e) => setTimeToFill(Number(e.target.value))}
                 />
               </div>
             </div>
@@ -1073,7 +1123,7 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
         <div className="v25-cta-wrap v25-reveal">
           <div className="v25-cta-bg" aria-hidden="true" />
           <img
-            src="/images/brand/glow/inline/strategia-final-logo-strategia-inline-white-glow.png"
+            src={assetPath('/images/brand/glow/inline/strategia-final-logo-strategia-inline-white-glow.png')}
             alt="Strategia"
             className="v25-cta-logo"
           />
@@ -1086,6 +1136,13 @@ export default function VxPage({ navSlot, footerSlot, selfContained = false }: V
             helps leaders understand workforce capability, hiring risk, performance and
             culture, creating a workforce intelligence layer that compounds with every
             decision.
+          </p>
+          <p className="v25-desc">
+            Every day without workforce intelligence impacts hiring quality, retention,
+            productivity and leadership decisions.
+          </p>
+          <p className="vx-cta-closer">
+            Book a demo. See what your organisation may be missing.
           </p>
           {!selfContained && (
             <div className="v25-cta-actions">

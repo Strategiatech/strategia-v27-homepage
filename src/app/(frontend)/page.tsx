@@ -10,8 +10,13 @@ import Security from '@/components/sections/Security'
 import RoiCalculator from '@/components/sections/RoiCalculator'
 import Footer from '@/components/sections/Footer'
 import ScrollRevealProvider from '@/components/ScrollRevealProvider'
+import V27Home from '@/components/v27/V27Home'
 
 export default function HomePage() {
+  if (process.env.NEXT_PUBLIC_PUBLISH_V27_AS_HOME === 'true') {
+    return <V27Home />
+  }
+
   return (
     <>
       <ScrollRevealProvider />

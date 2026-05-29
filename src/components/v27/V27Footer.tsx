@@ -7,6 +7,7 @@
    no subpages to point to. */
 
 import type { MouseEvent } from 'react'
+import { assetPath } from '@/lib/sitePath'
 
 const inert = (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault()
 
@@ -17,11 +18,11 @@ export default function V27Footer() {
         <div className="v25-footer-top">
           <div className="v25-footer-brand">
             <img
-              src="/images/brand/glow/inline/strategia-final-logo-strategia-inline-white-glow.png"
+              src={assetPath('/images/brand/glow/inline/strategia-final-logo-strategia-inline-white-glow.png')}
               alt="Strategia"
             />
             <p>
-              The intelligence engine for the healthcare workforce. Hire defensibly.
+              The intelligence engine for the modern workforce. Hire defensibly.
               Plan rigorously. Operate at scale.
             </p>
             <div className="v25-footer-version">Strategia Intelligence Engine v2.1 &middot; Live</div>

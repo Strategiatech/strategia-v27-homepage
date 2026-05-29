@@ -1,28 +1,27 @@
 'use client'
 
 /* V27 nav — snapshot of the VX homepage shipped as a stand-alone page.
-   Visually identical to VxNav (same menu items + CTA) so the design
-   review captures what the nav looks like — but every menu link is
-   inert (preventDefault on click) because /v27 is "just the homepage"
-   with no V27 subpages to point to. The CTA is an in-page jump to
-   #demo. */
+   Links stay in-page because /v27 is "just the homepage" with no V27
+   subpages to point to. The CTA is an in-page jump to #demo. */
 
 import Link from 'next/link'
-import { type MouseEvent, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import '@/components/vx/VxNav.css'
+import { assetPath } from '@/lib/sitePath'
+
+const homeHref = process.env.NEXT_PUBLIC_PUBLISH_V27_AS_HOME === 'true' ? '/' : '/v27'
 
 const LINKS = [
-  { label: 'Platform' },
-  { label: 'Science' },
-  { label: 'Solutions' },
-  { label: 'Security' },
-  { label: 'Process' },
+  { label: 'Industries', href: '#industries' },
+  { label: 'Platform', href: '#modules' },
+  { label: 'Science', href: '#science' },
+  { label: 'Solutions', href: '#solutions' },
+  { label: 'Security', href: '#security' },
+  { label: 'Process', href: '#process' },
 ]
 
 type CtaConfig = { label: string; href: string }
 const DEFAULT_CTA: CtaConfig = { label: 'Book demo', href: '#demo' }
-
-const inert = (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault()
 
 export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) {
   const navRef = useRef<HTMLElement>(null)
@@ -39,7 +38,7 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
 
   return (
     <nav className="v25-nav vx-nav" ref={navRef}>
-      <Link href="/v27" className="v25-nav-logo">
+      <Link href={homeHref} className="v25-nav-logo">
         <svg
           className="v25-nav-mark vx-nav-mark-visible"
           viewBox="0 0 40 40"
@@ -55,13 +54,13 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
             fill="none"
           />
         </svg>
-        <img src="/images/brand/strategia-wordmark-white.svg" alt="Strategia" />
+        <img src={assetPath('/images/brand/strategia-wordmark-white.svg')} alt="Strategia" />
       </Link>
 
       <ul className="v25-nav-links">
         {LINKS.map((link) => (
           <li key={link.label}>
-            <a href="#" onClick={inert} className="v25-nav-link">
+            <a href={link.href} className="v25-nav-link">
               {link.label}
             </a>
           </li>

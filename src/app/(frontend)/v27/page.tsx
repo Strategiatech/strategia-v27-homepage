@@ -7,16 +7,8 @@
    subpages are suppressed. The page lives entirely under /v27 with
    in-page anchors only — there are no V27 subpages. */
 
-import VxPage from '../vx/VxPage'
-import V27Nav from '@/components/v27/V27Nav'
-import V27Footer from '@/components/v27/V27Footer'
+import V27Home from '@/components/v27/V27Home'
 
 export default function Page() {
-  return (
-    <VxPage
-      navSlot={<V27Nav />}
-      footerSlot={<V27Footer />}
-      selfContained
-    />
-  )
+  return <V27Home />
 }

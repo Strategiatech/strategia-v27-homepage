@@ -3,6 +3,9 @@ import { Inter, JetBrains_Mono, Fraunces, Literata, Inter_Tight } from 'next/fon
 import '../globals.css'
 import PageNav from '@/components/PageNav'
 
+const publishV27AsHome = process.env.NEXT_PUBLIC_PUBLISH_V27_AS_HOME === 'true'
+const hidePageNav = process.env.NEXT_PUBLIC_HIDE_PAGE_NAV === 'true'
+
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
@@ -34,9 +37,12 @@ const interTight = Inter_Tight({
 })
 
 export const metadata: Metadata = {
-  title: 'Strategia — AI-driven workforce intelligence for healthcare',
-  description:
-    'Strategia turns talent, job-fit, and workforce planning data into decisions that improve care and reduce cost — across every role in your health system.',
+  title: publishV27AsHome
+    ? 'Strategia | AI-driven workforce intelligence'
+    : 'Strategia — AI-driven workforce intelligence for healthcare',
+  description: publishV27AsHome
+    ? 'Strategia turns workforce signals into evidence-led decisions across hiring, capability, performance, culture, and retention.'
+    : 'Strategia turns talent, job-fit, and workforce planning data into decisions that improve care and reduce cost — across every role in your health system.',
 }
 
 export default function FrontendLayout({
@@ -51,7 +57,7 @@ export default function FrontendLayout({
       data-scroll-behavior="smooth"
     >
       <body suppressHydrationWarning>
-        <PageNav />
+        {!hidePageNav && <PageNav />}
         {children}
       </body>
     </html>

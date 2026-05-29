@@ -1,8 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-
-/* eslint-disable @next/next/no-img-element */
+import { assetPath } from '@/lib/sitePath'
 
 /* Placeholder candidate interview clips, sourced from Mixkit (free license).
    Each card pairs the video with its own first-frame thumbnail so the still
@@ -65,8 +64,8 @@ export default function VxVideoCarousel() {
             >
               <video
                 className="vx-carousel-card-video"
-                src={`/vx/videos/clip-${item.id}.mp4`}
-                poster={`/vx/videos/posters/poster-${item.id}.jpg`}
+                src={assetPath(`/vx/videos/clip-${item.id}.mp4`)}
+                poster={assetPath(`/vx/videos/posters/poster-${item.id}.jpg`)}
                 muted
                 playsInline
                 preload="none"
