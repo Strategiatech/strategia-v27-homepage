@@ -117,6 +117,21 @@ function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof 
 
   return (
     <div className="vx-module-journey">
+      <div className="vx-module-selector" aria-label="Pillar 1 modules">
+        {modules.map((mod) => (
+          <button
+            key={mod.title}
+            type="button"
+            className={`vx-module-selector-item${mod.title === activeModule.title ? ' is-active' : ''}`}
+            onClick={() => setActiveTitle(mod.title)}
+            aria-pressed={mod.title === activeModule.title}
+          >
+            <span>{mod.num}</span>
+            {mod.title}
+          </button>
+        ))}
+      </div>
+
       <aside className="vx-module-journey-rail" aria-label="Pillar 1 acquisition phases">
         <div className="vx-module-journey-kicker">Pillar 01 · Acquire</div>
         <h3>From open role to defensible shortlist.</h3>
@@ -146,21 +161,6 @@ function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof 
       </aside>
 
       <div className="vx-module-journey-stage">
-        <div className="vx-module-selector" aria-label="Pillar 1 modules">
-          {modules.map((mod) => (
-            <button
-              key={mod.title}
-              type="button"
-              className={`vx-module-selector-item${mod.title === activeModule.title ? ' is-active' : ''}`}
-              onClick={() => setActiveTitle(mod.title)}
-              aria-pressed={mod.title === activeModule.title}
-            >
-              <span>{mod.num}</span>
-              {mod.title}
-            </button>
-          ))}
-        </div>
-
         <article className="vx-module-spotlight">
           <div className="vx-module-spotlight-meta">
             <span>{activeModule.num}</span>

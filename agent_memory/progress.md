@@ -28,6 +28,7 @@
 - Removed the abstract Pillar 1 module architecture/flow panel after review; the section now moves directly from module selector to spotlight.
 - Fixed /v27 first-scroll friction by disabling the legacy pinned hero release only for the V27 snapshot, keeping /vx and /v25 default behavior unchanged.
 - Changed `Strategiatech/strategia-v27-homepage` from private to public and restored the public GitHub Pages base path `/strategia-v27-homepage`.
+- Applied the latest Platform-section feedback: module selector titles now stay on one line with equal-width items, and the spotlight target/crosshair decoration was removed.
 
 ## Next
 
@@ -49,4 +50,7 @@
 - Verified: `npm run build` passed after the /v27 scroll-lock fix.
 - Verified: focused ESLint passed for `src/app/(frontend)/v25/tetrahedron.ts`, `src/app/(frontend)/vx/VxPage.tsx`, and `src/components/v27/V27Home.tsx`.
 - Verified: GitHub API reports repo visibility `public` and Pages `public=true`; public URL moved to `https://strategiatech.github.io/strategia-v27-homepage/`.
+- Verified: `npm run build` passed after the Platform-section selector/decorative-element fix.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx`.
+- Verified: Browser checks at 1440x900 and 390x844 show module selector item widths are equal, module titles use `white-space: nowrap`, the spotlight `::after` target decoration is absent, and document horizontal overflow is `0`.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
