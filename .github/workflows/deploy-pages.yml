@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: 'true'
-      NEXT_PUBLIC_BASE_PATH: ''
+      NEXT_PUBLIC_BASE_PATH: '/strategia-v27-homepage'
       NEXT_PUBLIC_HIDE_PAGE_NAV: 'true'
       NEXT_PUBLIC_PUBLISH_V27_AS_HOME: 'true'
     steps:

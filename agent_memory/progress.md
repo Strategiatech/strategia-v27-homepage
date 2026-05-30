@@ -27,6 +27,7 @@
 - Added UI polish pass: hero signal architecture, upgraded module active states, and higher-end Science/Security card surfaces.
 - Removed the abstract Pillar 1 module architecture/flow panel after review; the section now moves directly from module selector to spotlight.
 - Fixed /v27 first-scroll friction by disabling the legacy pinned hero release only for the V27 snapshot, keeping /vx and /v25 default behavior unchanged.
+- Changed `Strategiatech/strategia-v27-homepage` from private to public and restored the public GitHub Pages base path `/strategia-v27-homepage`.
 
 ## Next
 
@@ -47,4 +48,5 @@
 - Verified: `/v27` in Browser at `http://127.0.0.1:3000/v27` starts with normal-scroll hero mode (`vx-no-hero-scroll-lock`), first scroll stays at `scrollY=420`, and continued scroll reaches the Industries section with content visible.
 - Verified: `npm run build` passed after the /v27 scroll-lock fix.
 - Verified: focused ESLint passed for `src/app/(frontend)/v25/tetrahedron.ts`, `src/app/(frontend)/vx/VxPage.tsx`, and `src/components/v27/V27Home.tsx`.
+- Verified: GitHub API reports repo visibility `public` and Pages `public=true`; public URL moved to `https://strategiatech.github.io/strategia-v27-homepage/`.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

@@ -6,7 +6,7 @@
 - Root: /Users/minghao/Documents/home page
 - Original source: GitHub repo Aaron-905/StrategiaTech, branch main
 - Published repo: private GitHub repo Strategiatech/strategia-v27-homepage, branch main
-- Published Pages URL: https://ideal-adventure-o36vnyl.pages.github.io/
+- Published Pages URL: https://strategiatech.github.io/strategia-v27-homepage/
 
 ## Scope
 
@@ -27,7 +27,7 @@
 - Existing GitHub issues were checked read-only; no matching issue was found for v27/go-live/PPT homepage work.
 - Do not create a real GitHub issue, commit, push, or deploy without explicit user authorization.
 - /v27 uses the shared VX homepage body; content/style changes in VxPage also affect /vx unless the page is later forked.
-- Private GitHub Pages assigns a root Pages domain; the Pages workflow should build without `NEXT_PUBLIC_BASE_PATH`.
+- Public GitHub Pages uses the project path `/strategia-v27-homepage`; the Pages workflow should build with `NEXT_PUBLIC_BASE_PATH=/strategia-v27-homepage`.
 
 ## Assumptions
 
