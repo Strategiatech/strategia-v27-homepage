@@ -30,10 +30,43 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
     const _nav = navRef.current
     if (!_nav) return
     const nav: HTMLElement = _nav
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+    const timeoutIds = new Set<number>()
+    const frameIds = new Set<number>()
+    const intervalIds = new Set<number>()
+
+    const syncScrolledState = () => nav.classList.toggle('scrolled', window.scrollY > 40)
+    const queueSyncScrolledState = () => {
+      syncScrolledState()
+
+      const frameId = window.requestAnimationFrame(() => {
+        frameIds.delete(frameId)
+        syncScrolledState()
+      })
+      frameIds.add(frameId)
+
+      const intervalId = window.setInterval(syncScrolledState, 120)
+      intervalIds.add(intervalId)
+
+      const timeoutId = window.setTimeout(() => {
+        timeoutIds.delete(timeoutId)
+        intervalIds.delete(intervalId)
+        window.clearInterval(intervalId)
+        syncScrolledState()
+      }, 2600)
+      timeoutIds.add(timeoutId)
+    }
+
+    window.addEventListener('scroll', syncScrolledState, { passive: true })
+    window.addEventListener('hashchange', queueSyncScrolledState)
+    queueSyncScrolledState()
+
+    return () => {
+      window.removeEventListener('scroll', syncScrolledState)
+      window.removeEventListener('hashchange', queueSyncScrolledState)
+      frameIds.forEach((frameId) => window.cancelAnimationFrame(frameId))
+      timeoutIds.forEach((timeoutId) => window.clearTimeout(timeoutId))
+      intervalIds.forEach((intervalId) => window.clearInterval(intervalId))
+    }
   }, [])
 
   return (

@@ -36,10 +36,10 @@ export default function V27Footer() {
           <div>
             <h5>Solutions</h5>
             <ul>
-              <li><a href="#solution-chro">CHRO</a></li>
-              <li><a href="#solution-talent-acquisition">Talent Acquisition</a></li>
-              <li><a href="#solution-hospital-ceo">Executive Team</a></li>
-              <li><a href="#solution-clinical-operations">Clinical Operations</a></li>
+              <li><a href="#solutions">CHRO</a></li>
+              <li><a href="#solutions">Talent Acquisition</a></li>
+              <li><a href="#solutions">Executive Team</a></li>
+              <li><a href="#solutions">Clinical Operations</a></li>
             </ul>
           </div>
 

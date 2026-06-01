@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Pull Aaron-905/StrategiaTech, update /v27 based on the 20260529 Website JS revision PPT plus email notes, publish to a new private Strategiatech GitHub Pages repo, and resolve go-live responsive clipping.
+- Fix `/v27` mobile header transparency on direct hash-anchor loads.
 
 ## Status
 
@@ -34,6 +34,15 @@
 - Replaced the V-Agent placeholder video carousel with 12 supplied candidate portrait photos, optimized as WebP assets under `public/vx/v-agent/photos/`.
 - Applied follow-up `/v27` layout fixes: restored header/footer visual size under the 75% page scale, centered the V-Agent photo carousel content gutter, stacked multi-card module phases vertically, matched Solutions quote marks to the teal accent, added footer in-page anchors, increased hero copy spacing, capped annual hires at 300, and moved the Triangulate score to the triangle visual centre with explicit triangle side strokes.
 - Updated `/v27` FAQ answers from single-block strings to segmented paragraphs matching the supplied copy structure.
+- Adjusted `/v27` hero alignment so the headline uses the shared content gutter, stays left-aligned on narrower viewports, and has more space below the fixed header.
+- Added a 13th V-Agent avatar photo (`candidate-13.webp`) to the carousel.
+- Increased `/v27` hero vertical spacing between the headline/proposition/body/buttons.
+- Removed the extra gap between the three Industries proof lines (`Finance relies...`, `Medicine relies...`, `Operations rely...`).
+- Updated the shared VX final CTA used by `/v27`: removed the CTA logo, changed the section to a left-copy/right-contact-form layout, and kept the header Book demo target on `#demo`.
+- Updated `/v27` footer Solutions links so every item jumps to `#solutions`; changed Annual hires slider bounds to 30-2000; wrapped `Microsoft-partnered.` in a nowrap span.
+- Applied latest `/v27` polish: merged the Science AI/framework copy into one sentence, changed Signal weighting values to `40 % / 20 % / 40 %` with white text, and widened the ROI assumptions note to align with the `USD$` value row.
+- Aligned `/v27` Science framework cards and Three pillars cards with grid/subgrid rows so card heights, content starts, subcontent starts, and divider/footer line positions match across desktop columns.
+- Fixed `/v27` mobile header transparency on direct hash-anchor loads by adding deferred nav scroll-state sync and a mobile solid-background fallback.
 
 ## Next
 
@@ -77,4 +86,28 @@
 - Verified: `npm run build` passed after the final Triangulate centre-position adjustment.
 - Verified: Browser at `http://localhost:3000/v27#faqs` shows FAQ 1 split into 2 paragraphs and FAQ 5 split into 7 paragraphs with 16px paragraph spacing; no console warnings/errors, no framework overlay, and no document horizontal overflow.
 - Verified: `npm run build` passed after the FAQ paragraph rendering change.
+- Verified: Browser at `http://localhost:3000/v27` shows the hero headline left-aligned rather than pushed to the right at 746px viewport, with a 36px gap below the header and no document horizontal overflow.
+- Verified: Browser at `http://localhost:3000/v27#v-agent-carousel` shows 13 unique avatar images, 26 loop cards, `candidate-13.webp` rendered twice in the loop, no console warnings/errors, and no document horizontal overflow; `curl -I` returns HTTP 200 for the new WebP asset.
+- Verified: `npm run build` passed after the hero alignment and V-Agent avatar changes.
+- Verified: Browser at `http://localhost:3000/v27` shows hero spacing increased to 33px between `Intelligence` and `Predict`, 71px between `Build the engine...` and the body copy, and 72px between the body copy and the buttons; no console warnings/errors and no document horizontal overflow.
+- Verified: `npm run build` passed after the hero spacing increase.
+- Verified: Browser at `http://localhost:3000/v27#industries` shows `0px` grid gap and `0px` paragraph margins between the three Industries proof lines; no console warnings/errors and no document horizontal overflow.
+- Verified: `npm run build` passed after the Industries proof-line spacing adjustment.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` after the final CTA/contact-form update.
+- Verified: `npm run build` passed after the final CTA/contact-form update.
+- Verified: Browser path used first for `/v27`; desktop 1280x720 and mobile 390x844 checks showed header Book demo jumps to `#demo`, the CTA logo is absent, Contact us fields exist, no framework overlay is visible, no console warnings/errors were captured, and document horizontal overflow is `0`.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` and `src/components/v27/V27Footer.tsx` after the footer/Solutions/ROI polish; only the existing v27 footer `<img>` warning remains.
+- Verified: `npm run build` passed after the footer/Solutions/ROI polish.
+- Verified: Browser path used first for `/v27`; desktop check showed all four footer Solutions hrefs are `#solutions`, clicking one lands on `#solutions`, Annual hires min/max are `30`/`2000`, `Microsoft-partnered.` has `white-space: nowrap`, no console warnings/errors, no framework overlay, and no horizontal overflow.
+- Verified: Browser mobile check at 390x844 showed `Microsoft-partnered.` remains one line, fits inside the trust block, Annual hires min/max remain `30`/`2000`, and document horizontal overflow is `0`.
+- Verified: `npm run build` passed after Science/Three pillars alignment changes.
+- Verified: `git diff --check` passed after Science/Three pillars alignment changes.
+- Verified: Browser path used first for `/v27`; desktop 1440x900 showed Three pillars card height/title/italic/body/footer-line deltas all `0`, Science card height/title/tag/tag-bottom/body deltas all `0`, no console warnings/errors, no framework overlay, and no horizontal overflow.
+- Verified: Browser mobile smoke at 390x844 showed Science and Three pillars remain single-column, both still render three cards, no console warnings/errors, no framework overlay, and no horizontal overflow.
+- Verified: Browser path used first for `/v27`; Science copy has the merged sentence and no separate `Every result...` paragraph, Signal weighting reads `40 %`, `20 %`, `40 %` with white text for all three values, ROI note width matches the `USD$1.51m` value row at 633px, no console warnings/errors, no framework overlay, and no horizontal overflow.
+- Verified: `npm run build` passed after the Science/Signal/ROI polish.
+- Verified: focused ESLint passed for `src/components/v27/V27Nav.tsx` after the mobile header fix; only the existing v27 nav `<img>` warning remains.
+- Verified: `npm run build` passed after the mobile header fix.
+- Verified: `git diff --check` passed after the mobile header fix.
+- Verified: Browser path used first for `/v27`; mobile 390x844 direct load to `http://127.0.0.1:3000/v27?navfix=3#pillars` computed nav background `rgb(1, 34, 54)`, nav shadow was present, no console warnings/errors, no framework overlay, and no horizontal overflow.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

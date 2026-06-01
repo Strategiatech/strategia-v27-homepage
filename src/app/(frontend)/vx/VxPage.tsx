@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, useEffect, useRef, useState } from 'react'
+import { type ChangeEvent, type FormEvent, type ReactNode, useEffect, useRef, useState } from 'react'
 import { initTetrahedron } from '../v25/tetrahedron'
 import VxNav from '@/components/vx/VxNav'
 import VxFooter from '@/components/vx/VxFooter'
@@ -19,6 +19,9 @@ import './vx-overrides.css'
 type PhaseName = 'Foundation' | 'Screen' | 'Assess' | 'Decide' | 'Assess+' | 'Operate'
 
 type Module = { num: string; tag: PhaseName; title: string; desc: string }
+type DemoFormState = { name: string; email: string; company: string; message: string }
+
+const DEMO_FORM_INITIAL: DemoFormState = { name: '', email: '', company: '', message: '' }
 
 const MODULES: Module[] = [
   { num: 'M01', tag: 'Foundation', title: 'V-Job',
@@ -489,6 +492,19 @@ export default function VxPage({
 
   const [complete, setComplete] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const [demoForm, setDemoForm] = useState<DemoFormState>(DEMO_FORM_INITIAL)
+  const [demoSubmitted, setDemoSubmitted] = useState(false)
+
+  const updateDemoForm =
+    (field: keyof DemoFormState) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setDemoForm((current) => ({ ...current, [field]: event.target.value }))
+    }
+
+  const handleDemoSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setDemoSubmitted(true)
+  }
 
   useEffect(() => {
     const cleanup = initTetrahedron({ releaseHeroOnComplete: !disableHeroScrollLock })
@@ -896,15 +912,15 @@ export default function VxPage({
                 <div className="v25-tri-weighting-label">Signal weighting</div>
                 <div className="v25-tri-weighting-bar">
                   <span className="v25-tri-weighting-seg v25-tri-weighting-seg--parse" style={{ flex: 40 }}>
-                    <span className="v25-tri-weighting-pct">40</span>
+                    <span className="v25-tri-weighting-pct">40 %</span>
                     <span className="v25-tri-weighting-name">Parse</span>
                   </span>
                   <span className="v25-tri-weighting-seg v25-tri-weighting-seg--psych" style={{ flex: 20 }}>
-                    <span className="v25-tri-weighting-pct">20</span>
+                    <span className="v25-tri-weighting-pct">20 %</span>
                     <span className="v25-tri-weighting-name">Psych</span>
                   </span>
                   <span className="v25-tri-weighting-seg v25-tri-weighting-seg--interview" style={{ flex: 40 }}>
-                    <span className="v25-tri-weighting-pct">40</span>
+                    <span className="v25-tri-weighting-pct">40 %</span>
                     <span className="v25-tri-weighting-name">Interview</span>
                   </span>
                 </div>
@@ -937,10 +953,7 @@ export default function VxPage({
                 </p>
                 <p>
                   Anyone can use AI. The question is whether it is structured enough to be
-                  effective at scale.
-                </p>
-                <p>
-                  Every result is defensible by the framework behind it.
+                  effective at scale, where every result is defensible by the framework behind it.
                 </p>
               </div>
             </div>
@@ -1058,7 +1071,7 @@ export default function VxPage({
                 <input
                   type="range"
                   className="v25-roi-slider"
-                  min={50} max={300} step={10}
+                  min={30} max={2000} step={10}
                   value={annualHires}
                   onChange={(e) => setAnnualHires(Number(e.target.value))}
                 />
@@ -1166,7 +1179,8 @@ export default function VxPage({
             <div className="vx-trust-copy">
               <div className="v25-eyebrow">Trust</div>
               <h3 className="v25-h2" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
-                Microsoft-partnered. <span className="accent accent--teal">AI-native.</span>
+                <span className="vx-nowrap">Microsoft-partnered.</span>{' '}
+                <span className="accent accent--teal">AI-native.</span>
               </h3>
               <p>
                 Partnered with Microsoft, AI-native by design, and built on their enterprise
@@ -1236,40 +1250,104 @@ export default function VxPage({
           FINAL CTA
           ================================================================ */}
       <section className="v25-cta-section" id="demo">
-        <div className="v25-cta-wrap v25-reveal">
+        <div className="v25-cta-wrap v25-reveal vx-demo-cta">
           <div className="v25-cta-bg" aria-hidden="true" />
-          <img
-            src={assetPath('/images/brand/glow/inline/strategia-final-logo-strategia-inline-white-glow.png')}
-            alt="Strategia"
-            className="v25-cta-logo"
-          />
-          <h2 className="v25-h2">
-            Own the workforce intelligence layer.
-          </h2>
-          <p className="vx-cta-italic">Turn workforce data into better decisions.</p>
-          <p className="v25-desc">
-            Most organisations have workforce data. Few turn it into intelligence. Strategia
-            helps leaders understand workforce capability, hiring risk, performance and
-            culture, creating a workforce intelligence layer that compounds with every
-            decision.
-          </p>
-          {!selfContained && (
+          <div className="vx-demo-cta-copy">
+            <h2 className="v25-h2">
+              Own the workforce intelligence layer.
+            </h2>
+            <p className="vx-cta-italic">Turn workforce data into better decisions.</p>
             <p className="v25-desc">
-              Every day without workforce intelligence impacts hiring quality, retention,
-              productivity and leadership decisions.
+              Most organisations have workforce data. Few turn it into intelligence. Strategia
+              helps leaders understand workforce capability, hiring risk, performance and
+              culture, creating a workforce intelligence layer that compounds with every
+              decision.
             </p>
-          )}
-          <p className="vx-cta-closer">
-            Book a demo. See what your organisation may be missing.
-          </p>
-          {!selfContained && (
-            <div className="v25-cta-actions">
-              <a href="/vx/contact" className="v25-btn-primary">Book a demo. Talk to us.</a>
-              <a href="/vx/process" className="v25-link-arrow">
-                Our process<span aria-hidden="true"> ↗</span>
-              </a>
-            </div>
-          )}
+            {!selfContained && (
+              <p className="v25-desc">
+                Every day without workforce intelligence impacts hiring quality, retention,
+                productivity and leadership decisions.
+              </p>
+            )}
+            <p className="vx-cta-closer">
+              Book a demo. See what your organisation may be missing.
+            </p>
+            {!selfContained && (
+              <div className="v25-cta-actions">
+                <a href="/vx/process" className="v25-link-arrow">
+                  Our process<span aria-hidden="true"> ↗</span>
+                </a>
+              </div>
+            )}
+          </div>
+
+          <div className="vx-demo-contact">
+            {demoSubmitted ? (
+              <div className="vx-demo-success" role="status" aria-live="polite">
+                <div className="v25-eyebrow">Message received</div>
+                <h3>Contact us</h3>
+                <p>
+                  Thank you. Our team will get back to you within one business day.
+                </p>
+              </div>
+            ) : (
+              <form className="vx-demo-form" onSubmit={handleDemoSubmit} noValidate>
+                <h3>Contact us</h3>
+                <div className="vx-demo-fields">
+                  <div className="vx-demo-field">
+                    <label htmlFor="demo-name">Name</label>
+                    <input
+                      id="demo-name"
+                      name="name"
+                      type="text"
+                      required
+                      autoComplete="name"
+                      value={demoForm.name}
+                      onChange={updateDemoForm('name')}
+                    />
+                  </div>
+                  <div className="vx-demo-field">
+                    <label htmlFor="demo-email">Email</label>
+                    <input
+                      id="demo-email"
+                      name="email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      placeholder="you@company.com"
+                      value={demoForm.email}
+                      onChange={updateDemoForm('email')}
+                    />
+                  </div>
+                  <div className="vx-demo-field">
+                    <label htmlFor="demo-company">Company</label>
+                    <input
+                      id="demo-company"
+                      name="company"
+                      type="text"
+                      autoComplete="organization"
+                      value={demoForm.company}
+                      onChange={updateDemoForm('company')}
+                    />
+                  </div>
+                  <div className="vx-demo-field">
+                    <label htmlFor="demo-message">Message</label>
+                    <textarea
+                      id="demo-message"
+                      name="message"
+                      required
+                      rows={5}
+                      value={demoForm.message}
+                      onChange={updateDemoForm('message')}
+                    />
+                  </div>
+                </div>
+                <button type="submit" className="v25-btn-primary vx-demo-submit">
+                  Send message
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 

@@ -24,6 +24,7 @@ const ITEMS: Item[] = [
   { photo: 'candidate-10.webp', name: 'Lena Park', role: 'Customer Success Manager' },
   { photo: 'candidate-11.webp', name: 'Kenji Sato', role: 'Data Science Lead' },
   { photo: 'candidate-12.webp', name: 'Amelia Brooks', role: 'Senior Program Lead' },
+  { photo: 'candidate-13.webp', name: 'Nadia Rahman', role: 'Clinical Workforce Lead' },
 ]
 
 export default function VxVideoCarousel() {
