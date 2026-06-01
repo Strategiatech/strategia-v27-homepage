@@ -1828,6 +1828,9 @@ html:has(.v25.vx-self-contained) {
   display: grid;
   gap: 9px;
 }
+.vx-demo-honeypot {
+  display: none;
+}
 .vx-demo-form h3,
 .vx-demo-success h3 {
   margin: 0;
@@ -1874,9 +1877,26 @@ html:has(.v25.vx-self-contained) {
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 3px rgba(0, 198, 193, 0.16);
 }
+.vx-turnstile {
+  min-height: 65px;
+}
+.vx-demo-error,
+.vx-demo-status {
+  margin: -4px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.vx-demo-error {
+  color: #ffd2d2;
+}
 .vx-demo-submit {
   width: fit-content;
   cursor: pointer;
+}
+.vx-demo-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 .vx-demo-success {
   gap: 14px;

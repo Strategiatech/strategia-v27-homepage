@@ -5,8 +5,7 @@
 - Full `npm run lint` fails on pre-existing unrelated lint errors outside the touched v27/vx files.
 - `npm ci` reported 15 npm audit vulnerabilities (11 moderate, 4 high); no audit fix was run.
 - Focused ESLint still warns about existing `<img>` usage in v27 nav/footer.
-- The `/v27` Contact us form is currently UI-only; submission only flips local success state and does not send a network request.
-- Local/default DNS resolution for `strategiatech.ai` may temporarily hit the old GoDaddy Website Builder site even though authoritative GoDaddy DNS and forced GitHub Pages routing are correct.
+- The `/v27` Contact us form is wired locally to `strategia-home-api`, and `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is configured in GitHub Actions; live successful submission still needs the frontend contact-form code pushed/deployed.
 
 ## Risks
 
@@ -14,7 +13,8 @@
 - /v27 75% page sizing is implemented with CSS `zoom` scoped by `.vx-self-contained`; Browser verified Chromium/in-app behavior only, not a separate Safari/Firefox pass.
 - Playwright fallback can generate untracked `.playwright-mcp/` logs during QA; generated logs were cleaned from the worktree.
 - Decorative SVG pulse elements can have off-viewport bounding boxes, but the document scroll width remains constrained to the viewport.
-- Reusing `strategia-home-api` from GitHub Pages requires public client-side configuration for the Function URL and API key; API key and CORS alone are not sufficient abuse protection because this is a static public site. Add Turnstile or equivalent server-side verification before launch.
+- Reusing `strategia-home-api` from GitHub Pages requires public client-side configuration for the Function URL and Turnstile site key; CORS alone is not sufficient abuse protection because this is a static public site.
+- Do not expose `FUNCTION_APP_API_KEY` in the v27 GitHub Pages workflow or client bundle; the dedicated `/api/contact` endpoint is intentionally protected by Origin allowlists, Turnstile, honeypot, and rate limiting instead.
 
 ## Failed Attempts
 
@@ -26,3 +26,4 @@
 ## Follow-Up
 
 - Decide whether npm audit vulnerabilities should be triaged separately.
+- Push the frontend contact-form change so the live form can submit.

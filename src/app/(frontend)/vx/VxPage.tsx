@@ -4,6 +4,7 @@ import { type ChangeEvent, type FormEvent, type ReactNode, useEffect, useRef, us
 import { initTetrahedron } from '../v25/tetrahedron'
 import VxNav from '@/components/vx/VxNav'
 import VxFooter from '@/components/vx/VxFooter'
+import VxTurnstile from '@/components/vx/VxTurnstile'
 import VxVideoCarousel from '@/components/vx/VxVideoCarousel'
 import { assetPath } from '@/lib/sitePath'
 import '../v25/v25.css'
@@ -17,11 +18,18 @@ import './vx-overrides.css'
    ============================================================================ */
 
 type PhaseName = 'Foundation' | 'Screen' | 'Assess' | 'Decide' | 'Assess+' | 'Operate'
+type DemoSubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
+type ContactApiResponse = { success?: boolean; message?: string }
 
 type Module = { num: string; tag: PhaseName; title: string; desc: string }
 type DemoFormState = { name: string; email: string; company: string; message: string }
 
 const DEMO_FORM_INITIAL: DemoFormState = { name: '', email: '', company: '', message: '' }
+const CONTACT_API_URL =
+  process.env.NEXT_PUBLIC_CONTACT_API_URL ||
+  'https://strategia-home-api.azurewebsites.net/api/contact'
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const MODULES: Module[] = [
   { num: 'M01', tag: 'Foundation', title: 'V-Job',
@@ -493,17 +501,95 @@ export default function VxPage({
   const [complete, setComplete] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [demoForm, setDemoForm] = useState<DemoFormState>(DEMO_FORM_INITIAL)
-  const [demoSubmitted, setDemoSubmitted] = useState(false)
+  const [demoSubmitStatus, setDemoSubmitStatus] = useState<DemoSubmitStatus>('idle')
+  const [demoError, setDemoError] = useState('')
+  const [demoTrap, setDemoTrap] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0)
+  const demoSubmitted = demoSubmitStatus === 'success'
+  const contactFormConfigured = Boolean(CONTACT_API_URL && TURNSTILE_SITE_KEY)
 
   const updateDemoForm =
     (field: keyof DemoFormState) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setDemoForm((current) => ({ ...current, [field]: event.target.value }))
+      if (demoSubmitStatus === 'error') {
+        setDemoSubmitStatus('idle')
+        setDemoError('')
+      }
     }
 
-  const handleDemoSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleDemoSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setDemoSubmitted(true)
+    if (demoSubmitStatus === 'submitting') return
+
+    const trimmedForm = {
+      name: demoForm.name.trim(),
+      email: demoForm.email.trim(),
+      company: demoForm.company.trim(),
+      message: demoForm.message.trim(),
+    }
+
+    if (!trimmedForm.name || !trimmedForm.email || !trimmedForm.message) {
+      setDemoSubmitStatus('error')
+      setDemoError('Please complete name, email and message.')
+      return
+    }
+
+    if (!EMAIL_RE.test(trimmedForm.email)) {
+      setDemoSubmitStatus('error')
+      setDemoError('Please enter a valid email address.')
+      return
+    }
+
+    if (!contactFormConfigured) {
+      setDemoSubmitStatus('error')
+      setDemoError('Contact form verification is temporarily unavailable.')
+      return
+    }
+
+    if (!turnstileToken) {
+      setDemoSubmitStatus('error')
+      setDemoError('Please complete verification before sending.')
+      return
+    }
+
+    setDemoSubmitStatus('submitting')
+    setDemoError('')
+
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...trimmedForm,
+          website: demoTrap,
+          submittedAt: Date.now(),
+          turnstileToken,
+        }),
+      })
+
+      let payload: ContactApiResponse | null = null
+      try {
+        payload = await response.json() as ContactApiResponse
+      } catch {
+        payload = null
+      }
+
+      if (!response.ok || !payload?.success) {
+        throw new Error(payload?.message || 'Contact request failed')
+      }
+
+      setDemoForm(DEMO_FORM_INITIAL)
+      setDemoTrap('')
+      setTurnstileToken('')
+      setDemoSubmitStatus('success')
+    } catch {
+      setDemoSubmitStatus('error')
+      setDemoError('We could not send the message. Please try again in a moment.')
+      setTurnstileToken('')
+      setTurnstileResetKey((current) => current + 1)
+    }
   }
 
   useEffect(() => {
@@ -1330,6 +1416,18 @@ export default function VxPage({
                       onChange={updateDemoForm('company')}
                     />
                   </div>
+                  <div className="vx-demo-honeypot" aria-hidden="true">
+                    <label htmlFor="demo-website">Website</label>
+                    <input
+                      id="demo-website"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={demoTrap}
+                      onChange={(event) => setDemoTrap(event.target.value)}
+                    />
+                  </div>
                   <div className="vx-demo-field">
                     <label htmlFor="demo-message">Message</label>
                     <textarea
@@ -1342,8 +1440,40 @@ export default function VxPage({
                     />
                   </div>
                 </div>
-                <button type="submit" className="v25-btn-primary vx-demo-submit">
-                  Send message
+                {contactFormConfigured ? (
+                  <VxTurnstile
+                    siteKey={TURNSTILE_SITE_KEY}
+                    resetKey={turnstileResetKey}
+                    onVerify={(token) => {
+                      setTurnstileToken(token)
+                      if (demoSubmitStatus === 'error') {
+                        setDemoSubmitStatus('idle')
+                        setDemoError('')
+                      }
+                    }}
+                    onExpire={() => setTurnstileToken('')}
+                    onError={() => {
+                      setTurnstileToken('')
+                      setDemoSubmitStatus('error')
+                      setDemoError('Verification failed. Please try again.')
+                    }}
+                  />
+                ) : (
+                  <p className="vx-demo-status" role="status">
+                    Contact form verification is temporarily unavailable.
+                  </p>
+                )}
+                {demoSubmitStatus === 'error' && demoError && (
+                  <p className="vx-demo-error" role="alert">
+                    {demoError}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  className="v25-btn-primary vx-demo-submit"
+                  disabled={demoSubmitStatus === 'submitting' || !contactFormConfigured}
+                >
+                  {demoSubmitStatus === 'submitting' ? 'Sending...' : 'Send message'}
                 </button>
               </form>
             )}

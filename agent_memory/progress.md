@@ -2,11 +2,11 @@
 
 ## Current Goal
 
-- Test `strategiatech.ai` DNS and GitHub Pages custom-domain readiness.
+- Wire `/v27` Contact us to the home page Azure Function App without exposing backend secrets.
 
 ## Status
 
-- Code pulled, v27 implementation pass complete, GitHub Pages static export support added, private repo created/pushed, Pages deployment verified successful, responsive clipping fixes completed, and UI polish pass applied locally.
+- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, and secure Contact us wiring implemented locally with backend deployed to `strategia-home-api`.
 
 ## Done
 
@@ -48,10 +48,16 @@
 - Tested `strategiatech.ai` after GoDaddy DNS changes; authoritative GoDaddy nameservers returned GitHub Pages A records and `www` CNAME before the GitHub Pages custom domain was configured.
 - Configured GitHub Pages custom domain for `strategiatech.ai`, enabled HTTPS after certificate approval, and updated the Pages workflow to build for the custom-domain root path with `out/CNAME`.
 - Pushed the custom-domain workflow change and verified the GitHub Pages deployment run completed successfully.
+- Rechecked live `https://strategiatech.ai/`; ordinary DNS and in-app Browser now resolve to the GitHub Pages v27 site instead of the old GoDaddy Website Builder site.
+- Added a dedicated home page Function App endpoint at `POST /api/contact` with strict allowed-origin checks, Turnstile verification, honeypot sink, basic per-IP rate limiting, sanitized contact-message construction, and Microsoft Graph notification reuse.
+- Updated the v27 Contact us form to post to `https://strategia-home-api.azurewebsites.net/api/contact` using `NEXT_PUBLIC_CONTACT_API_URL` and `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, without exposing `FUNCTION_APP_API_KEY`.
+- Updated Azure Function App app settings and platform CORS allowlists to include `https://strategiatech.ai`, `https://www.strategiatech.ai`, local dev origins, and the GitHub Pages fallback origin.
+- Deployed the updated `strategia-home-api` Function App via remote-build zip deploy; Azure now lists the `strategia-home-api/contact` function.
+- Enabled `httpsOnly=true` on `strategia-home-api`.
 
 ## Next
 
-- None for the current deployment task.
+- Push/deploy the frontend contact-form change when ready; `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is now configured in the v27 GitHub Pages repo.
 
 ## Validation
 
@@ -125,5 +131,14 @@
 - Verified: `GITHUB_PAGES=true NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true npm run build:pages` passes after removing the project base path.
 - Verified: GitHub Actions run `26740426632` completed successfully for the custom-domain Pages deployment.
 - Verified: forcing `strategiatech.ai` to GitHub Pages IP `185.199.108.153` returns the v27 homepage with `Own the workforce intelligence layer`, no `/strategia-v27-homepage` base path, and root `/_next/` assets.
-- Not yet verified: ordinary local DNS/browser resolution for `https://strategiatech.ai/` still hits the old GoDaddy Website Builder page from this machine, so public cache propagation is still in progress.
+- Verified: ordinary `curl https://strategiatech.ai/` now returns GitHub Pages `HTTP/2 200`, contains v27 content, has no GoDaddy Website Builder text, and has no `/strategia-v27-homepage` base path.
+- Verified: in-app Browser at `https://strategiatech.ai/` shows the v27 hero, title `Strategia | AI-driven workforce intelligence`, the Contact us form exists, no GoDaddy content is present, no `/strategia-v27-homepage` base path is present, and horizontal overflow is `0`.
+- Verified: focused Function App tests passed with Python 3.12 Azure Functions environment: `test_contact.py` and `test_send_email.py` both pass.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` and `src/components/vx/VxTurnstile.tsx`.
+- Verified: `npm run build` and GitHub Pages-style `npm run build:pages` passed with contact env vars supplied.
+- Verified: deployed `https://strategia-home-api.azurewebsites.net/api/contact` returns CORS preflight `204` with `access-control-allow-origin: https://strategiatech.ai`, allowed-origin POST without Turnstile returns JSON `403 Verification failed`, and disallowed-origin POST returns JSON `403 Origin not allowed`.
+- Verified: Azure reports `strategia-home-api` is running on `Python|3.11` with `httpsOnly=true`.
+- Verified: Browser path used first for local `/v27#demo`; contact fields render, missing Turnstile site key disables submit safely, and document horizontal overflow is `0`.
+- Verified: extracted the public Turnstile site key from the old deployed home page questionnaire bundle and configured it as `NEXT_PUBLIC_TURNSTILE_SITE_KEY` in `Strategiatech/strategia-v27-homepage` GitHub Actions secrets.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
+- Not verified: successful live contact email submission, because the frontend contact-form code has not been pushed/deployed in this turn.
