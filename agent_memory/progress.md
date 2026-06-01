@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Use a transparent Strategia logo mark for the browser tab icon.
+- Test `strategiatech.ai` DNS and GitHub Pages custom-domain readiness.
 
 ## Status
 
@@ -44,6 +44,9 @@
 - Aligned `/v27` Science framework cards and Three pillars cards with grid/subgrid rows so card heights, content starts, subcontent starts, and divider/footer line positions match across desktop columns.
 - Fixed `/v27` mobile header transparency on direct hash-anchor loads by adding deferred nav scroll-state sync and a mobile solid-background fallback.
 - Replaced the browser tab favicon with the same white line-frame Strategia triangle mark used in the header, using a transparent background and teal glow, and added an SVG app icon for modern browsers.
+- Confirmed the existing Azure `strategia-home-api` Function App has a `POST /api/send_email` endpoint and Graph notification email settings that can be reused for the `/v27` Contact us form, pending frontend wiring, GitHub Pages env injection, Azure CORS update, and abuse protection.
+- Tested `strategiatech.ai` after GoDaddy DNS changes; authoritative GoDaddy nameservers returned GitHub Pages A records and `www` CNAME before the GitHub Pages custom domain was configured.
+- Configured GitHub Pages custom domain for `strategiatech.ai`, enabled HTTPS after certificate approval, and updated the Pages workflow to build for the custom-domain root path with `out/CNAME`.
 
 ## Next
 
@@ -114,4 +117,9 @@
 - Verified: `npm run build` passed after the favicon/logo icon update.
 - Verified: `git diff --check` passed after the favicon/logo icon update.
 - Verified: Browser path used first for `/v27`; after reload, page head exposes `/favicon.ico?...` as `image/x-icon` and `/icon.svg?...` as `image/svg+xml`, the SVG icon has no background rect, and the page header mark path remains `M20 4L36 34H4L20 4Z`, with no console warnings/errors.
+- Verified: Azure CLI read-only checks showed `strategia-home-api` is running in `strategia-home-rg`, exposes `POST /api/send_email`, has Microsoft Graph mail settings and notification recipients configured, but does not currently allow the `https://strategiatech.github.io` origin in `ALLOWED_ORIGINS`.
+- Verified: `dig @ns67.domaincontrol.com strategiatech.ai A` and `dig @ns68.domaincontrol.com strategiatech.ai A` return GitHub Pages IPs `185.199.108.153` through `185.199.111.153`; `www.strategiatech.ai` CNAME returns `strategiatech.github.io`.
+- Verified: before GitHub Pages custom-domain configuration, in-app Browser still showed the old GoDaddy Website Builder page due DNS/cache path and forced GitHub Pages routing returned GitHub `Site not found`.
+- Verified: GitHub Pages now reports `custom_domain=strategiatech.ai`, `html_url=https://strategiatech.ai/`, `https_certificate_state=approved`, and `enforce_https=true`.
+- Verified: `GITHUB_PAGES=true NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true npm run build:pages` passes after removing the project base path.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

@@ -5,6 +5,7 @@
 - Full `npm run lint` fails on pre-existing unrelated lint errors outside the touched v27/vx files.
 - `npm ci` reported 15 npm audit vulnerabilities (11 moderate, 4 high); no audit fix was run.
 - Focused ESLint still warns about existing `<img>` usage in v27 nav/footer.
+- The `/v27` Contact us form is currently UI-only; submission only flips local success state and does not send a network request.
 
 ## Risks
 
@@ -12,6 +13,7 @@
 - /v27 75% page sizing is implemented with CSS `zoom` scoped by `.vx-self-contained`; Browser verified Chromium/in-app behavior only, not a separate Safari/Firefox pass.
 - Playwright fallback can generate untracked `.playwright-mcp/` logs during QA; generated logs were cleaned from the worktree.
 - Decorative SVG pulse elements can have off-viewport bounding boxes, but the document scroll width remains constrained to the viewport.
+- Reusing `strategia-home-api` from GitHub Pages requires public client-side configuration for the Function URL and API key; API key and CORS alone are not sufficient abuse protection because this is a static public site. Add Turnstile or equivalent server-side verification before launch.
 
 ## Failed Attempts
 
