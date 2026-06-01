@@ -969,12 +969,29 @@
 /* ============================================================
    TRIANGULATE — slide 10 alignment pass
    ============================================================ */
+/* slide 10: the intro description floated to the top-right column next
+   to the headline. The client wants it back under the headline like
+   every other section — collapse the two-column intro to a single
+   stacked column (eyebrow → headline → role chip → description). */
 .v25-tri-intro {
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   align-items: start;
+  row-gap: 0;
+}
+.v25-tri-intro-lead {
+  grid-column: 1;
+  grid-row: auto;
+  align-self: start;
 }
 .v25-tri-intro-lead .v25-tri-board-meta {
   margin-top: 18px;
+}
+.v25-tri-intro-desc {
+  grid-column: 1;
+  grid-row: auto;
+  margin-top: 18px;
+  max-width: 72ch;
 }
 .v25-triE-vertex,
 .v25-triE-vertex--psych,
@@ -984,6 +1001,24 @@
 .v25-triE-centroid {
   left: 50%;
   top: 66.5%;
+}
+/* slide 10 colour pass: the three signals collided — Parse and Interview
+   were both dark blue, only Psych differed. Recolour to three distinct
+   brand hues (Parse dark blue · Psych light blue/sky · Interview teal),
+   applied consistently across the median lines, the vertex card top
+   accents, and the signal-weighting bar. Parse already reads dark blue
+   so it stays. */
+.v25-triE-median--psych     { stroke: #5CC8E8; }
+.v25-triE-median--interview { stroke: #00C6C1; }
+.v25-triE-vertex--psych::before     { background: #5CC8E8; }
+.v25-triE-vertex--interview::before { background: #00C6C1; }
+.v25-section--light .v25-tri-weighting-seg--psych {
+  background: linear-gradient(135deg, #5CC8E8 0%, #7AD4EE 100%);
+  color: #012236;
+}
+.v25-section--light .v25-tri-weighting-seg--interview {
+  background: linear-gradient(135deg, #00C6C1 0%, #00A8A4 100%);
+  color: #012236;
 }
 @media (max-width: 900px) {
   .v25-triE-vertex,
