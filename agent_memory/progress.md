@@ -29,6 +29,9 @@
 - Fixed /v27 first-scroll friction by disabling the legacy pinned hero release only for the V27 snapshot, keeping /vx and /v25 default behavior unchanged.
 - Changed `Strategiatech/strategia-v27-homepage` from private to public and restored the public GitHub Pages base path `/strategia-v27-homepage`.
 - Applied the latest Platform-section feedback: module selector titles now stay on one line with equal-width items, and the spotlight target/crosshair decoration was removed.
+- Moved the local working copy from `/Users/minghao/Documents/home page` to `/Users/minghao/code/strategia-v27-homepage`.
+- Applied the 20260601 Browser comment pass on `/v27`: 75% page sizing, hero/Industries text removals, ROI USD labels, Science dot removal, stats/ROI font alignment, Assess two-card display, Security accent alignment, Signal weighting gradient segmentation, final CTA/footer removals.
+- Replaced the V-Agent placeholder video carousel with 12 supplied candidate portrait photos, optimized as WebP assets under `public/vx/v-agent/photos/`.
 
 ## Next
 
@@ -53,4 +56,14 @@
 - Verified: `npm run build` passed after the Platform-section selector/decorative-element fix.
 - Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx`.
 - Verified: Browser checks at 1440x900 and 390x844 show module selector item widths are equal, module titles use `white-space: nowrap`, the spotlight `::after` target decoration is absent, and document horizontal overflow is `0`.
+- Verified: after moving folders, git status and remotes still work from `/Users/minghao/code/strategia-v27-homepage`.
+- Verified: `npm run build` passed after the 20260601 `/v27` Browser comment pass.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` and `src/components/v27/V27Footer.tsx` with only the existing v27 footer `<img>` warning.
+- Verified: Browser path used first for `/v27`; 746x734 checks show 75% zoom, removed requested text, USD labels, matching high-governance/AI-native teal, Science dot removed, stats and ROI value fonts aligned, gradient Signal weighting with dividers, no console warnings/errors, no framework overlay, and no document horizontal overflow.
+- Verified: Browser interaction at `http://localhost:3000/v27#modules` clicking `Phase 03 Assess` shows both `V-Psych` and `V-Interview` spotlight cards side by side at 746px width.
+- Verified: Browser mobile smoke at 390x844 shows the `/v27` page renders with no document horizontal overflow and no framework overlay.
+- Verified: `npm run build` passed after the V-Agent photo carousel replacement.
+- Verified: focused ESLint passed for `src/components/vx/VxVideoCarousel.tsx` and `src/app/(frontend)/vx/VxPage.tsx`.
+- Verified: Browser at `http://localhost:3000/v27#v-agent-carousel` shows 24 photo cards including duplicated loop items, zero video elements, 16:9 card aspect, no console warnings/errors, and no document horizontal overflow.
+- Verified: all 12 `/vx/v-agent/photos/candidate-*.webp` assets return HTTP 200 from the local dev server.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

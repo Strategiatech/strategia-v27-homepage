@@ -13,7 +13,7 @@ const inert = (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault()
 
 export default function V27Footer() {
   return (
-    <footer className="v25-footer">
+    <footer className="v25-footer v27-footer">
       <div className="v25-footer-inner">
         <div className="v25-footer-top">
           <div className="v25-footer-brand">
@@ -45,16 +45,6 @@ export default function V27Footer() {
               <li><a href="#" onClick={inert}>Talent Acquisition</a></li>
               <li><a href="#" onClick={inert}>Executive Team</a></li>
               <li><a href="#" onClick={inert}>Clinical Operations</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5>Resources</h5>
-            <ul>
-              <li><a href="#" onClick={inert}>Validity studies</a></li>
-              <li><a href="#" onClick={inert}>Our Process</a></li>
-              <li><a href="#" onClick={inert}>Security &amp; trust</a></li>
-              <li><a href="#" onClick={inert}>Design system</a></li>
             </ul>
           </div>
 

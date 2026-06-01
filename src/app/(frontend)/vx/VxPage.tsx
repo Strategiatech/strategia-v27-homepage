@@ -110,26 +110,39 @@ function IndustrySwitcher({ items }: { items: { tag: string; body: string }[] })
 
 function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof PHASES }) {
   const [activeTitle, setActiveTitle] = useState(modules[0]?.title ?? '')
+  const [activePhaseName, setActivePhaseName] = useState<PhaseName | null>(null)
   const fallbackModule = modules[0]
   if (!fallbackModule) return null
   const activeModule = modules.find((m) => m.title === activeTitle) ?? fallbackModule
-  const activePhase = phases.find((p) => p.name === activeModule.tag)
+  const phaseModules = activePhaseName
+    ? modules.filter((m) => m.tag === activePhaseName)
+    : []
+  const visibleModules = phaseModules.length ? phaseModules : [activeModule]
 
   return (
     <div className="vx-module-journey">
       <div className="vx-module-selector" aria-label="Pillar 1 modules">
-        {modules.map((mod) => (
-          <button
-            key={mod.title}
-            type="button"
-            className={`vx-module-selector-item${mod.title === activeModule.title ? ' is-active' : ''}`}
-            onClick={() => setActiveTitle(mod.title)}
-            aria-pressed={mod.title === activeModule.title}
-          >
-            <span>{mod.num}</span>
-            {mod.title}
-          </button>
-        ))}
+        {modules.map((mod) => {
+          const isActive = activePhaseName
+            ? mod.tag === activePhaseName
+            : mod.title === activeModule.title
+
+          return (
+            <button
+              key={mod.title}
+              type="button"
+              className={`vx-module-selector-item${isActive ? ' is-active' : ''}`}
+              onClick={() => {
+                setActivePhaseName(null)
+                setActiveTitle(mod.title)
+              }}
+              aria-pressed={isActive}
+            >
+              <span>{mod.num}</span>
+              {mod.title}
+            </button>
+          )
+        })}
       </div>
 
       <aside className="vx-module-journey-rail" aria-label="Pillar 1 acquisition phases">
@@ -143,13 +156,19 @@ function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof 
         <div className="vx-module-phase-rail">
           {phases.map((phase) => {
             const phaseModules = modules.filter((m) => m.tag === phase.name)
-            const isActive = activeModule.tag === phase.name
+            const isActive = activePhaseName
+              ? activePhaseName === phase.name
+              : activeModule.tag === phase.name
             return (
               <button
                 key={phase.name}
                 type="button"
                 className={`vx-module-phase-pill${isActive ? ' is-active' : ''}`}
-                onClick={() => setActiveTitle(phaseModules[0]?.title ?? activeModule.title)}
+                onClick={() => {
+                  if (!phaseModules.length) return
+                  setActivePhaseName(phase.name)
+                  setActiveTitle(phaseModules[0].title)
+                }}
                 aria-pressed={isActive}
               >
                 <span>{phase.step === 'Premium' ? 'Premium' : `Phase ${phase.step}`}</span>
@@ -160,21 +179,27 @@ function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof 
         </div>
       </aside>
 
-      <div className="vx-module-journey-stage">
-        <article className="vx-module-spotlight">
-          <div className="vx-module-spotlight-meta">
-            <span>{activeModule.num}</span>
-            <span>{activeModule.tag}</span>
-          </div>
-          <h3>{activeModule.title}</h3>
-          <p>{activeModule.desc}</p>
-          {activePhase && (
-            <div className="vx-module-spotlight-foot">
-              <span>{activePhase.step === 'Premium' ? 'Premium layer' : `Phase ${activePhase.step}`}</span>
-              <strong>{activePhase.desc}</strong>
-            </div>
-          )}
-        </article>
+      <div className={`vx-module-journey-stage${visibleModules.length > 1 ? ' vx-module-journey-stage--multi' : ''}`}>
+        {visibleModules.map((module) => {
+          const modulePhase = phases.find((p) => p.name === module.tag)
+
+          return (
+            <article key={module.title} className="vx-module-spotlight">
+              <div className="vx-module-spotlight-meta">
+                <span>{module.num}</span>
+                <span>{module.tag}</span>
+              </div>
+              <h3>{module.title}</h3>
+              <p>{module.desc}</p>
+              {modulePhase && (
+                <div className="vx-module-spotlight-foot">
+                  <span>{modulePhase.step === 'Premium' ? 'Premium layer' : `Phase ${modulePhase.step}`}</span>
+                  <strong>{modulePhase.desc}</strong>
+                </div>
+              )}
+            </article>
+          )
+        })}
       </div>
     </div>
   )
@@ -453,8 +478,15 @@ export default function VxPage({
     return () => observer.disconnect()
   }, [])
 
+  const rootClassName = [
+    'v25',
+    selfContained ? 'vx-self-contained' : '',
+    complete ? 'v25--complete' : '',
+    disableHeroScrollLock ? 'vx-no-hero-scroll-lock' : '',
+  ].filter(Boolean).join(' ')
+
   return (
-    <div className={`v25${complete ? ' v25--complete' : ''}${disableHeroScrollLock ? ' vx-no-hero-scroll-lock' : ''}`}>
+    <div className={rootClassName}>
       <div className="v25-pulse-overlay" id="v25PulseOverlay" aria-hidden="true" />
 
       {navSlot ?? <VxNav />}
@@ -480,11 +512,13 @@ export default function VxPage({
             frameworks, automating 80% of the recruitment lifecycle - and compounding every
             hire into the internal engine that finds the next one.
           </p>
-          <p className="vx-hero-sub">
-            For HR, Talent, and Executive teams making better, faster, more defensible
-            decisions at scale, and compounding every hire into the internal engine that
-            finds the next one.
-          </p>
+          {!selfContained && (
+            <p className="vx-hero-sub">
+              For HR, Talent, and Executive teams making better, faster, more defensible
+              decisions at scale, and compounding every hire into the internal engine that
+              finds the next one.
+            </p>
+          )}
           <div className="v25-hero-actions">
             <a href="#demo" className="v25-btn-primary">Book a demo</a>
             <a href="#modules" className="v25-link-arrow">
@@ -555,12 +589,6 @@ export default function VxPage({
               <p className="v25-desc">
                 Yet workforce decisions are still shaped by intuition, fragmented opinions
                 and subjective judgement.
-              </p>
-              <p className="v25-desc">
-                The issue is not instinct.
-              </p>
-              <p className="v25-desc">
-                The issue is instinct without workforce intelligence.
               </p>
               <p className="v25-desc">
                 Strategia brings together the art and science of workforce decision-making,
@@ -858,8 +886,7 @@ export default function VxPage({
                   effective at scale.
                 </p>
                 <p>
-                  No retrofitted retail norms. No proprietary black box. Every result,
-                  defensible by the framework behind it.
+                  Every result is defensible by the framework behind it.
                 </p>
               </div>
             </div>
@@ -985,7 +1012,7 @@ export default function VxPage({
               <div>
                 <div className="v25-roi-input-header">
                   <span className="k">Average loaded salary per hire</span>
-                  <span className="v">${(loadedSalary / 1000).toFixed(0)}K</span>
+                  <span className="v">USD ${(loadedSalary / 1000).toFixed(0)}K</span>
                 </div>
                 <input
                   type="range"
@@ -998,7 +1025,7 @@ export default function VxPage({
               <div>
                 <div className="v25-roi-input-header">
                   <span className="k">Average cost-per-hire (today)</span>
-                  <span className="v">${costPerHire.toLocaleString()}</span>
+                  <span className="v">USD ${costPerHire.toLocaleString()}</span>
                 </div>
                 <input
                   type="range"
@@ -1063,7 +1090,7 @@ export default function VxPage({
               <div>
                 <div className="v25-eyebrow">High-governance workforces</div>
                 <h3 className="v25-h2" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
-                  Built for <span className="accent accent--lime">high-governance workforces</span>, anywhere.
+                  Built for <span className="accent accent--teal">high-governance workforces</span>, anywhere.
                 </h3>
                 <p className="v25-desc" style={{ marginTop: 20 }}>
                   Hosted on Microsoft Azure. Single-tenant options with regional data
@@ -1082,17 +1109,28 @@ export default function VxPage({
           </div>
 
           <div className="vx-trust-block">
-            <div className="v25-eyebrow">Trust</div>
-            <h3 className="v25-h2" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
-              Microsoft-partnered. <span className="accent accent--teal">AI-native.</span>
-            </h3>
-            <p>
-              Partnered with Microsoft, AI-native by design, and built on their enterprise
-              cloud, Strategia inherits the security, compliance, and procurement
-              integration that Microsoft enforces across the stack. The trust layer your
-              CIO and CISO already work inside, ready from day one for the Marketplace
-              listing, the security review, and the procurement gate.
-            </p>
+            <div className="vx-trust-copy">
+              <div className="v25-eyebrow">Trust</div>
+              <h3 className="v25-h2" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+                Microsoft-partnered. <span className="accent accent--teal">AI-native.</span>
+              </h3>
+              <p>
+                Partnered with Microsoft, AI-native by design, and built on their enterprise
+                cloud, Strategia inherits the security, compliance, and procurement
+                integration that Microsoft enforces across the stack. The trust layer your
+                CIO and CISO already work inside, ready from day one for the Marketplace
+                listing, the security review, and the procurement gate.
+              </p>
+            </div>
+            <div className="vx-microsoft-lockup" aria-label="Microsoft">
+              <span className="vx-microsoft-mark" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+                <span />
+              </span>
+              <span className="vx-microsoft-wordmark">Microsoft</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1155,10 +1193,12 @@ export default function VxPage({
             culture, creating a workforce intelligence layer that compounds with every
             decision.
           </p>
-          <p className="v25-desc">
-            Every day without workforce intelligence impacts hiring quality, retention,
-            productivity and leadership decisions.
-          </p>
+          {!selfContained && (
+            <p className="v25-desc">
+              Every day without workforce intelligence impacts hiring quality, retention,
+              productivity and leadership decisions.
+            </p>
+          )}
           <p className="vx-cta-closer">
             Book a demo. See what your organisation may be missing.
           </p>

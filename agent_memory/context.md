@@ -3,9 +3,9 @@
 ## Project
 
 - Name: StrategiaTech homepage
-- Root: /Users/minghao/Documents/home page
+- Root: /Users/minghao/code/strategia-v27-homepage
 - Original source: GitHub repo Aaron-905/StrategiaTech, branch main
-- Published repo: private GitHub repo Strategiatech/strategia-v27-homepage, branch main
+- Published repo: public GitHub repo Strategiatech/strategia-v27-homepage, branch main
 - Published Pages URL: https://strategiatech.github.io/strategia-v27-homepage/
 
 ## Scope

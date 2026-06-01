@@ -69,3 +69,4 @@ next-env.d.ts
 /DEPLOY.md
 /PROJECT.md
 /client-request-email.md
+.gstack/

@@ -12,6 +12,10 @@
   overflow-x: clip;
   --tetra-size: clamp(340px, 36vw, 560px);
 }
+html:has(.v25.vx-self-contained) {
+  --v27-site-scale: 0.75;
+  zoom: var(--v27-site-scale);
+}
 .v25-section,
 .v25-hero,
 .v25-cta-section,
@@ -51,7 +55,7 @@
   color: #ffffff;
 }
 .vx-hero-lines p:nth-child(2) {
-  color: var(--v25-accent-text, #A5DCD0);
+  color: #ffffff;
 }
 .vx-hero-sub {
   font-size: clamp(0.98rem, 1.2vw, 1.05rem);
@@ -200,10 +204,10 @@
 }
 .vx-instinct-proof p {
   margin: 0;
-  font-family: var(--font-display, 'Literata', Georgia, serif);
-  font-size: clamp(1.1rem, 1.45vw, 1.3rem);
-  line-height: 1.35;
-  color: var(--v25-abyss);
+  font-family: var(--font-inter, system-ui, sans-serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(1, 34, 54, 0.72);
 }
 .vx-industries-tagline {
   margin-top: 24px;
@@ -521,6 +525,11 @@
 .vx-module-journey-stage {
   min-width: 0;
   position: relative;
+  display: grid;
+  gap: 18px;
+}
+.vx-module-journey-stage--multi {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .vx-module-selector {
   grid-column: 1 / -1;
@@ -624,6 +633,9 @@
   letter-spacing: -0.04em;
   color: #ffffff;
 }
+.vx-module-journey-stage--multi .vx-module-spotlight h3 {
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+}
 .vx-module-spotlight p {
   margin: 0;
   max-width: 66ch;
@@ -656,6 +668,9 @@
 @media (max-width: 1100px) {
   .vx-module-journey { grid-template-columns: 1fr; }
   .vx-module-journey-rail { position: static; }
+}
+@media (max-width: 700px) {
+  .vx-module-journey-stage--multi { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
   .vx-module-phase-pill { grid-template-columns: 1fr; gap: 3px; }
@@ -722,10 +737,9 @@
 }
 
 /* ============================================================
-   V-AGENT VIDEO CAROUSEL — placeholder candidate clips
+   V-AGENT PHOTO CAROUSEL — candidate portraits
    Full-bleed marquee underneath the V-Agent panel. Hovering a card
-   pauses the scroll and plays that card's video; mouseleave rewinds
-   and resumes the scroll.
+   pauses the scroll so the portrait can be inspected.
    ============================================================ */
 .vx-carousel-section {
   padding-top: 0;
@@ -761,8 +775,8 @@
 .vx-carousel-card {
   position: relative;
   flex: 0 0 auto;
-  width: clamp(180px, 18vw, 240px);
-  aspect-ratio: 9 / 16;
+  width: clamp(300px, 32vw, 470px);
+  aspect-ratio: 16 / 9;
   border-radius: 18px;
   overflow: hidden;
   background: linear-gradient(160deg, #013956 0%, #012236 100%);
@@ -775,12 +789,13 @@
   transform: translateY(-4px);
   box-shadow: 0 28px 56px -28px rgba(1, 34, 54, 0.55), 0 0 0 1px rgba(0, 198, 193, 0.45);
 }
-.vx-carousel-card-video {
+.vx-carousel-card-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   background: #012236;
 }
 .vx-carousel-card::after {
@@ -811,7 +826,7 @@
 }
 
 @media (max-width: 680px) {
-  .vx-carousel-card { width: 150px; }
+  .vx-carousel-card { width: 270px; }
   .vx-carousel-track { gap: 12px; }
   .vx-carousel-viewport {
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
@@ -958,6 +973,9 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .vx-stats-grid-4 .v25-stat-value {
+  font-family: var(--font-display, 'Literata', Georgia, serif);
+  font-weight: 400;
+  letter-spacing: -0.055em;
   font-size: clamp(2.25rem, 3.6vw, 3.4rem);
   white-space: nowrap;
 }
@@ -1025,6 +1043,33 @@
   background: linear-gradient(135deg, #00C6C1 0%, #00A8A4 100%);
   color: #012236;
 }
+.v25-tri-weighting-bar,
+.v25-section--light .v25-tri-weighting-bar {
+  gap: 0;
+  border: 1px solid rgba(1, 34, 54, 0.16);
+  background:
+    linear-gradient(90deg,
+      #003D6B 0%,
+      #005278 38%,
+      #5CC8E8 50%,
+      #00C6C1 100%);
+}
+.v25-tri-weighting-seg,
+.v25-section--light .v25-tri-weighting-seg {
+  background: transparent;
+  position: relative;
+}
+.v25-tri-weighting-seg + .v25-tri-weighting-seg,
+.v25-section--light .v25-tri-weighting-seg + .v25-tri-weighting-seg {
+  border-left: 2px solid rgba(255, 255, 255, 0.70);
+}
+.v25-section--light .v25-tri-weighting-seg--parse,
+.v25-section--light .v25-tri-weighting-seg--interview {
+  color: #ffffff;
+}
+.v25-section--light .v25-tri-weighting-seg--psych {
+  color: #012236;
+}
 @media (max-width: 900px) {
   .v25-triE-vertex,
   .v25-triE-vertex--psych,
@@ -1083,7 +1128,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 .vx-science-framework::before {
-  content: '';
+  content: none;
   width: 13px;
   height: 13px;
   border-radius: 999px;
@@ -1353,6 +1398,10 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 28px 80px rgba(0, 0, 0, 0.14);
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(280px, 1.08fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
 }
 .vx-trust-block::before {
   content: '';
@@ -1362,16 +1411,90 @@
   border-radius: 14px;
   pointer-events: none;
 }
+.vx-trust-copy {
+  position: relative;
+  z-index: 1;
+}
 .vx-trust-block .v25-h2 { margin: 12px 0 20px; }
 .vx-trust-block p {
   margin: 0;
   font-size: 15px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.80);
-  max-width: 78ch;
+  max-width: 46ch;
+}
+.vx-microsoft-lockup {
+  position: relative;
+  z-index: 1;
+  min-height: clamp(180px, 20vw, 260px);
+  border-left: 1px solid rgba(165, 220, 208, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.5vw, 28px);
+  color: #ffffff;
+  overflow: hidden;
+}
+.vx-microsoft-lockup::before {
+  content: '';
+  position: absolute;
+  inset: 2% -4% 0 6%;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(92, 200, 232, 0.32) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 72%, rgba(0, 198, 193, 0.24) 0 1px, transparent 1.5px);
+  background-size: 16px 16px, 18px 18px;
+  mask-image: radial-gradient(ellipse at 70% 50%, #000 0%, rgba(0, 0, 0, 0.8) 30%, transparent 66%);
+  opacity: 0.62;
+  pointer-events: none;
+}
+.vx-microsoft-mark {
+  position: relative;
+  z-index: 1;
+  width: clamp(48px, 5.2vw, 70px);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(4px, 0.45vw, 6px);
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.18));
+}
+.vx-microsoft-mark span {
+  display: block;
+  background: #ffffff;
+}
+.vx-microsoft-wordmark {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-inter, system-ui, sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.12);
 }
 @media (max-width: 900px) {
   .vx-security-tri { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .vx-trust-block {
+    grid-template-columns: 1fr;
+  }
+  .vx-microsoft-lockup {
+    border-left: 0;
+    border-top: 1px solid rgba(165, 220, 208, 0.22);
+    padding-top: 28px;
+    min-height: 180px;
+  }
+}
+@media (max-width: 520px) {
+  .vx-microsoft-lockup {
+    gap: 14px;
+    justify-content: flex-start;
+  }
+  .vx-microsoft-wordmark {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
 }
 
 /* ============================================================
@@ -1500,6 +1623,22 @@
   color: rgba(1, 34, 54, 0.65);
   max-width: 38ch;
   font-size: 12.5px;
+}
+
+.v27-footer .v25-footer-top {
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+}
+
+@media (max-width: 860px) {
+  .v27-footer .v25-footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .v27-footer .v25-footer-top {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============================================================
