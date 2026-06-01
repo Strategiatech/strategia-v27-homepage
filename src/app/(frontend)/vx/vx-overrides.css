@@ -188,6 +188,11 @@
   align-items: start;
 }
 .vx-industries-lead .v25-h2 { margin: 0; }
+/* slide 2: the body statements rendered as one packed block (0 margin
+   between paragraphs). The deck wants the paragraph gaps back so each
+   reads as its own soundbite. */
+.vx-industries-lead .v25-desc { margin: 0; }
+.vx-industries-lead .v25-desc + .v25-desc { margin-top: 14px; }
 .vx-instinct-proof {
   display: grid;
   gap: 8px;
