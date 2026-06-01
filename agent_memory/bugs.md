@@ -5,7 +5,7 @@
 - Full `npm run lint` fails on pre-existing unrelated lint errors outside the touched v27/vx files.
 - `npm ci` reported 15 npm audit vulnerabilities (11 moderate, 4 high); no audit fix was run.
 - Focused ESLint still warns about existing `<img>` usage in v27 nav/footer.
-- The `/v27` Contact us form is wired locally to `strategia-home-api`, and `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is configured in GitHub Actions; live successful submission still needs the frontend contact-form code pushed/deployed.
+- The in-app Browser may not receive Cloudflare Turnstile tokens even when the live widget is configured correctly; final successful submission checks should use a normal browser session.
 
 ## Risks
 
@@ -15,6 +15,7 @@
 - Decorative SVG pulse elements can have off-viewport bounding boxes, but the document scroll width remains constrained to the viewport.
 - Reusing `strategia-home-api` from GitHub Pages requires public client-side configuration for the Function URL and Turnstile site key; CORS alone is not sufficient abuse protection because this is a static public site.
 - Do not expose `FUNCTION_APP_API_KEY` in the v27 GitHub Pages workflow or client bundle; the dedicated `/api/contact` endpoint is intentionally protected by Origin allowlists, Turnstile, honeypot, and rate limiting instead.
+- Do not paste or print `TURNSTILE_SECRET_KEY`; it belongs only in Azure Function App settings.
 
 ## Failed Attempts
 

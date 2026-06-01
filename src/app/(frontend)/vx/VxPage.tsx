@@ -1473,7 +1473,7 @@ export default function VxPage({
                   className="v25-btn-primary vx-demo-submit"
                   disabled={demoSubmitStatus === 'submitting' || !contactFormConfigured}
                 >
-                  {demoSubmitStatus === 'submitting' ? 'Sending...' : 'Send message'}
+                  {demoSubmitStatus === 'submitting' ? 'Submitting...' : 'Submit enquiry'}
                 </button>
               </form>
             )}

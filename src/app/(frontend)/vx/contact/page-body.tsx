@@ -240,7 +240,7 @@ export default function VxContactBody() {
                         fontFamily: 'var(--font-inter, "Inter", system-ui, sans-serif)',
                       }}
                     >
-                      Send message
+                      Submit enquiry
                     </button>
                   </div>
                 </div>

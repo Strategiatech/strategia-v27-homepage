@@ -6,7 +6,7 @@
 
 ## Status
 
-- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, and secure Contact us wiring implemented locally with backend deployed to `strategia-home-api`.
+- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, and secure Contact us wiring deployed through `strategia-home-api`.
 
 ## Done
 
@@ -54,10 +54,12 @@
 - Updated Azure Function App app settings and platform CORS allowlists to include `https://strategiatech.ai`, `https://www.strategiatech.ai`, local dev origins, and the GitHub Pages fallback origin.
 - Deployed the updated `strategia-home-api` Function App via remote-build zip deploy; Azure now lists the `strategia-home-api/contact` function.
 - Enabled `httpsOnly=true` on `strategia-home-api`.
+- Replaced the old reused Turnstile widget with a new Cloudflare Turnstile widget for the v27 contact form, allowing only `strategiatech.ai`, `www.strategiatech.ai`, `localhost`, and `127.0.0.1`.
+- Updated GitHub Actions `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and Azure Function App `TURNSTILE_SECRET_KEY` to the new matching Turnstile pair, then redeployed GitHub Pages.
 
 ## Next
 
-- Push/deploy the frontend contact-form change when ready; `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is now configured in the v27 GitHub Pages repo.
+- Live contact form is configured; do a real submission only with approved test content because it will send notification email.
 
 ## Validation
 
@@ -140,5 +142,11 @@
 - Verified: Azure reports `strategia-home-api` is running on `Python|3.11` with `httpsOnly=true`.
 - Verified: Browser path used first for local `/v27#demo`; contact fields render, missing Turnstile site key disables submit safely, and document horizontal overflow is `0`.
 - Verified: extracted the public Turnstile site key from the old deployed home page questionnaire bundle and configured it as `NEXT_PUBLIC_TURNSTILE_SITE_KEY` in `Strategiatech/strategia-v27-homepage` GitHub Actions secrets.
+- Verified: old reused Turnstile site key failed on `strategiatech.ai` in the in-app Browser, so a new Cloudflare Turnstile widget was created for the v27 contact form.
+- Verified: GitHub Pages workflow run `26752532884` completed successfully after the new Turnstile site key was configured.
+- Verified: live `https://strategiatech.ai/` JavaScript bundle now contains the new Turnstile site key.
+- Verified: Chrome on `https://strategiatech.ai/#demo` generates a Turnstile response token with the new widget.
+- Verified: Azure `/api/contact` accepts the new Turnstile token and returns `400 email is invalid` when intentionally sent invalid form data, confirming token/secret pairing without sending notification email.
+- Verified: in-app Browser can load the new Turnstile script but does not receive a token; use real Chrome/Safari-style browsers for final successful submission checks.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
-- Not verified: successful live contact email submission, because the frontend contact-form code has not been pushed/deployed in this turn.
+- Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.
