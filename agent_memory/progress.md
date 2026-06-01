@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Wire `/v27` Contact us to the home page Azure Function App without exposing backend secrets.
+- Adjust `/v27` homepage section colour rhythm after the latest reorder.
 
 ## Status
 
@@ -56,6 +56,10 @@
 - Enabled `httpsOnly=true` on `strategia-home-api`.
 - Replaced the old reused Turnstile widget with a new Cloudflare Turnstile widget for the v27 contact form, allowing only `strategiatech.ai`, `www.strategiatech.ai`, `localhost`, and `127.0.0.1`.
 - Updated GitHub Actions `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and Azure Function App `TURNSTILE_SECRET_KEY` to the new matching Turnstile pair, then redeployed GitHub Pages.
+- Reordered `/v27` homepage sections to the new narrative flow: Hero, problem, Three Pillars, Solutions, Platform, Triangulate, Science, V-Agent, comparison, stats, process, Security/Trust, ROI, FAQs, final CTA/contact.
+- Updated the `/v27` header nav order to match the reordered page anchors among visible nav items.
+- Adjusted `/v27` section tones into a clearer dark-blue / light-white rhythm while preserving the original `/vx` light/dark defaults.
+- Added light-section colour overrides for `/v27` Solutions quotes and Security/Microsoft trust cards so text remains readable on the white bands.
 
 ## Next
 
@@ -148,5 +152,11 @@
 - Verified: Chrome on `https://strategiatech.ai/#demo` generates a Turnstile response token with the new widget.
 - Verified: Azure `/api/contact` accepts the new Turnstile token and returns `400 email is invalid` when intentionally sent invalid form data, confirming token/secret pairing without sending notification email.
 - Verified: in-app Browser can load the new Turnstile script but does not receive a token; use real Chrome/Safari-style browsers for final successful submission checks.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` and `src/components/v27/V27Nav.tsx`; only the existing v27 nav `<img>` warning remains.
+- Verified: GitHub Pages-style `npm run build:pages` passed after the section reorder.
+- Verified: Browser path used first for local `/v27`; DOM section order matches the requested sequence, `Explore the platform` jumps to `#modules`, no framework overlay, no console errors, and horizontal overflow is `0`.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx`; CSS was ignored by the ESLint config as expected.
+- Verified: GitHub Pages-style `npm run build:pages` passed after the `/v27` colour rhythm update.
+- Verified: Browser path used first for local `/v27`; computed section backgrounds now alternate dark/navy and light `rgb(247, 251, 253)` through the reordered page, key Solutions/Security text resolves to dark colours on light bands, ROI and Why it matters resolve to white text on dark bands, and horizontal overflow is `0`.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
 - Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.

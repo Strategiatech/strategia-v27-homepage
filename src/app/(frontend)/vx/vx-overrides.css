@@ -24,6 +24,9 @@ html:has(.v25.vx-self-contained) {
 .v25.vx-self-contained {
   --v27-hero-gutter: max(clamp(3.5rem, 10vw, 7rem), calc((100vw - 1140px) / 2));
 }
+.v25.vx-self-contained .v25-section--light {
+  background: #f7fbfd;
+}
 @media (max-width: 700px) {
   .v25.vx-self-contained .v25-nav {
     background: var(--v25-abyss) !important;
@@ -1036,6 +1039,15 @@ html:has(.v25.vx-self-contained) {
   color: var(--v25-accent);
 }
 .vx-solution-quote::after { content: none; }
+.v25-section--light .vx-solution-card .v25-solution-title {
+  color: rgba(1, 34, 54, 0.58);
+}
+.v25-section--light .vx-solution-quote {
+  color: var(--v25-abyss);
+}
+.v25-section--light .vx-solution-quote::before {
+  color: #006D6A;
+}
 
 /* ============================================================
    STATS — 4-up variant (PDF slide 6)
@@ -1590,6 +1602,56 @@ html:has(.v25.vx-self-contained) {
   color: #ffffff;
   text-shadow: 0 0 28px rgba(255, 255, 255, 0.12);
 }
+.v25-section--light .vx-security-card {
+  border-color: rgba(1, 34, 54, 0.10);
+  background:
+    linear-gradient(150deg, rgba(0, 198, 193, 0.08), rgba(0, 80, 114, 0.04)),
+    #ffffff;
+  backdrop-filter: none;
+  box-shadow: 0 28px 60px -44px rgba(1, 34, 54, 0.28);
+}
+.v25-section--light .vx-security-card::before {
+  color: #006D6A;
+}
+.v25-section--light .vx-security-card::after {
+  border-color: rgba(0, 80, 114, 0.14);
+  background: radial-gradient(circle, rgba(0, 198, 193, 0.12), transparent 62%);
+}
+.v25-section--light .vx-security-card-title {
+  color: var(--v25-abyss);
+}
+.v25-section--light .vx-security-card p {
+  color: rgba(1, 34, 54, 0.70);
+}
+.v25-section--light .vx-trust-block {
+  border-color: rgba(1, 34, 54, 0.10);
+  background:
+    radial-gradient(circle at 86% 20%, rgba(92, 200, 232, 0.12), transparent 30%),
+    linear-gradient(120deg, rgba(0, 198, 193, 0.08) 0%, rgba(0, 80, 114, 0.05) 60%, rgba(1, 34, 54, 0.04) 100%),
+    #ffffff;
+  backdrop-filter: none;
+  box-shadow: 0 30px 70px -48px rgba(1, 34, 54, 0.30);
+}
+.v25-section--light .vx-trust-block::before {
+  border-color: rgba(1, 34, 54, 0.07);
+}
+.v25-section--light .vx-trust-block p {
+  color: rgba(1, 34, 54, 0.74);
+}
+.v25-section--light .vx-microsoft-lockup {
+  border-left-color: rgba(1, 34, 54, 0.12);
+  color: var(--v25-abyss);
+}
+.v25-section--light .vx-microsoft-lockup::before {
+  opacity: 0.36;
+}
+.v25-section--light .vx-microsoft-mark span {
+  background: var(--v25-abyss);
+}
+.v25-section--light .vx-microsoft-wordmark {
+  color: var(--v25-abyss);
+  text-shadow: none;
+}
 @media (max-width: 900px) {
   .vx-security-tri { grid-template-columns: 1fr; }
 }
@@ -1602,6 +1664,9 @@ html:has(.v25.vx-self-contained) {
     border-top: 1px solid rgba(165, 220, 208, 0.22);
     padding-top: 28px;
     min-height: 180px;
+  }
+  .v25-section--light .vx-microsoft-lockup {
+    border-top-color: rgba(1, 34, 54, 0.12);
   }
 }
 @media (max-width: 520px) {

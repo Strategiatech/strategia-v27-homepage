@@ -13,11 +13,11 @@ const homeHref = process.env.NEXT_PUBLIC_PUBLISH_V27_AS_HOME === 'true' ? '/' : 
 
 const LINKS = [
   { label: 'Industries', href: '#industries' },
+  { label: 'Solutions', href: '#solutions' },
   { label: 'Platform', href: '#modules' },
   { label: 'Science', href: '#science' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Security', href: '#security' },
   { label: 'Process', href: '#process' },
+  { label: 'Security', href: '#security' },
 ]
 
 type CtaConfig = { label: string; href: string }

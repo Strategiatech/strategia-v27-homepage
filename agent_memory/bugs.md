@@ -27,4 +27,3 @@
 ## Follow-Up
 
 - Decide whether npm audit vulnerabilities should be triaged separately.
-- Push the frontend contact-form change so the live form can submit.

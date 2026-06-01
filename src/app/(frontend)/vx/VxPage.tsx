@@ -637,6 +637,16 @@ export default function VxPage({
     complete ? 'v25--complete' : '',
     disableHeroScrollLock ? 'vx-no-hero-scroll-lock' : '',
   ].filter(Boolean).join(' ')
+  const sectionClass = (
+    baseClassName: string,
+    {
+      defaultLight = false,
+      selfContainedLight = defaultLight,
+    }: { defaultLight?: boolean; selfContainedLight?: boolean } = {},
+  ) => {
+    const isLight = selfContained ? selfContainedLight : defaultLight
+    return `${baseClassName}${isLight ? ' v25-section--light' : ''}`
+  }
 
   return (
     <div className={rootClassName}>
@@ -726,7 +736,7 @@ export default function VxPage({
       {/* ================================================================
           INDUSTRIES — "Why is your largest investment still driven by instinct?"
           ================================================================ */}
-      <section className="v25-section v25-section--light" id="industries">
+      <section className={sectionClass('v25-section', { defaultLight: true })} id="industries">
         <div className="v25-section-inner v25-reveal">
           <div className="vx-industries-layout">
             <div className="vx-industries-lead">
@@ -789,42 +799,9 @@ export default function VxPage({
       </section>
 
       {/* ================================================================
-          V-AGENT FUTURE STATE
-          ================================================================ */}
-      <section className="v25-section v25-section--light" id="v-agent">
-        <div className="v25-section-inner v25-reveal">
-          <div className="vx-agent-wrap">
-            <div className="vx-agent-side">
-              <div className="v25-eyebrow">Future state</div>
-              <h2 className="v25-h2">
-                Your agency, <span className="accent accent--teal">built in.</span>
-              </h2>
-              <p className="vx-agent-sub">Where the Strategia journey takes you.</p>
-            </div>
-            <div className="vx-agent-panel">
-              <div className="vx-agent-panel-head">V-Agent</div>
-              <p>
-                V-Agent is the internal agency you build from your own data. Always on, it
-                searches your assessed pool, reaches out directly, interviews and shortlists.
-                Internal talent surfaced when V-Scan is live. Past applicants re-engaged, and
-                yesterday’s near-misses become today’s new hires. Your
-                organisation’s DNA sets the benchmark for the talent V-Agent delivers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          V-AGENT VIDEO CAROUSEL — placeholder candidate clips
-          Scrolls continuously; hover a card to play it.
-          ================================================================ */}
-      <VxVideoCarousel />
-
-      {/* ================================================================
           SOLUTIONS — questions bigger and bolder, no roles in the title
           ================================================================ */}
-      <section className="v25-section" id="solutions">
+      <section className={sectionClass('v25-section', { selfContainedLight: true })} id="solutions">
         <div className="v25-section-inner v25-reveal">
           <div className="v25-eyebrow">Solutions</div>
           <h2 className="v25-h2">
@@ -840,34 +817,6 @@ export default function VxPage({
                 <div className="v25-solution-link">Explore <span aria-hidden="true">&rarr;</span></div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          STATS — 4 cards per PDF slide 6
-          ================================================================ */}
-      <section className="v25-stats v25-section--light v25-reveal">
-        <div className="v25-stats-grid vx-stats-grid-4">
-          <div className="v25-stat-card">
-            <div className="v25-stat-value">80%</div>
-            <div className="v25-stat-label">Of internal recruitment automated</div>
-            <div className="v25-stat-sub">Median across early deployment programs</div>
-          </div>
-          <div className="v25-stat-card">
-            <div className="v25-stat-value">&lt;25mins</div>
-            <div className="v25-stat-label">1,000 resumes end-to-end</div>
-            <div className="v25-stat-sub">Trained to your role family, every applicant against the specification</div>
-          </div>
-          <div className="v25-stat-card">
-            <div className="v25-stat-value">3</div>
-            <div className="v25-stat-label">Independent signals per candidate</div>
-            <div className="v25-stat-sub">Triangulated into one defensible ranking</div>
-          </div>
-          <div className="v25-stat-card">
-            <div className="v25-stat-value">24/7</div>
-            <div className="v25-stat-label">Interviews on demand</div>
-            <div className="v25-stat-sub">STAR method, AI-avatar, any language, any time zone</div>
           </div>
         </div>
       </section>
@@ -907,7 +856,7 @@ export default function VxPage({
           JobFit score sits. Medians draw in on scroll-in and the
           centroid pulses with the score.
           ================================================================ */}
-      <section className="v25-triangulate v25-triE v25-section--light" id="triangulate">
+      <section className={sectionClass('v25-triangulate v25-triE', { defaultLight: true })} id="triangulate">
         <div className="v25-triangulate-inner v25-reveal">
           <div className="v25-tri-intro">
             <div className="v25-tri-intro-lead">
@@ -1074,9 +1023,41 @@ export default function VxPage({
       </section>
 
       {/* ================================================================
+          V-AGENT FUTURE STATE
+          ================================================================ */}
+      <section className={sectionClass('v25-section', { defaultLight: true })} id="v-agent">
+        <div className="v25-section-inner v25-reveal">
+          <div className="vx-agent-wrap">
+            <div className="vx-agent-side">
+              <div className="v25-eyebrow">Future state</div>
+              <h2 className="v25-h2">
+                Your agency, <span className="accent accent--teal">built in.</span>
+              </h2>
+              <p className="vx-agent-sub">Where the Strategia journey takes you.</p>
+            </div>
+            <div className="vx-agent-panel">
+              <div className="vx-agent-panel-head">V-Agent</div>
+              <p>
+                V-Agent is the internal agency you build from your own data. Always on, it
+                searches your assessed pool, reaches out directly, interviews and shortlists.
+                Internal talent surfaced when V-Scan is live. Past applicants re-engaged, and
+                yesterday’s near-misses become today’s new hires. Your
+                organisation’s DNA sets the benchmark for the talent V-Agent delivers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          V-AGENT VIDEO CAROUSEL — candidate pool payoff
+          ================================================================ */}
+      <VxVideoCarousel />
+
+      {/* ================================================================
           WHY IT MATTERS — comparison table
           ================================================================ */}
-      <section className="v25-section v25-section--light" id="why-it-matters">
+      <section className={sectionClass('v25-section', { defaultLight: true, selfContainedLight: false })} id="why-it-matters">
         <div className="v25-section-inner v25-reveal">
           <div className="v25-eyebrow">Why it matters</div>
           <h2 className="v25-h2">
@@ -1098,6 +1079,34 @@ export default function VxPage({
                 <span className="vx-compare-cell vx-compare-cell--strategia">{row.strategia}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          STATS — proof band
+          ================================================================ */}
+      <section className={sectionClass('v25-stats v25-reveal', { defaultLight: true })}>
+        <div className="v25-stats-grid vx-stats-grid-4">
+          <div className="v25-stat-card">
+            <div className="v25-stat-value">80%</div>
+            <div className="v25-stat-label">Of internal recruitment automated</div>
+            <div className="v25-stat-sub">Median across early deployment programs</div>
+          </div>
+          <div className="v25-stat-card">
+            <div className="v25-stat-value">&lt;25mins</div>
+            <div className="v25-stat-label">1,000 resumes end-to-end</div>
+            <div className="v25-stat-sub">Trained to your role family, every applicant against the specification</div>
+          </div>
+          <div className="v25-stat-card">
+            <div className="v25-stat-value">3</div>
+            <div className="v25-stat-label">Independent signals per candidate</div>
+            <div className="v25-stat-sub">Triangulated into one defensible ranking</div>
+          </div>
+          <div className="v25-stat-card">
+            <div className="v25-stat-value">24/7</div>
+            <div className="v25-stat-label">Interviews on demand</div>
+            <div className="v25-stat-sub">STAR method, AI-avatar, any language, any time zone</div>
           </div>
         </div>
       </section>
@@ -1136,81 +1145,10 @@ export default function VxPage({
       </section>
 
       {/* ================================================================
-          ROI CALCULATOR — new sliders per slide 13
-          ================================================================ */}
-      <section className="v25-section v25-section--light" id="roi">
-        <div className="v25-section-inner v25-reveal">
-          <div className="v25-eyebrow">ROI calculator</div>
-          <h2 className="v25-h2">See the savings for <span className="accent accent--teal">your&nbsp;system.</span></h2>
-          <p className="v25-desc">
-            Three inputs. Conservative assumptions. A number you can take to
-            your&nbsp;CFO.
-          </p>
-
-          <div className="v25-roi-grid">
-            <div className="v25-roi-inputs">
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Annual hires</span>
-                  <span className="v">{annualHires.toLocaleString()}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={30} max={2000} step={10}
-                  value={annualHires}
-                  onChange={(e) => setAnnualHires(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average loaded salary per hire</span>
-                  <span className="v">USD ${(loadedSalary / 1000).toFixed(0)}K</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={40000} max={250000} step={1000}
-                  value={loadedSalary}
-                  onChange={(e) => setLoadedSalary(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average cost-per-hire (today)</span>
-                  <span className="v">USD ${costPerHire.toLocaleString()}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={1000} max={20000} step={100}
-                  value={costPerHire}
-                  onChange={(e) => setCostPerHire(Number(e.target.value))}
-                />
-              </div>
-            </div>
-
-            <div className="v25-roi-output">
-              <div className="v25-roi-output-label">Projected annual savings</div>
-              <div className="v25-roi-output-value">
-                <span className="dollar">USD$</span>
-                <span className="num">{savingsDisplay}</span>
-              </div>
-              <p className="v25-roi-output-sub">
-                Includes screening and assessment automation (around 70% recruiter-labour
-                reduction) and reduced regrettable hires (cost = 30% of first-year salary).
-                Conservative against published industry benchmarks.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
           SECURITY — renamed from Enterprise (slide 14)
           Three intro cards + badges grid + Microsoft trust block
           ================================================================ */}
-      <section className="v25-section" id="security">
+      <section className={sectionClass('v25-section', { selfContainedLight: true })} id="security">
         <div className="v25-section-inner v25-reveal">
           <div className="v25-eyebrow">Security</div>
           <h2 className="v25-h2">
@@ -1290,9 +1228,80 @@ export default function VxPage({
       </section>
 
       {/* ================================================================
+          ROI CALCULATOR — money conversation before the ask
+          ================================================================ */}
+      <section className={sectionClass('v25-section', { defaultLight: true, selfContainedLight: false })} id="roi">
+        <div className="v25-section-inner v25-reveal">
+          <div className="v25-eyebrow">ROI calculator</div>
+          <h2 className="v25-h2">See the savings for <span className="accent accent--teal">your&nbsp;system.</span></h2>
+          <p className="v25-desc">
+            Three inputs. Conservative assumptions. A number you can take to
+            your&nbsp;CFO.
+          </p>
+
+          <div className="v25-roi-grid">
+            <div className="v25-roi-inputs">
+              <div>
+                <div className="v25-roi-input-header">
+                  <span className="k">Annual hires</span>
+                  <span className="v">{annualHires.toLocaleString()}</span>
+                </div>
+                <input
+                  type="range"
+                  className="v25-roi-slider"
+                  min={30} max={2000} step={10}
+                  value={annualHires}
+                  onChange={(e) => setAnnualHires(Number(e.target.value))}
+                />
+              </div>
+              <div>
+                <div className="v25-roi-input-header">
+                  <span className="k">Average loaded salary per hire</span>
+                  <span className="v">USD ${(loadedSalary / 1000).toFixed(0)}K</span>
+                </div>
+                <input
+                  type="range"
+                  className="v25-roi-slider"
+                  min={40000} max={250000} step={1000}
+                  value={loadedSalary}
+                  onChange={(e) => setLoadedSalary(Number(e.target.value))}
+                />
+              </div>
+              <div>
+                <div className="v25-roi-input-header">
+                  <span className="k">Average cost-per-hire (today)</span>
+                  <span className="v">USD ${costPerHire.toLocaleString()}</span>
+                </div>
+                <input
+                  type="range"
+                  className="v25-roi-slider"
+                  min={1000} max={20000} step={100}
+                  value={costPerHire}
+                  onChange={(e) => setCostPerHire(Number(e.target.value))}
+                />
+              </div>
+            </div>
+
+            <div className="v25-roi-output">
+              <div className="v25-roi-output-label">Projected annual savings</div>
+              <div className="v25-roi-output-value">
+                <span className="dollar">USD$</span>
+                <span className="num">{savingsDisplay}</span>
+              </div>
+              <p className="v25-roi-output-sub">
+                Includes screening and assessment automation (around 70% recruiter-labour
+                reduction) and reduced regrettable hires (cost = 30% of first-year salary).
+                Conservative against published industry benchmarks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
           FAQs
           ================================================================ */}
-      <section className="v25-section v25-section--light" id="faqs">
+      <section className={sectionClass('v25-section', { defaultLight: true })} id="faqs">
         <div className="v25-section-inner v25-reveal">
           <div className="v25-eyebrow">FAQs</div>
           <h2 className="v25-h2">
