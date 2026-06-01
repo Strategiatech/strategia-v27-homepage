@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Fix `/v27` mobile header transparency on direct hash-anchor loads.
+- Use a transparent Strategia logo mark for the browser tab icon.
 
 ## Status
 
@@ -43,6 +43,7 @@
 - Applied latest `/v27` polish: merged the Science AI/framework copy into one sentence, changed Signal weighting values to `40 % / 20 % / 40 %` with white text, and widened the ROI assumptions note to align with the `USD$` value row.
 - Aligned `/v27` Science framework cards and Three pillars cards with grid/subgrid rows so card heights, content starts, subcontent starts, and divider/footer line positions match across desktop columns.
 - Fixed `/v27` mobile header transparency on direct hash-anchor loads by adding deferred nav scroll-state sync and a mobile solid-background fallback.
+- Replaced the browser tab favicon with the same white line-frame Strategia triangle mark used in the header, using a transparent background and teal glow, and added an SVG app icon for modern browsers.
 
 ## Next
 
@@ -110,4 +111,7 @@
 - Verified: `npm run build` passed after the mobile header fix.
 - Verified: `git diff --check` passed after the mobile header fix.
 - Verified: Browser path used first for `/v27`; mobile 390x844 direct load to `http://127.0.0.1:3000/v27?navfix=3#pillars` computed nav background `rgb(1, 34, 54)`, nav shadow was present, no console warnings/errors, no framework overlay, and no horizontal overflow.
+- Verified: `npm run build` passed after the favicon/logo icon update.
+- Verified: `git diff --check` passed after the favicon/logo icon update.
+- Verified: Browser path used first for `/v27`; after reload, page head exposes `/favicon.ico?...` as `image/x-icon` and `/icon.svg?...` as `image/svg+xml`, the SVG icon has no background rect, and the page header mark path remains `M20 4L36 34H4L20 4Z`, with no console warnings/errors.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
