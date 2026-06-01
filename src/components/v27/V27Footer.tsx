@@ -1,15 +1,10 @@
 'use client'
 
 /* V27 footer — snapshot of the VX homepage shipped as a stand-alone
-   page. Visually identical to VxFooter so the design review captures
-   what the footer looks like — but every column link is inert
-   (preventDefault on click) because /v27 is "just the homepage" with
-   no subpages to point to. */
+   page. Column links jump to sections within the one-page /v27 build
+   instead of pointing to /vx subpages. */
 
-import type { MouseEvent } from 'react'
 import { assetPath } from '@/lib/sitePath'
-
-const inert = (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault()
 
 export default function V27Footer() {
   return (
@@ -31,30 +26,30 @@ export default function V27Footer() {
           <div>
             <h5>Platform</h5>
             <ul>
-              <li><a href="#" onClick={inert}>Overview</a></li>
-              <li><a href="#" onClick={inert}>Modules</a></li>
-              <li><a href="#" onClick={inert}>Science</a></li>
-              <li><a href="#" onClick={inert}>Security</a></li>
+              <li><a href="#pillars">Overview</a></li>
+              <li><a href="#modules">Modules</a></li>
+              <li><a href="#science">Science</a></li>
+              <li><a href="#security">Security</a></li>
             </ul>
           </div>
 
           <div>
             <h5>Solutions</h5>
             <ul>
-              <li><a href="#" onClick={inert}>CHRO</a></li>
-              <li><a href="#" onClick={inert}>Talent Acquisition</a></li>
-              <li><a href="#" onClick={inert}>Executive Team</a></li>
-              <li><a href="#" onClick={inert}>Clinical Operations</a></li>
+              <li><a href="#solution-chro">CHRO</a></li>
+              <li><a href="#solution-talent-acquisition">Talent Acquisition</a></li>
+              <li><a href="#solution-hospital-ceo">Executive Team</a></li>
+              <li><a href="#solution-clinical-operations">Clinical Operations</a></li>
             </ul>
           </div>
 
           <div>
             <h5>Company</h5>
             <ul>
-              <li><a href="#" onClick={inert}>About</a></li>
-              <li><a href="#" onClick={inert}>Contact</a></li>
-              <li><a href="#" onClick={inert}>Privacy</a></li>
-              <li><a href="#" onClick={inert}>Terms</a></li>
+              <li><a href="#industries">About</a></li>
+              <li><a href="#demo">Contact</a></li>
+              <li><a href="#security">Privacy</a></li>
+              <li><a href="#security">Terms</a></li>
             </ul>
           </div>
         </div>
@@ -62,10 +57,10 @@ export default function V27Footer() {
         <div className="v25-footer-bottom">
           <div className="v25-footer-bottom-left">&copy; 2026 Strategia, Inc. All rights reserved.</div>
           <div className="v25-footer-bottom-right">
-            <a href="#" onClick={inert}>Privacy</a>
-            <a href="#" onClick={inert}>Terms</a>
-            <a href="#" onClick={inert}>Security</a>
-            <a href="#" onClick={inert}>Contact</a>
+            <a href="#security">Privacy</a>
+            <a href="#security">Terms</a>
+            <a href="#security">Security</a>
+            <a href="#demo">Contact</a>
           </div>
         </div>
       </div>

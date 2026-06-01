@@ -231,24 +231,28 @@ const PILLARS = [
 
 const SOLUTIONS = [
   {
+    id: 'solution-hospital-ceo',
     role: 'Chief Executive Officer',
     title: 'Hospital CEO',
     quote: 'Will the workforce delivering my margins today still be here in twelve months?',
     body: 'Workforce intelligence at the level your strategy operates on, not the level your HRIS reports on. Service-line risk, retention forecasts, and capital implications in one weekly brief.',
   },
   {
+    id: 'solution-chro',
     role: 'Chief Human Resources Officer',
     title: 'CHRO',
     quote: 'How do I make every hire defensible, both to the board, GC, and the regulator?',
     body: 'Replace binders, disparate vendors, and gut-feel reviews with a single instrument that produces an audit packet for every requisition.',
   },
   {
+    id: 'solution-talent-acquisition',
     role: 'VP Talent · Recruiting Lead',
     title: 'Talent Acquisition',
     quote: 'How do my recruiters working on 70 vacancies stop drowning and start operating?',
     body: 'Interview 150 of 200 applicants, not 4. Recruiters do the relationships; the engine does the synthesis.',
   },
   {
+    id: 'solution-clinical-operations',
     role: 'CMO · CNO · Service-line Chief',
     title: 'Clinical Operations',
     quote: "How do I staff the floor without burning out the team I've got?",
@@ -348,43 +352,90 @@ const BADGES = [
 const FAQS = [
   {
     q: 'What about data security?',
-    a: 'Strategia is partnered with Microsoft and built on their enterprise cloud, inheriting the security architecture Microsoft enforces across the stack. The platform is SOC 2 Type II aligned, built on GDPR principles, and supports ISO 27001 controls, regional data residency, and single-tenant deployment where required. Beyond infrastructure, candidate Personal Identification Information (PII) is segregated during the triangulation process and re-attached only when a candidate moves to in-person interview. The platform’s decision-making sits behind privacy by design.',
+    a: [
+      'Strategia is partnered with Microsoft and built on their enterprise cloud, inheriting the security architecture Microsoft enforces across the stack. The platform is SOC 2 Type II aligned, built on GDPR principles, and supports ISO 27001 controls, regional data residency, and single-tenant deployment where required.',
+      'Beyond infrastructure, candidate Personal Identification Information (PII) is segregated during the triangulation process and re-attached only when a candidate moves to in-person interview. The platform’s decision-making sits behind privacy by design.',
+    ],
   },
   {
     q: 'How do you handle bias in the platform?',
-    a: 'Bias enters most hiring platforms in one of two places: through the training data the model was built on, or through the human reviewing a candidate’s name, gender, age, or background while making the call. Strategia is designed to address both. The platform is calibrated against role-specific frameworks built on validated psychometric and behavioural science. During triangulation (the screening, assessment, and ranking phase) all Personal Identification Information is stripped from the candidate record. The platform sees the signals, not the person. PII is re-attached only when a candidate progresses to in-person interview, where human judgement rightly takes over. The result: the strongest role-relevant signals surface to the top, not the most familiar names.',
+    a: [
+      'Bias enters most hiring platforms in one of two places: through the training data the model was built on, or through the human reviewing a candidate’s name, gender, age, or background while making the call. Strategia is designed to address both.',
+      'The platform is calibrated against role-specific frameworks built on validated psychometric and behavioural science. During triangulation (the screening, assessment, and ranking phase) all Personal Identification Information is stripped from the candidate record. The platform sees the signals, not the person. PII is re-attached only when a candidate progresses to in-person interview, where human judgement rightly takes over. The result: the strongest role-relevant signals surface to the top, not the most familiar names.',
+    ],
   },
   {
     q: 'Does Strategia replace our existing ATS, HRIS, or CRM?',
-    a: 'No. Strategia is an intelligence layer that sits on top of the systems you have already invested in. Connection happens via secure APIs to your existing ATS, HRIS, and CRM. Your team plugs in; they do not rebuild. The systems you have spent years configuring keep their jobs. Strategia adds the workforce intelligence layer that turns the data inside them into evidence-led decisions. If a system you depend on does not have a native integration ready on day one, we build it.',
+    a: [
+      'No. Strategia is an intelligence layer that sits on top of the systems you have already invested in.',
+      'Connection happens via secure APIs to your existing ATS, HRIS, and CRM. Your team plugs in; they do not rebuild. The systems you have spent years configuring keep their jobs. Strategia adds the workforce intelligence layer that turns the data inside them into evidence-led decisions.',
+      'If a system you depend on does not have a native integration ready on day one, we build it.',
+    ],
   },
   {
     q: 'What happens to our recruiters, will the platform replace them?',
-    a: 'The work changes, but the recruiters do not. Strategia automates the parts of recruitment that should not be human: screening 1,000 resumes in under 25 minutes, running structured AI-avatar interviews around the clock, triangulating signals into a defensible ranking. Your team is freed from the volume work, and freed up for the parts of recruitment that can only be human: shortlist nuance, senior candidate relationships, internal alignment, candidate care. In practice, internal recruiters become more strategic, not less needed. The platform now handles the work that burns them out.',
+    a: [
+      'The work changes, but the recruiters do not.',
+      'Strategia automates the parts of recruitment that should not be human: screening 1,000 resumes in under 25 minutes, running structured AI-avatar interviews around the clock, triangulating signals into a defensible ranking. Your team is freed from the volume work, and freed up for the parts of recruitment that can only be human: shortlist nuance, senior candidate relationships, internal alignment, candidate care.',
+      'In practice, internal recruiters become more strategic, not less needed. The platform now handles the work that burns them out.',
+    ],
   },
   {
     q: 'How long does deployment take?',
-    a: 'Twelve weeks from contract to your first live triangulated hiring pipeline. Calibration in Weeks 1 to 2: your role families mapped, your existing job descriptions rebuilt into world-class specifications. Configuration in Weeks 3 to 6: API integration with your stack, SSO setup, security review, single-tenant build if required. Pilot in Weeks 7 to 8: the first triangulated pipeline goes live on a target role family. Scale in Weeks 9 to 11: roll out across remaining role families. Compound from Week 12: V-Insights surfaces patterns, V-Agent activates. The output of every step is auditable, exportable, and yours.',
+    a: [
+      'Twelve weeks from contract to your first live triangulated hiring pipeline.',
+      'Calibration in Weeks 1 to 2: your role families mapped, your existing job descriptions rebuilt into world-class specifications.',
+      'Configuration in Weeks 3 to 6: API integration with your stack, SSO setup, security review, single-tenant build if required.',
+      'Pilot in Weeks 7 to 8: the first triangulated pipeline goes live on a target role family.',
+      'Scale in Weeks 9 to 11: roll out across remaining role families.',
+      'Compound from Week 12: V-Insights surfaces patterns, V-Agent activates.',
+      'The output of every step is auditable, exportable, and yours.',
+    ],
   },
   {
     q: 'Will candidates engage with AI-led assessments and interviews?',
-    a: 'Yes, and often more readily than recruiters expect. Candidates running through Strategia get a fair, self-paced, consistent experience. They are not held in agency limbo. The AI-avatar interview format reduces interviewer bias, scheduling friction, and time-zone constraints. STAR-method questions are drawn from the role, the resume, and the psych profile, so candidates engage with scenarios that actually relate to the job. The alternative is the one candidates increasingly resent: being judged on whether their CV happens to be the first one a recruiter sees on a busy Monday morning. Strategia replaces that with consistency.',
+    a: [
+      'Yes, and often more readily than recruiters expect.',
+      'Candidates running through Strategia get a fair, self-paced, consistent experience. They are not held in agency limbo.',
+      'The AI-avatar interview format reduces interviewer bias, scheduling friction, and time-zone constraints. STAR-method questions are drawn from the role, the resume, and the psych profile, so candidates engage with scenarios that actually relate to the job.',
+      'The alternative is the one candidates increasingly resent: being judged on whether their CV happens to be the first one a recruiter sees on a busy Monday morning. Strategia replaces that with consistency.',
+    ],
   },
   {
     q: 'What evidence do you have that the platform works?',
-    a: 'Three supporting evidence layers. The science: every signal Strategia produces comes from peer-reviewed methodology, Big Five (OCEAN), STAR-method behavioural interviewing, and triangulation across independent signals. The frameworks have decades of meta-analytic support outperforming any single-source assessment. Deployed system benchmarks: across systems running Strategia, the median internal recruitment workload now automated sits at 80%. A thousand resumes processed in under 25 minutes. The same fair assessment for every candidate. Client outcomes: available under NDA in commercial conversations. We can share the scope and methodology of the case study most relevant to your sector.',
+    a: [
+      'Three supporting evidence layers.',
+      'The science: every signal Strategia produces comes from peer-reviewed methodology, Big Five (OCEAN), STAR-method behavioural interviewing, and triangulation across independent signals. The frameworks have decades of meta-analytic support outperforming any single-source assessment.',
+      'Deployed system benchmarks: across systems running Strategia, the median internal recruitment workload now automated sits at 80%. A thousand resumes processed in under 25 minutes. The same fair assessment for every candidate.',
+      'Client outcomes: available under NDA in commercial conversations. We can share the scope and methodology of the case study most relevant to your sector.',
+    ],
   },
   {
     q: 'When does V-Agent activate, and what does the journey actually look like?',
-    a: 'V-Agent activates in Week 12 as part of the Compound phase of deployment. From that point it operates across your assessed talent pool around the clock, searching, reaching out, interviewing, and shortlisting on your behalf. Every candidate Strategia processes, hired or not, enriches the intelligence layer underneath. Past applicants are re-engaged, and internal talent is surfaced by V-Scan. Yesterday’s near-misses are brought back into the frame today. The deeper the pool, the sharper V-Agent operates. The end state: an internal recruitment engine you built by being on the platform, with recruitment fees that decline toward zero as V-Agent matures.',
+    a: [
+      'V-Agent activates in Week 12 as part of the Compound phase of deployment. From that point it operates across your assessed talent pool around the clock, searching, reaching out, interviewing, and shortlisting on your behalf.',
+      'Every candidate Strategia processes, hired or not, enriches the intelligence layer underneath. Past applicants are re-engaged, and internal talent is surfaced by V-Scan. Yesterday’s near-misses are brought back into the frame today. The deeper the pool, the sharper V-Agent operates.',
+      'The end state: an internal recruitment engine you built by being on the platform, with recruitment fees that decline toward zero as V-Agent matures.',
+    ],
   },
   {
     q: 'How do you stay ahead of emerging AI regulation?',
-    a: 'The regulatory direction is clear: more transparency on automated decision-making, more candidate rights, more scrutiny under equal-opportunity frameworks. The EU AI Act, state-level US legislation, and tightening enforcement of existing law all push the same way. Strategia is built for that direction rather than against it. Every signal carries an evidence trail. Every ranking is explainable to the candidate, the regulator, and the General Counsel. PII handling is privacy-by-design. The frameworks behind the platform are peer-reviewed and disclosable, and Microsoft’s regulatory posture is inherited across the stack. We track regulation by jurisdiction, and the platform is engineered to be configurable to local requirements, not retrofitted to them after a regulator asks.',
+    a: [
+      'The regulatory direction is clear: more transparency on automated decision-making, more candidate rights, more scrutiny under equal-opportunity frameworks. The EU AI Act, state-level US legislation, and tightening enforcement of existing law all push the same way.',
+      'Strategia is built for that direction rather than against it. Every signal carries an evidence trail. Every ranking is explainable to the candidate, the regulator, and the General Counsel. PII handling is privacy-by-design. The frameworks behind the platform are peer-reviewed and disclosable, and Microsoft’s regulatory posture is inherited across the stack.',
+      'We track regulation by jurisdiction, and the platform is engineered to be configurable to local requirements, not retrofitted to them after a regulator asks.',
+    ],
   },
   {
     q: 'Could we just build this platform ourselves?',
-    a: 'Technically, anyone with the right team, capital, and time can build a workforce intelligence platform. The real question is whether it is worth building rather than buying. Three things make Strategia hard to replicate even if you started today. Calibrated frameworks: V-Psych, V-Interview, V-Scenario, and V-RefCheck each carry validated psychometric and behavioural science built with organisational psychologists. Replicating that takes years, not months. Compounding data: every hire feeds the platform’s intelligence layer. Each subsequent decision is sharper than the last because there are more signals to triangulate against. A platform built from scratch starts at zero and stays there for a long time. The Microsoft partnership: Azure hosting and a Microsoft-aligned commercial path support procurement, security, compliance, and Marketplace readiness from day one. Building those in-house consumes IT capacity that most organisations have already allocated elsewhere. Build versus buy is a real decision. We are happy to help you scope what an in-house equivalent would cost. We would rather give you the maths than the sales pitch.',
+    a: [
+      'Technically, anyone with the right team, capital, and time can build a workforce intelligence platform. The real question is whether it is worth building rather than buying.',
+      'Three things make Strategia hard to replicate even if you started today.',
+      'Calibrated frameworks: V-Psych, V-Interview, V-Scenario, and V-RefCheck each carry validated psychometric and behavioural science built with organisational psychologists. Replicating that takes years, not months.',
+      'Compounding data: every hire feeds the platform’s intelligence layer. Each subsequent decision is sharper than the last because there are more signals to triangulate against. A platform built from scratch starts at zero and stays there for a long time.',
+      'The Microsoft partnership: Azure hosting and a Microsoft-aligned commercial path support procurement, security, compliance, and Marketplace readiness from day one. Building those in-house consumes IT capacity that most organisations have already allocated elsewhere.',
+      'Build versus buy is a real decision. We are happy to help you scope what an in-house equivalent would cost. We would rather give you the maths than the sales pitch.',
+    ],
   },
 ]
 
@@ -420,7 +471,7 @@ export default function VxPage({
   // reduction (PDF caveat: ~70% labour automation, regrettable hire cost =
   // 30% of first-year salary). Assumes a 12% baseline regrettable-hire rate
   // (industry-typical) reduced by 35% by triangulated assessment.
-  const [annualHires, setAnnualHires] = useState(500)
+  const [annualHires, setAnnualHires] = useState(300)
   const [loadedSalary, setLoadedSalary] = useState(95000)
   const [costPerHire, setCostPerHire] = useState(5500)
 
@@ -680,7 +731,7 @@ export default function VxPage({
 
           <div className="v25-solutions-grid vx-solutions-grid">
             {SOLUTIONS.map((sol) => (
-              <div key={sol.title} className="v25-solution-card vx-solution-card">
+              <div key={sol.title} id={sol.id} className="v25-solution-card vx-solution-card">
                 <div className="v25-solution-title">{sol.title}</div>
                 <p className="vx-solution-quote">{sol.quote}</p>
                 <p className="v25-solution-body">{sol.body}</p>
@@ -779,9 +830,9 @@ export default function VxPage({
 
           <div className="v25-tri-board v25-triE-board">
             <div className="v25-triE-stage">
-              {/* True equilateral triangle (base 240, height 207.85) in viewBox
-                  600 x 390. Vertices: Top (300,125), BL (180,333), BR (420,333).
-                  Centroid at (300, 264). */}
+              {/* Isosceles triangle in viewBox 600 x 390.
+                  Vertices: Top (300,130), BL (180,355), BR (420,355).
+                  Score sits on the geometric centre at (300,280). */}
               <svg
                 className="v25-triE-svg"
                 viewBox="0 0 600 390"
@@ -790,17 +841,20 @@ export default function VxPage({
               >
                 <polygon
                   className="v25-triE-outline"
-                  points="300,125 180,333 420,333"
+                  points="300,130 180,355 420,355"
                   pathLength={100}
                 />
-                <line className="v25-triE-median v25-triE-median--parse"     x1="300" y1="125" x2="300" y2="333" pathLength={100} />
-                <line className="v25-triE-median v25-triE-median--psych"     x1="180" y1="333" x2="360" y2="229" pathLength={100} />
-                <line className="v25-triE-median v25-triE-median--interview" x1="420" y1="333" x2="240" y2="229" pathLength={100} />
-                <circle className="v25-triE-spark v25-triE-spark--p1" cx="300" cy="125" r="3" />
-                <circle className="v25-triE-spark v25-triE-spark--p2" cx="180" cy="333" r="3" />
-                <circle className="v25-triE-spark v25-triE-spark--p3" cx="420" cy="333" r="3" />
-                <circle className="v25-triE-centroid-halo" cx="300" cy="264" r="56" />
-                <circle className="v25-triE-centroid-dot"  cx="300" cy="264" r="6" />
+                <line className="v25-triE-side v25-triE-side--left"  x1="300" y1="130" x2="180" y2="355" pathLength={100} />
+                <line className="v25-triE-side v25-triE-side--base"  x1="180" y1="355" x2="420" y2="355" pathLength={100} />
+                <line className="v25-triE-side v25-triE-side--right" x1="420" y1="355" x2="300" y2="130" pathLength={100} />
+                <line className="v25-triE-median v25-triE-median--parse"     x1="300" y1="130" x2="300" y2="280" pathLength={100} />
+                <line className="v25-triE-median v25-triE-median--psych"     x1="180" y1="355" x2="300" y2="280" pathLength={100} />
+                <line className="v25-triE-median v25-triE-median--interview" x1="420" y1="355" x2="300" y2="280" pathLength={100} />
+                <circle className="v25-triE-spark v25-triE-spark--p1" cx="300" cy="130" r="3" />
+                <circle className="v25-triE-spark v25-triE-spark--p2" cx="180" cy="355" r="3" />
+                <circle className="v25-triE-spark v25-triE-spark--p3" cx="420" cy="355" r="3" />
+                <circle className="v25-triE-centroid-halo" cx="300" cy="280" r="56" />
+                <circle className="v25-triE-centroid-dot"  cx="300" cy="280" r="6" />
               </svg>
 
               <article className="v25-triE-vertex v25-triE-vertex--parse">
@@ -1004,7 +1058,7 @@ export default function VxPage({
                 <input
                   type="range"
                   className="v25-roi-slider"
-                  min={50} max={5000} step={10}
+                  min={50} max={300} step={10}
                   value={annualHires}
                   onChange={(e) => setAnnualHires(Number(e.target.value))}
                 />
@@ -1164,7 +1218,13 @@ export default function VxPage({
                     <span className="vx-faq-q-text">{f.q}</span>
                     <span className="vx-faq-q-icon" aria-hidden="true">{open ? '−' : '+'}</span>
                   </button>
-                  {open && <div className="vx-faq-a">{f.a}</div>}
+                  {open && (
+                    <div className="vx-faq-a">
+                      {f.a.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )
             })}

@@ -32,6 +32,8 @@
 - Moved the local working copy from `/Users/minghao/Documents/home page` to `/Users/minghao/code/strategia-v27-homepage`.
 - Applied the 20260601 Browser comment pass on `/v27`: 75% page sizing, hero/Industries text removals, ROI USD labels, Science dot removal, stats/ROI font alignment, Assess two-card display, Security accent alignment, Signal weighting gradient segmentation, final CTA/footer removals.
 - Replaced the V-Agent placeholder video carousel with 12 supplied candidate portrait photos, optimized as WebP assets under `public/vx/v-agent/photos/`.
+- Applied follow-up `/v27` layout fixes: restored header/footer visual size under the 75% page scale, centered the V-Agent photo carousel content gutter, stacked multi-card module phases vertically, matched Solutions quote marks to the teal accent, added footer in-page anchors, increased hero copy spacing, capped annual hires at 300, and moved the Triangulate score to the triangle visual centre with explicit triangle side strokes.
+- Updated `/v27` FAQ answers from single-block strings to segmented paragraphs matching the supplied copy structure.
 
 ## Next
 
@@ -66,4 +68,13 @@
 - Verified: focused ESLint passed for `src/components/vx/VxVideoCarousel.tsx` and `src/app/(frontend)/vx/VxPage.tsx`.
 - Verified: Browser at `http://localhost:3000/v27#v-agent-carousel` shows 24 photo cards including duplicated loop items, zero video elements, 16:9 card aspect, no console warnings/errors, and no document horizontal overflow.
 - Verified: all 12 `/vx/v-agent/photos/candidate-*.webp` assets return HTTP 200 from the local dev server.
+- Verified: `npm run build` passed after the follow-up layout fixes.
+- Verified: focused ESLint passed for touched TSX files; warnings only for CSS ignored by ESLint config and existing v27 footer `<img>` usage.
+- Verified: Browser path used first for `/v27`; 746px checks show header height restored to 72px, footer inverse scale applied, carousel gutters equal left/right, Annual hires max/value at 300, footer Modules link jumps to `#modules`, Assess shows `V-Psych` then `V-Interview` vertically, Operate shows `V-Onboarding` then `V-Insights` vertically, no console warnings/errors, and no document horizontal overflow.
+- Verified: desktop Playwright fallback at 1306x768 was used only for Triangulate viewport coverage; screenshot shows all three triangle sides visible and the JobFit score card centered visually in the triangle.
+- Verified: ROI projected annual savings value color now matches the `USD` input value color `#006D6A`.
+- Verified: Triangulate triangle updated to a taller isosceles geometry with the score marker moved to the triangle centre/centroid at `y=280`; Browser confirmed three side strokes and no console warnings/errors, and a 1306px desktop screenshot verified the visual placement.
+- Verified: `npm run build` passed after the final Triangulate centre-position adjustment.
+- Verified: Browser at `http://localhost:3000/v27#faqs` shows FAQ 1 split into 2 paragraphs and FAQ 5 split into 7 paragraphs with 16px paragraph spacing; no console warnings/errors, no framework overlay, and no document horizontal overflow.
+- Verified: `npm run build` passed after the FAQ paragraph rendering change.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
