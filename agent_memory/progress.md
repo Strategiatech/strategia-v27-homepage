@@ -47,6 +47,7 @@
 - Confirmed the existing Azure `strategia-home-api` Function App has a `POST /api/send_email` endpoint and Graph notification email settings that can be reused for the `/v27` Contact us form, pending frontend wiring, GitHub Pages env injection, Azure CORS update, and abuse protection.
 - Tested `strategiatech.ai` after GoDaddy DNS changes; authoritative GoDaddy nameservers returned GitHub Pages A records and `www` CNAME before the GitHub Pages custom domain was configured.
 - Configured GitHub Pages custom domain for `strategiatech.ai`, enabled HTTPS after certificate approval, and updated the Pages workflow to build for the custom-domain root path with `out/CNAME`.
+- Pushed the custom-domain workflow change and verified the GitHub Pages deployment run completed successfully.
 
 ## Next
 
@@ -122,4 +123,7 @@
 - Verified: before GitHub Pages custom-domain configuration, in-app Browser still showed the old GoDaddy Website Builder page due DNS/cache path and forced GitHub Pages routing returned GitHub `Site not found`.
 - Verified: GitHub Pages now reports `custom_domain=strategiatech.ai`, `html_url=https://strategiatech.ai/`, `https_certificate_state=approved`, and `enforce_https=true`.
 - Verified: `GITHUB_PAGES=true NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true npm run build:pages` passes after removing the project base path.
+- Verified: GitHub Actions run `26740426632` completed successfully for the custom-domain Pages deployment.
+- Verified: forcing `strategiatech.ai` to GitHub Pages IP `185.199.108.153` returns the v27 homepage with `Own the workforce intelligence layer`, no `/strategia-v27-homepage` base path, and root `/_next/` assets.
+- Not yet verified: ordinary local DNS/browser resolution for `https://strategiatech.ai/` still hits the old GoDaddy Website Builder page from this machine, so public cache propagation is still in progress.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.

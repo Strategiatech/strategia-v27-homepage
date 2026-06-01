@@ -6,6 +6,7 @@
 - `npm ci` reported 15 npm audit vulnerabilities (11 moderate, 4 high); no audit fix was run.
 - Focused ESLint still warns about existing `<img>` usage in v27 nav/footer.
 - The `/v27` Contact us form is currently UI-only; submission only flips local success state and does not send a network request.
+- Local/default DNS resolution for `strategiatech.ai` may temporarily hit the old GoDaddy Website Builder site even though authoritative GoDaddy DNS and forced GitHub Pages routing are correct.
 
 ## Risks
 
