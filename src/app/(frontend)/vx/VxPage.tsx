@@ -614,6 +614,26 @@ export default function VxPage({
   }, [])
 
   useEffect(() => {
+    if (!selfContained) return
+    const video = document.querySelector<HTMLVideoElement>('.vx-hero-video')
+    if (!video) return
+
+    const playMutedVideo = () => {
+      video.muted = true
+      if (video.paused) void video.play().catch(() => {})
+    }
+
+    playMutedVideo()
+    video.addEventListener('canplay', playMutedVideo)
+    const timeoutId = window.setTimeout(playMutedVideo, 600)
+
+    return () => {
+      window.clearTimeout(timeoutId)
+      video.removeEventListener('canplay', playMutedVideo)
+    }
+  }, [selfContained])
+
+  useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>('.v25-reveal')
     if (!els.length) return
     const observer = new IntersectionObserver(
@@ -690,46 +710,67 @@ export default function VxPage({
           </div>
         </div>
 
-        <div className="v25-tetra-stage" id="v25Stage">
-          <svg id="v25Tetra" viewBox="-110 -110 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <radialGradient id="v25CoreGlow" cx="50%" cy="50%" r="50%">
-                <stop id="v25GlowStop0" offset="0%" stopColor="var(--glow-color)" stopOpacity="0.55" />
-                <stop id="v25GlowStop1" offset="40%" stopColor="var(--glow-color)" stopOpacity="0.18" />
-                <stop offset="100%" stopColor="var(--glow-color)" stopOpacity="0" />
-              </radialGradient>
-              <radialGradient id="v25PulseGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="var(--glow-color)" stopOpacity="0" />
-                <stop offset="55%" stopColor="var(--glow-color)" stopOpacity="0.55" />
-                <stop offset="78%" stopColor="var(--glow-color)" stopOpacity="0.30" />
-                <stop offset="100%" stopColor="var(--glow-color)" stopOpacity="0" />
-              </radialGradient>
-              <filter id="v25GlowBlur" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="6" />
-              </filter>
-              <filter id="v25PulseBlur" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="10" />
-              </filter>
-            </defs>
-            <g id="v25Pulses" />
-            <circle id="v25Glow" cx="0" cy="0" r="60" fill="url(#v25CoreGlow)" filter="url(#v25GlowBlur)" />
-            <g id="v25Edges" />
-          </svg>
-
-          <div className="v25-brand-lockup" id="v25BrandLockup" aria-hidden="true">
-            <img src={assetPath('/images/brand/strategia-wordmark-white.svg')} alt="Strategia" />
+        {selfContained ? (
+          <div className="vx-hero-video-stage" aria-hidden="true">
+            <div className="vx-hero-video-box">
+              <video
+                className="vx-hero-video"
+                src={assetPath('/vx/videos/final-hero.mp4')}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                onCanPlay={(event) => {
+                  const video = event.currentTarget
+                  if (video.paused) void video.play().catch(() => {})
+                }}
+              />
+              <div className="vx-hero-video-tint" />
+            </div>
           </div>
+        ) : (
+          <div className="v25-tetra-stage" id="v25Stage">
+            <svg id="v25Tetra" viewBox="-110 -110 220 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <radialGradient id="v25CoreGlow" cx="50%" cy="50%" r="50%">
+                  <stop id="v25GlowStop0" offset="0%" stopColor="var(--glow-color)" stopOpacity="0.55" />
+                  <stop id="v25GlowStop1" offset="40%" stopColor="var(--glow-color)" stopOpacity="0.18" />
+                  <stop offset="100%" stopColor="var(--glow-color)" stopOpacity="0" />
+                </radialGradient>
+                <radialGradient id="v25PulseGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="var(--glow-color)" stopOpacity="0" />
+                  <stop offset="55%" stopColor="var(--glow-color)" stopOpacity="0.55" />
+                  <stop offset="78%" stopColor="var(--glow-color)" stopOpacity="0.30" />
+                  <stop offset="100%" stopColor="var(--glow-color)" stopOpacity="0" />
+                </radialGradient>
+                <filter id="v25GlowBlur" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="6" />
+                </filter>
+                <filter id="v25PulseBlur" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="10" />
+                </filter>
+              </defs>
+              <g id="v25Pulses" />
+              <circle id="v25Glow" cx="0" cy="0" r="60" fill="url(#v25CoreGlow)" filter="url(#v25GlowBlur)" />
+              <g id="v25Edges" />
+            </svg>
 
-          <div className="vx-hero-signal-layer" aria-hidden="true">
-            <span className="vx-hero-signal-node vx-hero-signal-node--parse" />
-            <span className="vx-hero-signal-node vx-hero-signal-node--psych" />
-            <span className="vx-hero-signal-node vx-hero-signal-node--interview" />
-            <span className="vx-hero-signal-line vx-hero-signal-line--parse" />
-            <span className="vx-hero-signal-line vx-hero-signal-line--psych" />
-            <span className="vx-hero-signal-line vx-hero-signal-line--interview" />
-            <span className="vx-hero-signal-core" />
+            <div className="v25-brand-lockup" id="v25BrandLockup" aria-hidden="true">
+              <img src={assetPath('/images/brand/strategia-wordmark-white.svg')} alt="Strategia" />
+            </div>
+
+            <div className="vx-hero-signal-layer" aria-hidden="true">
+              <span className="vx-hero-signal-node vx-hero-signal-node--parse" />
+              <span className="vx-hero-signal-node vx-hero-signal-node--psych" />
+              <span className="vx-hero-signal-node vx-hero-signal-node--interview" />
+              <span className="vx-hero-signal-line vx-hero-signal-line--parse" />
+              <span className="vx-hero-signal-line vx-hero-signal-line--psych" />
+              <span className="vx-hero-signal-line vx-hero-signal-line--interview" />
+              <span className="vx-hero-signal-core" />
+            </div>
           </div>
-        </div>
+        )}
       </section>
       <div className="v25-scroll-spacer" aria-hidden="true" />
 
@@ -984,7 +1025,7 @@ export default function VxPage({
               <div className="vx-science-copy">
                 <p>
                   Every signal the platform produces comes from a peer-reviewed methodology:
-                  adapted, calibrated, and applied consistently across workforces.
+                  adapted, calibrated, and applied consistently across&nbsp;workforces.
                 </p>
                 <p>
                   Anyone can use AI. The question is whether it is structured enough to be
@@ -1038,11 +1079,15 @@ export default function VxPage({
             <div className="vx-agent-panel">
               <div className="vx-agent-panel-head">V-Agent</div>
               <p>
-                V-Agent is the internal agency you build from your own data. Always on, it
-                searches your assessed pool, reaches out directly, interviews and shortlists.
-                Internal talent surfaced when V-Scan is live. Past applicants re-engaged, and
-                yesterday’s near-misses become today’s new hires. Your
-                organisation’s DNA sets the benchmark for the talent V-Agent delivers.
+                V-Agent is the internal agency you build from your own data. Always on. It
+                searches your assessed pool, reaches out directly, interviews and shortlists - in
+                any of 44 languages. Internal talent surfaced the moment V-Scan goes live. Past
+                applicants re-engaged. Yesterday&apos;s near-misses, today&apos;s new hires. Your
+                organisation&apos;s DNA sets the benchmark for the talent V-Agent delivers.
+              </p>
+              <p>
+                Meet your interviewing team below: a roster of AI avatars you choose from to
+                represent your brand in every conversation.
               </p>
             </div>
           </div>
@@ -1145,10 +1190,81 @@ export default function VxPage({
       </section>
 
       {/* ================================================================
+          ROI CALCULATOR — money conversation before the security gate
+          ================================================================ */}
+      <section className={sectionClass('v25-section', { defaultLight: true })} id="roi">
+        <div className="v25-section-inner v25-reveal">
+          <div className="v25-eyebrow">ROI calculator</div>
+          <h2 className="v25-h2">See the savings for <span className="accent accent--teal">your&nbsp;system.</span></h2>
+          <p className="v25-desc">
+            Three inputs. Conservative assumptions. A number you can take to
+            your&nbsp;CFO.
+          </p>
+
+          <div className="v25-roi-grid">
+            <div className="v25-roi-inputs">
+              <div>
+                <div className="v25-roi-input-header">
+                  <span className="k">Annual hires</span>
+                  <span className="v">{annualHires.toLocaleString()}</span>
+                </div>
+                <input
+                  type="range"
+                  className="v25-roi-slider"
+                  min={30} max={2000} step={10}
+                  value={annualHires}
+                  onChange={(e) => setAnnualHires(Number(e.target.value))}
+                />
+              </div>
+              <div>
+                <div className="v25-roi-input-header">
+                  <span className="k">Average loaded salary per hire</span>
+                  <span className="v">USD ${(loadedSalary / 1000).toFixed(0)}K</span>
+                </div>
+                <input
+                  type="range"
+                  className="v25-roi-slider"
+                  min={40000} max={250000} step={1000}
+                  value={loadedSalary}
+                  onChange={(e) => setLoadedSalary(Number(e.target.value))}
+                />
+              </div>
+              <div>
+                <div className="v25-roi-input-header">
+                  <span className="k">Average cost-per-hire (today)</span>
+                  <span className="v">USD ${costPerHire.toLocaleString()}</span>
+                </div>
+                <input
+                  type="range"
+                  className="v25-roi-slider"
+                  min={1000} max={20000} step={100}
+                  value={costPerHire}
+                  onChange={(e) => setCostPerHire(Number(e.target.value))}
+                />
+              </div>
+            </div>
+
+            <div className="v25-roi-output">
+              <div className="v25-roi-output-label">Projected annual savings</div>
+              <div className="v25-roi-output-value">
+                <span className="dollar">USD$</span>
+                <span className="num">{savingsDisplay}</span>
+              </div>
+              <p className="v25-roi-output-sub">
+                Includes screening and assessment automation (around 70% recruiter-labour
+                reduction) and reduced regrettable hires (cost = 30% of first-year salary).
+                Conservative against published industry benchmarks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
           SECURITY — renamed from Enterprise (slide 14)
           Three intro cards + badges grid + Microsoft trust block
           ================================================================ */}
-      <section className={sectionClass('v25-section', { selfContainedLight: true })} id="security">
+      <section className={sectionClass('v25-section')} id="security">
         <div className="v25-section-inner v25-reveal">
           <div className="v25-eyebrow">Security</div>
           <h2 className="v25-h2">
@@ -1222,77 +1338,6 @@ export default function VxPage({
                 <span />
               </span>
               <span className="vx-microsoft-wordmark">Microsoft</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          ROI CALCULATOR — money conversation before the ask
-          ================================================================ */}
-      <section className={sectionClass('v25-section', { defaultLight: true, selfContainedLight: false })} id="roi">
-        <div className="v25-section-inner v25-reveal">
-          <div className="v25-eyebrow">ROI calculator</div>
-          <h2 className="v25-h2">See the savings for <span className="accent accent--teal">your&nbsp;system.</span></h2>
-          <p className="v25-desc">
-            Three inputs. Conservative assumptions. A number you can take to
-            your&nbsp;CFO.
-          </p>
-
-          <div className="v25-roi-grid">
-            <div className="v25-roi-inputs">
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Annual hires</span>
-                  <span className="v">{annualHires.toLocaleString()}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={30} max={2000} step={10}
-                  value={annualHires}
-                  onChange={(e) => setAnnualHires(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average loaded salary per hire</span>
-                  <span className="v">USD ${(loadedSalary / 1000).toFixed(0)}K</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={40000} max={250000} step={1000}
-                  value={loadedSalary}
-                  onChange={(e) => setLoadedSalary(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average cost-per-hire (today)</span>
-                  <span className="v">USD ${costPerHire.toLocaleString()}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={1000} max={20000} step={100}
-                  value={costPerHire}
-                  onChange={(e) => setCostPerHire(Number(e.target.value))}
-                />
-              </div>
-            </div>
-
-            <div className="v25-roi-output">
-              <div className="v25-roi-output-label">Projected annual savings</div>
-              <div className="v25-roi-output-value">
-                <span className="dollar">USD$</span>
-                <span className="num">{savingsDisplay}</span>
-              </div>
-              <p className="v25-roi-output-sub">
-                Includes screening and assessment automation (around 70% recruiter-labour
-                reduction) and reduced regrettable hires (cost = 30% of first-year salary).
-                Conservative against published industry benchmarks.
-              </p>
             </div>
           </div>
         </div>

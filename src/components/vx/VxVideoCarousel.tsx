@@ -57,13 +57,14 @@ export default function VxVideoCarousel() {
               <img
                 className="vx-carousel-card-photo"
                 src={assetPath(`/vx/v-agent/photos/${item.photo}`)}
-                alt={`${item.name}, ${item.role}`}
+                alt={`${item.name}, ${item.role}, AI Avatar interviewer`}
                 loading="lazy"
                 decoding="async"
               />
               <div className="vx-carousel-card-meta">
                 <div className="vx-carousel-card-name">{item.name}</div>
                 <div className="vx-carousel-card-role">{item.role}</div>
+                <div className="vx-carousel-card-type">AI Avatar interviewer</div>
               </div>
             </div>
           ))}

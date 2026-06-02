@@ -20,7 +20,9 @@ export default function V27Footer() {
               The intelligence engine for the modern workforce. Hire defensibly.
               Plan rigorously. Operate at scale.
             </p>
-            <div className="v25-footer-version">Strategia Intelligence Engine v2.1 &middot; Live</div>
+            <p className="v27-footer-company">
+              <a href="https://lateralusgroup.ai">Strategia is a Lateralus&nbsp;Group&nbsp;company</a>
+            </p>
           </div>
 
           <div>

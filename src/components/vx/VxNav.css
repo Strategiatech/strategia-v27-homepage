@@ -54,7 +54,11 @@
   }
 }
 
-@media (max-width: 380px) {
+/* Below ~480px the full-size wordmark and the CTA collide (at 381px the gap
+   closed to 0). Common phones — iPhone 12/13/14 at 390, iPhone 11/XR at 414,
+   Pixel at 412 — all land in this band, so shrink the logo here and let the
+   logo/CTA breathe. Desktop and ≥481px keep the larger lockup. */
+@media (max-width: 480px) {
   .v25-nav {
     padding: 0 12px;
   }
@@ -79,4 +83,176 @@
 .vx-nav-mark-visible {
   opacity: 1 !important;
   transform: scale(1) !important;
+}
+
+/* ==========================================================================
+   MOBILE NAV — hamburger + slide-in drawer (≤860px only)
+
+   The inline link list is hidden below 860px (see v25.css). This block adds
+   the toggle and drawer that replace it. Everything here is gated so the
+   desktop bar is byte-for-byte unchanged: the toggle, overlay, and panel all
+   default to display:none and only switch on at ≤860px.
+   ========================================================================== */
+
+/* Right-side group. On desktop it simply holds the CTA where the CTA used to
+   sit as a direct flex child, so the bar looks identical. */
+.vx-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vx-nav-toggle {
+  display: none; /* desktop: never shown */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  /* Sits above the drawer (z 100) so the bars-to-X morph stays visible and
+     the button keeps working as the close control while the panel is open. */
+  position: relative;
+  z-index: 110;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.vx-nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 0 auto;
+  border-radius: 2px;
+  background: #ffffff;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.vx-nav-drawer-overlay,
+.vx-nav-drawer {
+  display: none; /* desktop: never shown */
+}
+
+/* Belt-and-braces: even if state somehow flips open on a wide viewport, the
+   mobile chrome stays hidden above the breakpoint. */
+@media (min-width: 861px) {
+  .vx-nav-toggle,
+  .vx-nav-drawer,
+  .vx-nav-drawer-overlay {
+    display: none !important;
+  }
+}
+
+@media (max-width: 860px) {
+  /* The inline CTA moves into the drawer so the bar is just logo + toggle —
+     no three-up crowding on narrow phones. */
+  .vx-nav-actions .v25-nav-cta {
+    display: none;
+  }
+  .vx-nav-toggle {
+    display: flex;
+  }
+
+  /* Animate the three bars into an X when the menu is open. */
+  .vx-nav--menu-open .vx-nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .vx-nav--menu-open .vx-nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .vx-nav--menu-open .vx-nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .vx-nav-drawer-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(1, 18, 31, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    animation: vx-nav-overlay-in 0.2s ease forwards;
+  }
+
+  .vx-nav-drawer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: min(82vw, 320px);
+    height: 100dvh;
+    padding: 88px 28px 32px;
+    background: var(--v25-abyss, #01121f);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: -16px 0 48px -24px rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+    animation: vx-nav-drawer-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .vx-nav-drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+  .vx-nav-drawer-link {
+    display: block;
+    padding: 14px 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: color 0.2s;
+  }
+  .vx-nav-drawer-link:hover,
+  .vx-nav-drawer-link:focus-visible {
+    color: #ffffff;
+  }
+
+  .vx-nav-drawer-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    padding: 14px 18px;
+    border-radius: 8px;
+    background: var(--v25-accent, #00c6c1);
+    color: #01121f;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+  .vx-nav-drawer-cta:hover,
+  .vx-nav-drawer-cta:focus-visible {
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes vx-nav-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes vx-nav-drawer-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vx-nav-drawer,
+  .vx-nav-drawer-overlay {
+    animation: none;
+  }
 }

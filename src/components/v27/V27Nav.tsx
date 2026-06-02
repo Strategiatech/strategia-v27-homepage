@@ -2,10 +2,14 @@
 
 /* V27 nav — snapshot of the VX homepage shipped as a stand-alone page.
    Links stay in-page because /v27 is "just the homepage" with no V27
-   subpages to point to. The CTA is an in-page jump to #demo. */
+   subpages to point to. The CTA is an in-page jump to #demo.
+
+   Below 860px the inline links are hidden (see v25.css) and replaced by a
+   hamburger that opens a slide-in drawer. The drawer markup is mobile-only
+   behaviour — desktop never shows the toggle or the panel. */
 
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '@/components/vx/VxNav.css'
 import { assetPath } from '@/lib/sitePath'
 
@@ -25,6 +29,7 @@ const DEFAULT_CTA: CtaConfig = { label: 'Book demo', href: '#demo' }
 
 export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) {
   const navRef = useRef<HTMLElement>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const _nav = navRef.current
@@ -69,9 +74,33 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
     }
   }, [])
 
+  // Mobile drawer: close on Escape, when the viewport grows back to the
+  // desktop layout, and lock body scroll while it's open.
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    const onResize = () => {
+      if (window.innerWidth > 860) setMenuOpen(false)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('resize', onResize)
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('resize', onResize)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [menuOpen])
+
   return (
-    <nav className="v25-nav vx-nav" ref={navRef}>
-      <Link href={homeHref} className="v25-nav-logo">
+    <nav className={`v25-nav vx-nav${menuOpen ? ' vx-nav--menu-open' : ''}`} ref={navRef}>
+      <Link href={homeHref} className="v25-nav-logo" onClick={() => setMenuOpen(false)}>
         <svg
           className="v25-nav-mark vx-nav-mark-visible"
           viewBox="0 0 40 40"
@@ -100,9 +129,52 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
         ))}
       </ul>
 
-      <Link href={cta.href} className="v25-nav-cta">
-        {cta.label}
-      </Link>
+      <div className="vx-nav-actions">
+        <Link href={cta.href} className="v25-nav-cta" onClick={() => setMenuOpen(false)}>
+          {cta.label}
+        </Link>
+
+        <button
+          type="button"
+          className="vx-nav-toggle"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="vx-nav-drawer"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span className="vx-nav-toggle-bar" />
+          <span className="vx-nav-toggle-bar" />
+          <span className="vx-nav-toggle-bar" />
+        </button>
+      </div>
+
+      <div
+        className="vx-nav-drawer-overlay"
+        hidden={!menuOpen}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      <div
+        id="vx-nav-drawer"
+        className="vx-nav-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        hidden={!menuOpen}
+      >
+        <ul className="vx-nav-drawer-links">
+          {LINKS.map((link) => (
+            <li key={link.label}>
+              <a href={link.href} className="vx-nav-drawer-link" onClick={() => setMenuOpen(false)}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <Link href={cta.href} className="vx-nav-drawer-cta" onClick={() => setMenuOpen(false)}>
+          {cta.label}
+        </Link>
+      </div>
     </nav>
   )
 }

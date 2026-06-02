@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Add the old home website Discovery Questionnaire flow to the new v27 homepage.
+- Apply the vx-hero-concepts concept E video treatment to the v27 hero.
 
 ## Status
 
@@ -71,6 +71,13 @@
 - Deployed the updated `strategia-home-api` Function App through Kudu zipdeploy and confirmed `/api/questionnaire/access` and `/api/questionnaire/auth` now return short-lived bearer tokens without exposing the Function App key.
 - Fixed a live Turnstile script race in the copied questionnaire widget so the challenge can render when the script already exists.
 - Submitted a real live questionnaire test record and verified it was saved as admin record `#28`.
+- Updated the V-Agent panel copy to MM's latest wording, split the "Meet your interviewing team below" line into a separate paragraph, and added `AI Avatar interviewer` as the third line on every avatar card.
+- Matched the v27 hero gap above `Predict performance before it lands.` with the gap below `Build the engine that finds the next one.`, and enabled prettier wrapping on hero/science body copy to avoid one-word final lines.
+- Restored the original v27 hero headline line structure after clarification; the orphan-line request applied to the Science copy, not the hero title.
+- Bound the Science phrase `across workforces` with a non-breaking space so `workforces` does not sit alone on the final line.
+- Moved ROI calculator before Security and set the surrounding v27 band rhythm to Process dark, ROI light, Security dark, FAQs light.
+- Replaced the v27 footer version line with `Strategia is a Lateralus Group company`, matched the footer paragraph font, and linked it to `https://lateralusgroup.ai`.
+- Copied the supplied `Final-Hero.mp4` into `public/vx/videos/final-hero.mp4` and replaced the `/v27` hero tetra visual with a concept-E-style soft-fade video treatment while keeping `/vx` on the original tetra hero.
 
 ## Next
 
@@ -178,5 +185,22 @@
 - Verified: live questionnaire submission through `https://strategiatech.ai/questionnaire/` returned success for `Codex Live Test codex-1780365365418`.
 - Verified: admin API returned the saved test record as `id=28`, `organisation=Codex Live Test codex-1780365365418`, `email=codex-live-test+codex-1780365365418@strategiatech.ai`, `status=New`.
 - Verified: live `/questionnaire/detail` dashboard loaded with `Total Submissions 25` and displayed the same `#28` test record.
+- Verified: `npm run build:pages` passed after the V-Agent copy/avatar-caption update.
+- Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` and `src/components/vx/VxVideoCarousel.tsx`.
+- Verified: Browser path used first for local `/v27`; desktop 1440x900 showed the V-Agent panel has two paragraphs with visible spacing and the updated copy, and the avatar carousel contains name, title, and `AI Avatar interviewer` lines.
+- Verified: Browser mobile 390x844 showed the three-line avatar caption stays inside the card, no framework overlay is visible, no console warnings/errors were captured, and there is no horizontal scrolling.
+- Verified: Browser path used first for local `/v27`; at 1040x720 the hero top/bottom proposition gaps both measured 56px, at 1440x900 both measured 72px, and at 390x844 they measured 72px/71px after mobile zoom compensation.
+- Verified: Browser line-measure checks showed the hero body last line contains `next one.` rather than a single orphan word, and the Science copy no longer leaves `it.` alone on the last line at checked desktop/mobile widths.
+- Verified: `npm run build:pages` and `git diff --check` passed after the hero spacing/orphan-line adjustment.
+- Verified: Browser path used first for local `/v27`; current 650x734 viewport showed the original hero headline line structure remains `AI Driven` / `Workforce` / `Intelligence`, the Science section is visible, `across&nbsp;workforces` is present in the rendered paragraph, no console warnings/errors were captured, no framework overlay is visible, and there is no horizontal scrolling.
+- Verified: `npm run build:pages` and `git diff --check` passed after the ROI/Security reorder.
+- Verified: Browser path used first for local `/v27`; DOM order is `process → roi → security → faqs → demo`, ROI computes as light `rgb(247, 251, 253)`, Security renders on the dark-blue page band with white text, no console warnings/errors were captured, no framework overlay is visible, and there is no horizontal scrolling.
+- Verified: `npm run build:pages` and `git diff --check` passed after the v27 footer company-link update.
+- Verified: Browser path used first for local `/v27`; the footer company line links to `https://lateralusgroup.ai/`, no old `Strategia Intelligence Engine v2.1` text remains, the link font matches the footer description paragraph, no console warnings/errors were captured, no framework overlay is visible, and there is no horizontal scrolling.
+- Verified: `npm run build:pages` and `git diff --check` passed after the v27 hero video treatment.
+- Verified: the supplied hero MP4 is served locally with `Content-Type: video/mp4` and HTTP 200.
+- Verified: Browser path used first for local `/v27`; the hero video source is `/vx/videos/final-hero.mp4`, it reaches `readyState=4`, plays muted, the legacy tetra stage is absent, no framework overlay is visible, and there is no horizontal scrolling.
+- Verified: Browser confirmed `/vx` still renders the legacy `v25Stage` tetra hero and does not render the `/v27` hero video stage.
+- Verified: desktop viewport fallback confirmed the concept-E horizontal fade mask on the `/v27` hero video stage.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
 - Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.
