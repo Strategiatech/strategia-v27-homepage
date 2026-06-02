@@ -316,7 +316,7 @@ export default function VxRoiCalculator() {
           <div style={{ fontFamily: BD, fontSize: 14, color: 'rgba(1,34,54,0.78)', lineHeight: 1.55 }}>
             Get a free, curated ROI report modelled on your actual roles, regions, hiring volumes and cost structure — a clear, organisation-specific view of where the value really sits. Book a short walkthrough to start.
             <span style={{ display: 'block', marginTop: 7, fontSize: 12.5, color: 'rgba(1,34,54,0.55)' }}>
-              Prefer email? <a href="mailto:notifications@strategiatech.ai?subject=Free%20ROI%20Analysis%20Report%20Request" style={{ color: C.cobalt, fontWeight: 600, textDecoration: 'none', borderBottom: `1px solid ${C.cobalt}` }}>notifications@strategiatech.ai</a>
+              Prefer email? <a href="mailto:info@strategiatech.ai?subject=Free%20ROI%20Analysis%20Report%20Request" style={{ color: C.cobalt, fontWeight: 600, textDecoration: 'none', borderBottom: `1px solid ${C.cobalt}` }}>info@strategiatech.ai</a>
             </span>
           </div>
         </div>

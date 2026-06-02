@@ -6,10 +6,11 @@
 
 ## Status
 
-- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, and the live Discovery Questionnaire flow verified end-to-end.
+- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, the live Discovery Questionnaire flow verified end-to-end, and homepage contact sender updated to `info@strategiatech.ai`.
 
 ## Done
 
+- Updated Azure Function App `strategia-home-api` app setting `GRAPH_SENDER_MAILBOX` from `notifications@strategiatech.io` to `info@strategiatech.ai`; verified the setting and `/api/contact` CORS preflight for `https://strategiatech.ai`.
 - Added v27 in-page nav links including Industries.
 - Separated hero subhead lines and updated hero body text.
 - Reworked instinct/industry section paragraph structure.
