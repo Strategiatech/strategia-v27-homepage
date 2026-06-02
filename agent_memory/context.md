@@ -11,6 +11,7 @@
 ## Scope
 
 - In scope: /v27 homepage revisions from 20260529 go-live PPT annotations; v27 navigation; shared VX homepage body used by /v27.
+- In scope when requested: static `/questionnaire` and `/questionnaire/detail` routes copied from the old home website, backed by the existing Azure `strategia-home-api` Function App.
 - Out of scope: backend/Payload schema changes and old version routes unless explicitly requested.
 
 ## Key Paths
@@ -20,6 +21,9 @@
 - src/app/(frontend)/vx/vx-overrides.css
 - src/components/v27/V27Nav.tsx
 - src/components/vx/VxNav.css
+- src/app/(frontend)/questionnaire/
+- src/features/questionnaire-management/
+- src/lib/functionAppClient.ts
 - .github/workflows/deploy-pages.yml
 
 ## Decisions
@@ -28,6 +32,8 @@
 - Do not create a real GitHub issue, commit, push, or deploy without explicit user authorization.
 - /v27 uses the shared VX homepage body; content/style changes in VxPage also affect /vx unless the page is later forked.
 - Public GitHub Pages uses the custom domain `strategiatech.ai`; the Pages workflow should build at the root path with no `NEXT_PUBLIC_BASE_PATH`.
+- The v27 questionnaire must not expose `FUNCTION_APP_API_KEY` or `NEXT_PUBLIC_FUNCTION_APP_API_KEY`; browser clients use short-lived bearer tokens issued by `strategia-home-api` after password/admin-key validation.
+- Questionnaire backend changes live in `/Users/minghao/Documents/GitHub/strategia-home-website/function-app`, not this v27 repo, because `strategia-home-api` is owned by the old home website repo.
 
 ## Assumptions
 

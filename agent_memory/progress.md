@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Adjust `/v27` homepage section colour rhythm after the latest reorder.
+- Add the old home website Discovery Questionnaire flow to the new v27 homepage.
 
 ## Status
 
@@ -60,10 +60,18 @@
 - Updated the `/v27` header nav order to match the reordered page anchors among visible nav items.
 - Adjusted `/v27` section tones into a clearer dark-blue / light-white rhythm while preserving the original `/vx` light/dark defaults.
 - Added light-section colour overrides for `/v27` Solutions quotes and Security/Microsoft trust cards so text remains readable on the white bands.
+- Added `/questionnaire` and `/questionnaire/detail` static routes to the v27 homepage repo using the old `strategia-home-website` discovery questionnaire structure.
+- Copied the questionnaire feature module and required shadcn/Radix UI components into the v27 repo, added required dependencies, and added shadcn Tailwind theme tokens.
+- Added a browser-safe Function App client for the questionnaire that sends bearer tokens and never sends or bundles `FUNCTION_APP_API_KEY`.
+- Updated the GitHub Pages workflow with `NEXT_PUBLIC_FUNCTION_APP_URL=https://strategia-home-api.azurewebsites.net`.
+- Updated the old home website Function App locally so `/api/questionnaire/access` and `/api/questionnaire/auth` issue short-lived signed access tokens, and `/api/questionnaire` accepts legacy `x-api-key` or bearer tokens with admin-only GET.
+- Added strict Origin enforcement to the questionnaire Function App routes and confirmed Azure `ALLOWED_ORIGINS` already includes `https://strategiatech.ai`, `http://localhost:3000`, and `http://127.0.0.1:3000`.
+- Added a responsive override to the copied questionnaire form so mobile widths render as a single-column layout instead of pushing the content offscreen.
 
 ## Next
 
-- Live contact form is configured; do a real submission only with approved test content because it will send notification email.
+- Commit/push/deploy both repos together when authorized: v27 repo for the static pages, and old home website repo for `strategia-home-api` token support.
+- Live questionnaire will not work with the new secure frontend until the Function App changes from `strategia-home-website` are deployed.
 
 ## Validation
 
@@ -158,5 +166,10 @@
 - Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx`; CSS was ignored by the ESLint config as expected.
 - Verified: GitHub Pages-style `npm run build:pages` passed after the `/v27` colour rhythm update.
 - Verified: Browser path used first for local `/v27`; computed section backgrounds now alternate dark/navy and light `rgb(247, 251, 253)` through the reordered page, key Solutions/Security text resolves to dark colours on light bands, ROI and Why it matters resolve to white text on dark bands, and horizontal overflow is `0`.
+- Verified: GitHub Pages-style `npm run build:pages` passes after adding `/questionnaire` and `/questionnaire/detail`, and the static export includes both routes.
+- Verified: scoped ESLint passes for `src/app/(frontend)/questionnaire`, `src/features/questionnaire-management`, `src/components/ui`, and `src/lib/functionAppClient.ts`; only copied questionnaire warnings remain.
+- Verified: Function App token smoke passed with Python 3.12 stubs: access/auth issue tokens without `x-api-key`, disallowed origins return 403, public tokens can POST, admin tokens can GET, and public tokens cannot GET admin submissions.
+- Verified: Browser path used first for local questionnaire QA; `/questionnaire` password gate renders cleanly, simulated authorized form renders on desktop and mobile with no hydration errors, `/questionnaire/detail` admin gate renders, and fake admin token returns a controlled 401 error card rather than a white screen.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
 - Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.
+- Not verified: successful live questionnaire password/admin flow, because the required Function App token changes are still local and not deployed.
