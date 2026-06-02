@@ -6,7 +6,7 @@
 
 ## Status
 
-- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, and secure Contact us wiring deployed through `strategia-home-api`.
+- Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, and the live Discovery Questionnaire flow verified end-to-end.
 
 ## Done
 
@@ -67,11 +67,14 @@
 - Updated the old home website Function App locally so `/api/questionnaire/access` and `/api/questionnaire/auth` issue short-lived signed access tokens, and `/api/questionnaire` accepts legacy `x-api-key` or bearer tokens with admin-only GET.
 - Added strict Origin enforcement to the questionnaire Function App routes and confirmed Azure `ALLOWED_ORIGINS` already includes `https://strategiatech.ai`, `http://localhost:3000`, and `http://127.0.0.1:3000`.
 - Added a responsive override to the copied questionnaire form so mobile widths render as a single-column layout instead of pushing the content offscreen.
+- Pushed the v27 questionnaire pages and Function App token-support changes to `main`.
+- Deployed the updated `strategia-home-api` Function App through Kudu zipdeploy and confirmed `/api/questionnaire/access` and `/api/questionnaire/auth` now return short-lived bearer tokens without exposing the Function App key.
+- Fixed a live Turnstile script race in the copied questionnaire widget so the challenge can render when the script already exists.
+- Submitted a real live questionnaire test record and verified it was saved as admin record `#28`.
 
 ## Next
 
-- Commit/push/deploy both repos together when authorized: v27 repo for the static pages, and old home website repo for `strategia-home-api` token support.
-- Live questionnaire will not work with the new secure frontend until the Function App changes from `strategia-home-website` are deployed.
+- Decide whether to improve the questionnaire POST response so it returns the inserted submission id instead of `submissionId: null`.
 
 ## Validation
 
@@ -170,6 +173,10 @@
 - Verified: scoped ESLint passes for `src/app/(frontend)/questionnaire`, `src/features/questionnaire-management`, `src/components/ui`, and `src/lib/functionAppClient.ts`; only copied questionnaire warnings remain.
 - Verified: Function App token smoke passed with Python 3.12 stubs: access/auth issue tokens without `x-api-key`, disallowed origins return 403, public tokens can POST, admin tokens can GET, and public tokens cannot GET admin submissions.
 - Verified: Browser path used first for local questionnaire QA; `/questionnaire` password gate renders cleanly, simulated authorized form renders on desktop and mobile with no hydration errors, `/questionnaire/detail` admin gate renders, and fake admin token returns a controlled 401 error card rather than a white screen.
+- Verified: GitHub Pages workflow run `26793715077` completed successfully for v27 commit `9cbf1a1`.
+- Verified: live Function App token endpoints returned successful bearer tokens for questionnaire access and admin detail sessions after Kudu zipdeploy.
+- Verified: live questionnaire submission through `https://strategiatech.ai/questionnaire/` returned success for `Codex Live Test codex-1780365365418`.
+- Verified: admin API returned the saved test record as `id=28`, `organisation=Codex Live Test codex-1780365365418`, `email=codex-live-test+codex-1780365365418@strategiatech.ai`, `status=New`.
+- Verified: live `/questionnaire/detail` dashboard loaded with `Total Submissions 25` and displayed the same `#28` test record.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
 - Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.
-- Not verified: successful live questionnaire password/admin flow, because the required Function App token changes are still local and not deployed.

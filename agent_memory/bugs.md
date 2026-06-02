@@ -7,7 +7,7 @@
 - Focused ESLint still warns about existing `<img>` usage in v27 nav/footer.
 - The in-app Browser may not receive Cloudflare Turnstile tokens even when the live widget is configured correctly; final successful submission checks should use a normal browser session.
 - Current worktree has untracked `.playwright-mcp/` Browser QA output; do not stage it.
-- Live `/questionnaire` will return old API-key errors until the local Function App changes in `/Users/minghao/Documents/GitHub/strategia-home-website` are deployed to `strategia-home-api`.
+- Live questionnaire POST currently returns `submissionId: null` even though the record is saved and visible in admin detail; fix separately if the UI needs to display the new id immediately.
 
 ## Risks
 
