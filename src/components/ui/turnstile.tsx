@@ -67,9 +67,11 @@ export function Turnstile({ siteKey, onVerify, onError, onExpire }: TurnstilePro
       })
     }
 
+    let script: HTMLScriptElement | null = null
+
     // Load Turnstile script if not already loaded
     if (!document.getElementById('turnstile-script')) {
-      const script = document.createElement('script')
+      script = document.createElement('script')
       script.id = 'turnstile-script'
       script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
       script.async = true
@@ -80,9 +82,13 @@ export function Turnstile({ siteKey, onVerify, onError, onExpire }: TurnstilePro
       document.head.appendChild(script)
     } else if (getTurnstile()) {
       renderWidget()
+    } else {
+      script = document.getElementById('turnstile-script') as HTMLScriptElement | null
+      script?.addEventListener('load', renderWidget)
     }
 
     return () => {
+      script?.removeEventListener('load', renderWidget)
       const turnstile = getTurnstile()
       if (widgetIdRef.current && turnstile) {
         turnstile.remove(widgetIdRef.current)
