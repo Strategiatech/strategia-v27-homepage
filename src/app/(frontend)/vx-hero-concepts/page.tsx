@@ -131,7 +131,7 @@ function HeroVariant({ variant }: { variant: Variant }) {
 
         <div className="v25-hero-copy vx-concept-copy">
           <h1>
-            AI Driven<br />Workforce<br />
+            AI-Native<br />Workforce<br />
             <span ref={headlineEndRef} className="accent accent--sky">Intelligence.</span>
           </h1>
           <p>

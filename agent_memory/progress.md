@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Apply the vx-hero-concepts concept E video treatment to the v27 hero.
+- Add a branded Open Graph preview image that matches the v27 header.
 
 ## Status
 
@@ -78,6 +78,8 @@
 - Moved ROI calculator before Security and set the surrounding v27 band rhythm to Process dark, ROI light, Security dark, FAQs light.
 - Replaced the v27 footer version line with `Strategia is a Lateralus Group company`, matched the footer paragraph font, and linked it to `https://lateralusgroup.ai`.
 - Copied the supplied `Final-Hero.mp4` into `public/vx/videos/final-hero.mp4` and replaced the `/v27` hero tetra visual with a concept-E-style soft-fade video treatment while keeping `/vx` on the original tetra hero.
+- Added `public/og-image.png`, a 1200x630 social preview image using the same deep-blue background and white glow inline Strategia logo as the v27 header.
+- Added Open Graph and Twitter card metadata for the root frontend layout and `/v27`, pointing social previews to `https://strategiatech.ai/og-image.png`.
 
 ## Next
 
@@ -156,7 +158,7 @@
 - Verified: GitHub Actions run `26740426632` completed successfully for the custom-domain Pages deployment.
 - Verified: forcing `strategiatech.ai` to GitHub Pages IP `185.199.108.153` returns the v27 homepage with `Own the workforce intelligence layer`, no `/strategia-v27-homepage` base path, and root `/_next/` assets.
 - Verified: ordinary `curl https://strategiatech.ai/` now returns GitHub Pages `HTTP/2 200`, contains v27 content, has no GoDaddy Website Builder text, and has no `/strategia-v27-homepage` base path.
-- Verified: in-app Browser at `https://strategiatech.ai/` shows the v27 hero, title `Strategia | AI-driven workforce intelligence`, the Contact us form exists, no GoDaddy content is present, no `/strategia-v27-homepage` base path is present, and horizontal overflow is `0`.
+- Verified: in-app Browser at `https://strategiatech.ai/` shows the v27 hero, title `Strategia | AI-native workforce intelligence`, the Contact us form exists, no GoDaddy content is present, no `/strategia-v27-homepage` base path is present, and horizontal overflow is `0`.
 - Verified: focused Function App tests passed with Python 3.12 Azure Functions environment: `test_contact.py` and `test_send_email.py` both pass.
 - Verified: focused ESLint passed for `src/app/(frontend)/vx/VxPage.tsx` and `src/components/vx/VxTurnstile.tsx`.
 - Verified: `npm run build` and GitHub Pages-style `npm run build:pages` passed with contact env vars supplied.
@@ -192,7 +194,7 @@
 - Verified: Browser path used first for local `/v27`; at 1040x720 the hero top/bottom proposition gaps both measured 56px, at 1440x900 both measured 72px, and at 390x844 they measured 72px/71px after mobile zoom compensation.
 - Verified: Browser line-measure checks showed the hero body last line contains `next one.` rather than a single orphan word, and the Science copy no longer leaves `it.` alone on the last line at checked desktop/mobile widths.
 - Verified: `npm run build:pages` and `git diff --check` passed after the hero spacing/orphan-line adjustment.
-- Verified: Browser path used first for local `/v27`; current 650x734 viewport showed the original hero headline line structure remains `AI Driven` / `Workforce` / `Intelligence`, the Science section is visible, `across&nbsp;workforces` is present in the rendered paragraph, no console warnings/errors were captured, no framework overlay is visible, and there is no horizontal scrolling.
+- Verified: Browser path used first for local `/v27`; current 650x734 viewport showed the hero headline line structure remains `AI-Native` / `Workforce` / `Intelligence`, the Science section is visible, `across&nbsp;workforces` is present in the rendered paragraph, no console warnings/errors were captured, no framework overlay is visible, and there is no horizontal scrolling.
 - Verified: `npm run build:pages` and `git diff --check` passed after the ROI/Security reorder.
 - Verified: Browser path used first for local `/v27`; DOM order is `process → roi → security → faqs → demo`, ROI computes as light `rgb(247, 251, 253)`, Security renders on the dark-blue page band with white text, no console warnings/errors were captured, no framework overlay is visible, and there is no horizontal scrolling.
 - Verified: `npm run build:pages` and `git diff --check` passed after the v27 footer company-link update.

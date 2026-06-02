@@ -1253,7 +1253,7 @@ export default function QuestionnaireReferenceExperience() {
                       ) : userCphSave ? metricCard(
                         "Cost-per-Hire Reduction",
                         `${usd(userCphSave)} per hire`,
-                        `~30% efficiency gain on your ${usd(cphVal)} CPH through AI-driven screening and reduced agency reliance`,
+                        `~30% efficiency gain on your ${usd(cphVal)} CPH through AI-native screening and reduced agency reliance`,
                         "#8a9aab"
                       ) : null}
                     </div>
@@ -1324,7 +1324,7 @@ export default function QuestionnaireReferenceExperience() {
                         {ttfVal > 0 ? `${ttfVal} → ~${userTtfSave} days` : "Up to 50% faster"}
                       </div>
                       <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: "#9a8e82", lineHeight: 1.5 }}>
-                        {ttfVal > 0 ? `AI-assisted screening could reduce your ${ttfVal}-day cycle significantly` : "Research suggests AI-driven screening can halve average time-to-hire"}
+                        {ttfVal > 0 ? `AI-assisted screening could reduce your ${ttfVal}-day cycle significantly` : "Research suggests AI-native screening can halve average time-to-hire"}
                       </div>
                       <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9.5, color: "#6b6058", marginTop: 6, fontStyle: "italic" }}>Deloitte / PwC / IBM, 2025</div>
                     </div>

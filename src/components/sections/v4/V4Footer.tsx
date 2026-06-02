@@ -42,7 +42,7 @@
       </div>
       <div className="v4-footer-bot v4-reveal" data-delay="5">
         <div>© 2026 Strategia. A Lateralus Capital Company.</div>
-        <div className="v4-tag">AI Driven Workforce Intelligence.</div>
+        <div className="v4-tag">AI-Native Workforce Intelligence.</div>
       </div>
     </footer>
   )

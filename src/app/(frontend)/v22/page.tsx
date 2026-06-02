@@ -169,7 +169,7 @@ export default function V22Page() {
         <div className="v22-plasma-layer" id="v22PlasmaLayer" aria-hidden="true" />
 
         <div className="v22-hero-copy">
-          <h1>AI Driven<br />Workforce<br />Intelligence.</h1>
+          <h1>AI-Native<br />Workforce<br />Intelligence.</h1>
           <p>
             Predict performance before it lands. Defend every decision after it does.
             A multi-module platform that automates 80% of healthcare hiring &mdash; built

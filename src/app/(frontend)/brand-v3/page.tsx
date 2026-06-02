@@ -101,7 +101,7 @@ const textHierarchy = [
 ]
 
 const surfaces = [
-  { name: 'Section Panel', bg: 'rgba(255,255,255,0.55)', blur: '16px', border: 'rgba(255,255,255,0.18)', radius: '24px', mockTitle: 'The Science', mockText: 'How AI-driven signal triangulation predicts candidate success across healthcare roles.', light: false, stat: false, desc: 'Main content sections. Provides the frosted-glass enclosure for all content areas.' },
+  { name: 'Section Panel', bg: 'rgba(255,255,255,0.55)', blur: '16px', border: 'rgba(255,255,255,0.18)', radius: '24px', mockTitle: 'The Science', mockText: 'How AI-native signal triangulation predicts candidate success across healthcare roles.', light: false, stat: false, desc: 'Main content sections. Provides the frosted-glass enclosure for all content areas.' },
   { name: 'Card', bg: 'rgba(255,255,255,0.55)', blur: '16px', border: 'rgba(255,255,255,0.18)', radius: '16px', mockTitle: 'Resume Intelligence', mockText: 'Extracts 140+ structured signals from unstructured resumes.', light: false, stat: false, desc: 'Module cards, stat cards, and badge items. Hover lifts to 0.62 opacity.' },
   { name: 'Signal Chip', bg: 'rgba(255,255,255,0.45)', blur: 'none', border: 'rgba(255,255,255,0.15)', radius: '12px', mockTitle: 'Parse Signal', mockText: '', light: false, stat: false, desc: 'Small indicator chips inside the triangulate section.' },
   { name: 'Hero Copy', bg: 'rgba(255,255,255,0.18)', blur: '18px', border: 'none', radius: '20px', mockTitle: 'Predict better hires', mockText: 'AI-powered workforce intelligence for healthcare.', light: true, stat: false, desc: 'The headline container overlaying the hero gradient. Uses lighter glass for readability.' },

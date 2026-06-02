@@ -901,7 +901,7 @@ export default function BrandAssetsPage() {
                 fontWeight={400}
                 letterSpacing="-0.01em"
               >
-                AI-driven workforce intelligence
+                AI-native workforce intelligence
               </text>
               <text
                 x={600}
@@ -1207,4 +1207,3 @@ function AssetCard({
     </div>
   )
 }
-

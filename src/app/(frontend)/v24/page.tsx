@@ -158,7 +158,7 @@ export default function V24Page() {
         <div className="v24-plasma-layer" id="v24PlasmaLayer" aria-hidden="true" />
 
         <div className="v24-hero-copy">
-          <h1>AI Driven<br />Workforce<br /><span className="accent accent--sky">Intelligence.</span></h1>
+          <h1>AI-Native<br />Workforce<br /><span className="accent accent--sky">Intelligence.</span></h1>
           <p>
             Predict performance before it lands. Defend every decision after it does.
             A multi-module platform that automates 80% of healthcare hiring, built

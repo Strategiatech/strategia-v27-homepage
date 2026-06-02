@@ -53,7 +53,7 @@ export default function V3Footer() {
 
       <div className="v3-footer-bot">
         <div>&copy; 2026 Strategia. A Lateralus Capital Company.</div>
-        <div className="tag">AI Driven Workforce Intelligence.</div>
+        <div className="tag">AI-Native Workforce Intelligence.</div>
       </div>
     </footer>
   )

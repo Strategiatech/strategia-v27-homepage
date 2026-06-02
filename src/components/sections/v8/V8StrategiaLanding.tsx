@@ -508,7 +508,7 @@ export default function V8StrategiaLanding() {
         <div>
           <span>Strategia Intelligence Systems</span>
           <h2>Make workforce decisions visible, defensible, and fast.</h2>
-          <p>AI-driven workforce intelligence for enterprise healthcare.</p>
+          <p>AI-native workforce intelligence for enterprise healthcare.</p>
         </div>
         <a className="v8-primary" href="mailto:hello@strategia.tech">Request Executive Briefing</a>
       </section>

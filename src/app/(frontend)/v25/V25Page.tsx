@@ -268,7 +268,7 @@ export default function V25Page({ navSlot, footerSlot, showTriangulateVariants =
         <div className="v25-plasma-layer" id="v25PlasmaLayer" aria-hidden="true" />
 
         <div className="v25-hero-copy">
-          <h1>AI Driven<br />Workforce<br /><span className="accent accent--sky">Intelligence.</span></h1>
+          <h1>AI-Native<br />Workforce<br /><span className="accent accent--sky">Intelligence.</span></h1>
           <p>
             Predict performance before it lands. Defend every decision after it does.
             A multi-module platform that automates 80% of healthcare hiring, built

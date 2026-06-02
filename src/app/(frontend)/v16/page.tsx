@@ -158,7 +158,7 @@ export default function V16Page() {
         <div className="v16-plasma-layer" id="v16PlasmaLayer" aria-hidden="true" />
 
         <div className="v16-hero-copy">
-          <h1>AI Driven<br />Workforce<br />Intelligence.</h1>
+          <h1>AI-Native<br />Workforce<br />Intelligence.</h1>
           <p>
             Predict performance before it lands. Defend every decision after it does.
             A multi-module platform that automates 80% of healthcare hiring &mdash; built

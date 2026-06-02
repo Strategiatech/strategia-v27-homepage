@@ -8,8 +8,8 @@
 
 ## META / SEO
 
-- **Title:** Strategia - AI-Driven Healthcare Workforce Intelligence
-- **Description:** Insight meets impact for an optimised healthcare workforce. Creating data-led healthcare workforces through AI-driven talent assessment, job fit analysis, and workforce planning.
+- **Title:** Strategia - AI-Native Healthcare Workforce Intelligence
+- **Description:** Insight meets impact for an optimised healthcare workforce. Creating data-led healthcare workforces through AI-native talent assessment, job fit analysis, and workforce planning.
 - **Copyright:** (c) 2025 Strategia Intelligence Systems.
 
 ---
@@ -344,7 +344,7 @@ Evaluates cognitive fluidity and behavioral traits against role requirements.
 
 ### V-Interview(TM) Demo
 
-AI-driven structured interviews analyzing verbal reasoning and confidence.
+AI-native structured interviews analyzing verbal reasoning and confidence.
 
 **Sample Output:** "Confidence detected. Clear articulation."
 

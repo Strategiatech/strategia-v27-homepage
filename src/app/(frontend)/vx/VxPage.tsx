@@ -665,7 +665,7 @@ export default function VxPage({
 
         <div className="v25-hero-copy">
           <h1>
-            AI Driven<br />Workforce<br />
+            AI-Native<br />Workforce<br />
             <span className="accent accent--sky">Intelligence</span>
           </h1>
           <div className="vx-hero-lines" aria-label="Platform proposition">
