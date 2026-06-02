@@ -6,6 +6,7 @@ import VxNav from '@/components/vx/VxNav'
 import VxFooter from '@/components/vx/VxFooter'
 import VxTurnstile from '@/components/vx/VxTurnstile'
 import VxVideoCarousel from '@/components/vx/VxVideoCarousel'
+import VxRoiCalculator from '@/components/vx/VxRoiCalculator'
 import { assetPath } from '@/lib/sitePath'
 import '../v25/v25.css'
 import './vx-overrides.css'
@@ -476,27 +477,8 @@ export default function VxPage({
 }: VxPageProps = {}) {
   const navRef = useRef<HTMLElement>(null)
 
-  // ROI calculator (three inputs per slide 14).
-  // Defaults sit at realistic mid-market values; the formula combines
-  // recruiter-labour savings on cost-per-hire with the regrettable-hire
-  // reduction (PDF caveat: ~70% labour automation, regrettable hire cost =
-  // 30% of first-year salary). Assumes a 12% baseline regrettable-hire rate
-  // (industry-typical) reduced by 35% by triangulated assessment.
-  const [annualHires, setAnnualHires] = useState(300)
-  const [loadedSalary, setLoadedSalary] = useState(95000)
-  const [costPerHire, setCostPerHire] = useState(5500)
-
-  const recruiterLabourSavings = annualHires * costPerHire * 0.70
-  const regrettableRate = 0.12
-  const regrettableReduction = 0.35
-  const regrettableSavings =
-    annualHires * regrettableRate * regrettableReduction * loadedSalary * 0.30
-
-  const projectedSavings = recruiterLabourSavings + regrettableSavings
-  const savingsDisplay =
-    projectedSavings >= 1_000_000
-      ? (projectedSavings / 1_000_000).toFixed(2) + 'm'
-      : Math.round(projectedSavings / 1_000) + 'K'
+  // ROI calculator lives in its own component (region-aware model). See
+  // src/components/vx/VxRoiCalculator.tsx.
 
   const [complete, setComplete] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(0)
@@ -1194,69 +1176,7 @@ export default function VxPage({
           ================================================================ */}
       <section className={sectionClass('v25-section', { defaultLight: true })} id="roi">
         <div className="v25-section-inner v25-reveal">
-          <div className="v25-eyebrow">ROI calculator</div>
-          <h2 className="v25-h2">See the savings for <span className="accent accent--teal">your&nbsp;system.</span></h2>
-          <p className="v25-desc">
-            Three inputs. Conservative assumptions. A number you can take to
-            your&nbsp;CFO.
-          </p>
-
-          <div className="v25-roi-grid">
-            <div className="v25-roi-inputs">
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Annual hires</span>
-                  <span className="v">{annualHires.toLocaleString()}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={30} max={2000} step={10}
-                  value={annualHires}
-                  onChange={(e) => setAnnualHires(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average loaded salary per hire</span>
-                  <span className="v">USD ${(loadedSalary / 1000).toFixed(0)}K</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={40000} max={250000} step={1000}
-                  value={loadedSalary}
-                  onChange={(e) => setLoadedSalary(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <div className="v25-roi-input-header">
-                  <span className="k">Average cost-per-hire (today)</span>
-                  <span className="v">USD ${costPerHire.toLocaleString()}</span>
-                </div>
-                <input
-                  type="range"
-                  className="v25-roi-slider"
-                  min={1000} max={20000} step={100}
-                  value={costPerHire}
-                  onChange={(e) => setCostPerHire(Number(e.target.value))}
-                />
-              </div>
-            </div>
-
-            <div className="v25-roi-output">
-              <div className="v25-roi-output-label">Projected annual savings</div>
-              <div className="v25-roi-output-value">
-                <span className="dollar">USD$</span>
-                <span className="num">{savingsDisplay}</span>
-              </div>
-              <p className="v25-roi-output-sub">
-                Includes screening and assessment automation (around 70% recruiter-labour
-                reduction) and reduced regrettable hires (cost = 30% of first-year salary).
-                Conservative against published industry benchmarks.
-              </p>
-            </div>
-          </div>
+          <VxRoiCalculator />
         </div>
       </section>
 
