@@ -253,7 +253,7 @@ const SOLUTIONS = [
     id: 'solution-chro',
     role: 'Chief Human Resources Officer',
     title: 'CHRO',
-    quote: 'How do I make every hire defensible, both to the board, GC, and the regulator?',
+    quote: 'How do I make every hire defensible, both to the Board, General Counsel, and regulator?',
     body: 'Replace binders, disparate vendors, and gut-feel reviews with a single instrument that produces an audit packet for every requisition.',
   },
   {
