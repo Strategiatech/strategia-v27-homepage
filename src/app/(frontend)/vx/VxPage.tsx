@@ -837,7 +837,6 @@ export default function VxPage({
                 <div className="v25-solution-title">{sol.title}</div>
                 <p className="vx-solution-quote">{sol.quote}</p>
                 <p className="v25-solution-body">{sol.body}</p>
-                <div className="v25-solution-link">Explore <span aria-hidden="true">&rarr;</span></div>
               </div>
             ))}
           </div>
