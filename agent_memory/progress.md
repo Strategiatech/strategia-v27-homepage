@@ -84,6 +84,8 @@
 - Added a new root `/privacy-policy` route with the full November 2025 privacy policy content from the old Azure Static Web Apps privacy page, styled as a standalone Strategia legal page.
 - Updated the v27 footer Privacy links in both the Company column and footer bottom row to point to `/privacy-policy`.
 - Updated `/privacy-policy` visual colours to match the v25/v27 homepage palette more closely: white policy titles, stronger white body text, teal accent subsection headings, and Teal-to-Sky gradient buttons.
+- Added a new root `/terms` route with the full December 2024 Terms of Service content from the old Azure Static Web Apps terms page, styled to match `/privacy-policy`.
+- Updated the v27 footer Terms links in both the Company column and footer bottom row to point to `/terms`.
 
 ## Next
 
@@ -219,3 +221,8 @@
 - Verified: focused ESLint passed for `src/app/(frontend)/privacy-policy/page.tsx` after the contrast and gradient-button update.
 - Verified: in-app Browser computed styles for local `/privacy-policy` show H1/H2 as `rgb(255, 255, 255)`, H3 as `rgb(165, 220, 208)`, both navigation buttons using a Teal-to-Sky gradient, no console errors, and horizontal overflow `0`.
 - Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; `/privacy-policy` remains in the static route list.
+- Verified: focused ESLint passed for `src/app/(frontend)/terms/page.tsx` and `src/components/v27/V27Footer.tsx` after adding `/terms` and wiring footer Terms links.
+- Verified: local `/terms` returns HTTP 200 and contains `Terms of Service`, `Acceptance of Terms`, `legal@strategia.ai`, white-title utility classes, and Teal-to-Sky gradient button classes.
+- Verified: in-app Browser computed styles for local `/terms` show H1/H2 as `rgb(255, 255, 255)`, both navigation buttons using a Teal-to-Sky gradient, no console errors, and horizontal overflow `0`.
+- Verified: local `/v27` HTML now contains two `href="/terms"` entries and two `href="/privacy-policy"` entries in the footer.
+- Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; `/terms` is included in the static route list.
