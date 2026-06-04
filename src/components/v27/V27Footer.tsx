@@ -50,7 +50,7 @@ export default function V27Footer() {
             <ul>
               <li><a href="#industries">About</a></li>
               <li><a href="#demo">Contact</a></li>
-              <li><a href="#security">Privacy</a></li>
+              <li><a href="/privacy-policy">Privacy</a></li>
               <li><a href="#security">Terms</a></li>
             </ul>
           </div>
@@ -59,7 +59,7 @@ export default function V27Footer() {
         <div className="v25-footer-bottom">
           <div className="v25-footer-bottom-left">&copy; 2026 Strategia, Inc. All rights reserved.</div>
           <div className="v25-footer-bottom-right">
-            <a href="#security">Privacy</a>
+            <a href="/privacy-policy">Privacy</a>
             <a href="#security">Terms</a>
             <a href="#security">Security</a>
             <a href="#demo">Contact</a>

@@ -82,6 +82,7 @@
 - Added `public/og-image.png`, a 1200x630 social preview image using the same deep-blue background and white glow inline Strategia logo as the v27 header.
 - Added Open Graph and Twitter card metadata for the root frontend layout and `/v27`, pointing social previews to `https://strategiatech.ai/og-image.png`.
 - Added a new root `/privacy-policy` route with the full November 2025 privacy policy content from the old Azure Static Web Apps privacy page, styled as a standalone Strategia legal page.
+- Updated the v27 footer Privacy links in both the Company column and footer bottom row to point to `/privacy-policy`.
 
 ## Next
 
@@ -213,3 +214,4 @@
 - Verified: in-app Browser path used for local `/privacy-policy`; page title is `Privacy Policy | Strategia`, H1 is `Privacy Policy`, key policy content is present, console error logs are empty, and horizontal overflow is `0`.
 - Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; the build route list includes `/privacy-policy`.
 - Not verified: default Turbopack `npm run build:pages`; it did not emit an error but hung in the production build stage and was interrupted. Full `tsc --noEmit` still fails on pre-existing missing questionnaire test dependencies (`vitest`, `fast-check`, `@testing-library/react`).
+- Verified: focused ESLint passed for `src/components/v27/V27Footer.tsx` after wiring footer Privacy links to `/privacy-policy`.
