@@ -2,7 +2,7 @@
 
 ## Current Goal
 
-- Add a branded Open Graph preview image that matches the v27 header.
+- Add a root `/privacy-policy` page matching the existing Strategia privacy policy content from the old Azure Static Web Apps page.
 
 ## Status
 
@@ -81,6 +81,7 @@
 - Copied the supplied `Final-Hero.mp4` into `public/vx/videos/final-hero.mp4` and replaced the `/v27` hero tetra visual with a concept-E-style soft-fade video treatment while keeping `/vx` on the original tetra hero.
 - Added `public/og-image.png`, a 1200x630 social preview image using the same deep-blue background and white glow inline Strategia logo as the v27 header.
 - Added Open Graph and Twitter card metadata for the root frontend layout and `/v27`, pointing social previews to `https://strategiatech.ai/og-image.png`.
+- Added a new root `/privacy-policy` route with the full November 2025 privacy policy content from the old Azure Static Web Apps privacy page, styled as a standalone Strategia legal page.
 
 ## Next
 
@@ -207,3 +208,8 @@
 - Verified: desktop viewport fallback confirmed the concept-E horizontal fade mask on the `/v27` hero video stage.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
 - Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.
+- Verified: focused ESLint passed for `src/app/(frontend)/privacy-policy/page.tsx`.
+- Verified: local dev server returned HTTP 200 for `/privacy-policy`; saved HTML contains the policy title, version line, company name, privacy email, section 3, and section 10 content.
+- Verified: in-app Browser path used for local `/privacy-policy`; page title is `Privacy Policy | Strategia`, H1 is `Privacy Policy`, key policy content is present, console error logs are empty, and horizontal overflow is `0`.
+- Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; the build route list includes `/privacy-policy`.
+- Not verified: default Turbopack `npm run build:pages`; it did not emit an error but hung in the production build stage and was interrupted. Full `tsc --noEmit` still fails on pre-existing missing questionnaire test dependencies (`vitest`, `fast-check`, `@testing-library/react`).
