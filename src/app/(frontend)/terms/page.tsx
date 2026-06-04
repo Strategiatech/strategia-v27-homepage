@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import V27Footer from '@/components/v27/V27Footer'
 import {
   AlertTriangle,
   ArrowLeft,
@@ -10,6 +11,8 @@ import {
   Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import '../v25/v25.css'
+import '../vx/vx-overrides.css'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Strategia',
@@ -23,6 +26,9 @@ type TermsSection = {
   content: string
   items: string[]
 }
+
+const homeSectionRoot =
+  process.env.NEXT_PUBLIC_PUBLISH_V27_AS_HOME === 'true' ? '/' : '/v27'
 
 const sections: TermsSection[] = [
   {
@@ -151,27 +157,7 @@ export default function TermsPage() {
         </div>
       </main>
 
-      <footer className="border-t border-white/12 bg-[#012236] py-12">
-        <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-          <p className="text-sm text-white/70">
-            © {new Date().getFullYear()} Strategia. All rights reserved.
-          </p>
-          <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <Link
-              href="/privacy-policy"
-              className="text-sm font-medium text-[#A5DCD0] transition-colors hover:text-[#5CC8E8]"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 rounded-lg bg-[linear-gradient(135deg,#00C6C1_0%,#5CC8E8_100%)] px-6 py-2.5 text-sm font-semibold !text-[#012236] shadow-[0_16px_34px_-18px_rgba(92,200,232,0.95)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-18px_rgba(92,200,232,1)]"
-            >
-              Return to Home
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <V27Footer sectionRoot={homeSectionRoot} />
     </div>
   )
 }

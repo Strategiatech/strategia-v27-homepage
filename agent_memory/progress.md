@@ -88,6 +88,7 @@
 - Added a new root `/terms` route with the full December 2024 Terms of Service content from the old Azure Static Web Apps terms page, styled to match `/privacy-policy`.
 - Updated the v27 footer Terms links in both the Company column and footer bottom row to point to `/terms`.
 - Restored the shared VX/v27 Solutions `Explore` labels as working anchors: Hospital CEO to V-Insights, CHRO to V-Fit, Talent Acquisition to the Stats band, and Clinical Operations to V-Psych.
+- Replaced the simplified `/terms` and `/privacy-policy` footers with the shared v27 footer; legal-page footer section links route to `/v27#...` in local dev and `/#...` in the production Pages build.
 
 ## Next
 

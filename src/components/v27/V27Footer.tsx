@@ -6,7 +6,13 @@
 
 import { assetPath } from '@/lib/sitePath'
 
-export default function V27Footer() {
+type V27FooterProps = {
+  sectionRoot?: string
+}
+
+export default function V27Footer({ sectionRoot = '' }: V27FooterProps) {
+  const sectionHref = (id: string) => `${sectionRoot}#${id}`
+
   return (
     <footer className="v25-footer v27-footer">
       <div className="v25-footer-inner">
@@ -28,28 +34,28 @@ export default function V27Footer() {
           <div>
             <h5>Platform</h5>
             <ul>
-              <li><a href="#pillars">Overview</a></li>
-              <li><a href="#modules">Modules</a></li>
-              <li><a href="#science">Science</a></li>
-              <li><a href="#security">Security</a></li>
+              <li><a href={sectionHref('pillars')}>Overview</a></li>
+              <li><a href={sectionHref('modules')}>Modules</a></li>
+              <li><a href={sectionHref('science')}>Science</a></li>
+              <li><a href={sectionHref('security')}>Security</a></li>
             </ul>
           </div>
 
           <div>
             <h5>Solutions</h5>
             <ul>
-              <li><a href="#solutions">CHRO</a></li>
-              <li><a href="#solutions">Talent Acquisition</a></li>
-              <li><a href="#solutions">Executive Team</a></li>
-              <li><a href="#solutions">Clinical Operations</a></li>
+              <li><a href={sectionHref('solutions')}>CHRO</a></li>
+              <li><a href={sectionHref('solutions')}>Talent Acquisition</a></li>
+              <li><a href={sectionHref('solutions')}>Executive Team</a></li>
+              <li><a href={sectionHref('solutions')}>Clinical Operations</a></li>
             </ul>
           </div>
 
           <div>
             <h5>Company</h5>
             <ul>
-              <li><a href="#industries">About</a></li>
-              <li><a href="#demo">Contact</a></li>
+              <li><a href={sectionHref('industries')}>About</a></li>
+              <li><a href={sectionHref('demo')}>Contact</a></li>
               <li><a href="/privacy-policy">Privacy</a></li>
               <li><a href="/terms">Terms</a></li>
             </ul>
@@ -61,8 +67,8 @@ export default function V27Footer() {
           <div className="v25-footer-bottom-right">
             <a href="/privacy-policy">Privacy</a>
             <a href="/terms">Terms</a>
-            <a href="#security">Security</a>
-            <a href="#demo">Contact</a>
+            <a href={sectionHref('security')}>Security</a>
+            <a href={sectionHref('demo')}>Contact</a>
           </div>
         </div>
       </div>

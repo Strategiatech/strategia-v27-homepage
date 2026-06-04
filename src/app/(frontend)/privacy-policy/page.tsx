@@ -1,12 +1,18 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import V27Footer from '@/components/v27/V27Footer'
 import { ArrowLeft, Mail } from 'lucide-react'
+import '../v25/v25.css'
+import '../vx/vx-overrides.css'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Strategia',
   description:
     'This Privacy Policy applies to information collected and processed by Strategia Technology Partners Pty Limited.',
 }
+
+const homeSectionRoot =
+  process.env.NEXT_PUBLIC_PUBLISH_V27_AS_HOME === 'true' ? '/' : '/v27'
 
 export default function PrivacyPolicyPage() {
   return (
@@ -446,20 +452,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </main>
 
-      <footer className="border-t border-white/12 bg-[#012236] py-12">
-        <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-          <p className="text-sm text-white/70">
-            © {new Date().getFullYear()} Strategia Technology Partners Pty
-            Limited. All rights reserved.
-          </p>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-lg bg-[linear-gradient(135deg,#00C6C1_0%,#5CC8E8_100%)] px-6 py-2.5 text-sm font-semibold !text-[#012236] shadow-[0_16px_34px_-18px_rgba(92,200,232,0.95)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-18px_rgba(92,200,232,1)]"
-          >
-            Return to Home
-          </Link>
-        </div>
-      </footer>
+      <V27Footer sectionRoot={homeSectionRoot} />
     </div>
   )
 }
