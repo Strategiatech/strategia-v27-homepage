@@ -31,6 +31,7 @@ const CONTACT_API_URL =
   'https://strategia-home-api.azurewebsites.net/api/contact'
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const moduleAnchorId = (title: string) => `module-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
 
 const MODULES: Module[] = [
   { num: 'M01', tag: 'Foundation', title: 'V-Job',
@@ -124,6 +125,22 @@ function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof 
   const [activeTitle, setActiveTitle] = useState(modules[0]?.title ?? '')
   const [activePhaseName, setActivePhaseName] = useState<PhaseName | null>(null)
   const fallbackModule = modules[0]
+
+  useEffect(() => {
+    const syncModuleFromHash = () => {
+      const hash = window.location.hash.slice(1)
+      const targetModule = modules.find((mod) => moduleAnchorId(mod.title) === hash)
+      if (!targetModule) return
+
+      setActivePhaseName(null)
+      setActiveTitle(targetModule.title)
+    }
+
+    syncModuleFromHash()
+    window.addEventListener('hashchange', syncModuleFromHash)
+    return () => window.removeEventListener('hashchange', syncModuleFromHash)
+  }, [modules])
+
   if (!fallbackModule) return null
   const activeModule = modules.find((m) => m.title === activeTitle) ?? fallbackModule
   const phaseModules = activePhaseName
@@ -142,6 +159,7 @@ function ModuleJourney({ modules, phases }: { modules: Module[]; phases: typeof 
           return (
             <button
               key={mod.title}
+              id={moduleAnchorId(mod.title)}
               type="button"
               className={`vx-module-selector-item${isActive ? ' is-active' : ''}`}
               onClick={() => {
@@ -248,6 +266,7 @@ const SOLUTIONS = [
     title: 'Hospital CEO',
     quote: 'Will the workforce delivering my margins today still be here in twelve months?',
     body: 'Workforce intelligence at the level your strategy operates on, not the level your HRIS reports on. Service-line risk, retention forecasts, and capital implications in one weekly brief.',
+    exploreHref: '#module-v-insights',
   },
   {
     id: 'solution-chro',
@@ -255,6 +274,7 @@ const SOLUTIONS = [
     title: 'CHRO',
     quote: 'How do I make every hire defensible, both to the Board, General Counsel, and regulator?',
     body: 'Replace binders, disparate vendors, and gut-feel reviews with a single instrument that produces an audit packet for every requisition.',
+    exploreHref: '#module-v-fit',
   },
   {
     id: 'solution-talent-acquisition',
@@ -262,6 +282,7 @@ const SOLUTIONS = [
     title: 'Talent Acquisition',
     quote: 'How do my recruiters working on 70 vacancies stop drowning and start operating?',
     body: 'Interview 150 of 200 applicants, not 4. Recruiters do the relationships; the engine does the synthesis.',
+    exploreHref: '#stats',
   },
   {
     id: 'solution-clinical-operations',
@@ -269,6 +290,7 @@ const SOLUTIONS = [
     title: 'Clinical Operations',
     quote: "How do I staff the floor without burning out the team I've got?",
     body: 'Match clinicians to roles where their cognitive, behavioural, and clinical-competence profile predicts they will perform, and stay.',
+    exploreHref: '#module-v-psych',
   },
 ]
 
@@ -837,6 +859,13 @@ export default function VxPage({
                 <div className="v25-solution-title">{sol.title}</div>
                 <p className="vx-solution-quote">{sol.quote}</p>
                 <p className="v25-solution-body">{sol.body}</p>
+                <a
+                  href={sol.exploreHref}
+                  className="v25-solution-link"
+                  aria-label={`Explore ${sol.title}`}
+                >
+                  Explore <span aria-hidden="true">&rarr;</span>
+                </a>
               </div>
             ))}
           </div>
@@ -1112,7 +1141,7 @@ export default function VxPage({
       {/* ================================================================
           STATS — proof band
           ================================================================ */}
-      <section className={sectionClass('v25-stats v25-reveal', { defaultLight: true })}>
+      <section className={sectionClass('v25-stats v25-reveal', { defaultLight: true })} id="stats">
         <div className="v25-stats-grid vx-stats-grid-4">
           <div className="v25-stat-card">
             <div className="v25-stat-value">80%</div>

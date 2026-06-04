@@ -653,6 +653,7 @@ html:has(.v25.vx-self-contained) {
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
   position: relative;
+  scroll-margin-top: 120px;
 }
 .vx-module-selector-item::before {
   content: '';
@@ -683,6 +684,9 @@ html:has(.v25.vx-self-contained) {
 }
 .vx-module-selector-item.is-active span {
   color: var(--v25-accent-text);
+}
+.v25.vx-self-contained #stats {
+  scroll-margin-top: 120px;
 }
 .vx-module-spotlight {
   position: relative;

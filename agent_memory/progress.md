@@ -87,7 +87,7 @@
 - Updated `/privacy-policy` visual colours to match the v25/v27 homepage palette more closely: white policy titles, stronger white body text, teal accent subsection headings, and Teal-to-Sky gradient buttons.
 - Added a new root `/terms` route with the full December 2024 Terms of Service content from the old Azure Static Web Apps terms page, styled to match `/privacy-policy`.
 - Updated the v27 footer Terms links in both the Company column and footer bottom row to point to `/terms`.
-- Removed the nonfunctional `Explore` labels from the shared VX/v27 Solutions cards while keeping the four cards and their copy intact.
+- Restored the shared VX/v27 Solutions `Explore` labels as working anchors: Hospital CEO to V-Insights, CHRO to V-Fit, Talent Acquisition to the Stats band, and Clinical Operations to V-Psych.
 
 ## Next
 

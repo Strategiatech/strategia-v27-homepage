@@ -1227,6 +1227,7 @@
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--v25-accent-text);
+  text-decoration: none;
 }
 
 /* ==========================================================================
