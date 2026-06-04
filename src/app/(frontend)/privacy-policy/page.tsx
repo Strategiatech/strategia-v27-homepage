@@ -10,33 +10,33 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-[#041e2e] text-white">
-      <header className="border-b border-white/10 bg-gradient-to-b from-[#041e2e] to-[#06293e] py-24">
+    <div className="min-h-screen bg-[#012236] text-white">
+      <header className="border-b border-white/12 bg-[linear-gradient(135deg,#1C1C1C_0%,#00162E_24%,#003D6B_55%,#005072_100%)] py-24">
         <div className="mx-auto max-w-4xl px-6">
           <Link
             href="/"
-            className="mb-8 inline-flex items-center gap-2 text-primary-foreground/85 transition-colors hover:text-white"
+            className="mb-8 inline-flex items-center gap-2 rounded-lg bg-[linear-gradient(135deg,#00C6C1_0%,#5CC8E8_100%)] px-4 py-2 text-sm font-semibold !text-[#012236] shadow-[0_14px_32px_-18px_rgba(92,200,232,0.9)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_rgba(92,200,232,1)]"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span className="text-sm font-medium">Back to Home</span>
+            <span>Back to Home</span>
           </Link>
-          <span className="mb-4 block text-xs font-bold uppercase tracking-widest text-[#6ed9d6]">
+          <span className="mb-4 block text-xs font-bold uppercase tracking-widest text-[#A5DCD0]">
             Legal
           </span>
-          <h1 className="mb-6 font-serif text-4xl text-white md:text-5xl">
+          <h1 className="mb-6 font-serif text-4xl !text-white md:text-5xl">
             Privacy Policy
           </h1>
-          <p className="max-w-2xl text-lg font-light text-white/65">
+          <p className="max-w-2xl text-lg font-light text-white/88">
             This Privacy Policy applies to information collected and processed
             by Strategia Technology Partners Pty Limited (ABN 85 667 971 173).
           </p>
-          <p className="mt-4 text-sm text-white/45">
+          <p className="mt-4 text-sm text-[#A5DCD0]">
             Version 1.1 · Last updated: November 2025
           </p>
         </div>
       </header>
 
-      <main className="py-16">
+      <main className="bg-[radial-gradient(900px_520px_at_85%_0%,rgba(0,198,193,0.14),transparent_60%),radial-gradient(740px_480px_at_10%_20%,rgba(92,200,232,0.10),transparent_60%)] py-16">
         <div className="mx-auto max-w-4xl space-y-12 px-6">
           <Section title="1. Who we are and what we do">
             <SubSection title="1.1 Who we are">
@@ -73,17 +73,17 @@ export default function PrivacyPolicyPage() {
           </Section>
 
           <Section title="2. How to contact us">
-            <div className="rounded-xl border border-[#6ed9d6]/20 bg-gradient-to-r from-[#6ed9d6]/10 to-[#fcf099]/10 p-6">
+            <div className="rounded-xl border border-[#00C6C1]/35 bg-[linear-gradient(135deg,rgba(0,198,193,0.14)_0%,rgba(92,200,232,0.10)_100%)] p-6">
               <div className="flex items-start gap-4">
-                <Mail className="mt-1 h-6 w-6 flex-shrink-0 stroke-1 text-[#6ed9d6]" />
+                <Mail className="mt-1 h-6 w-6 flex-shrink-0 stroke-1 text-[#A5DCD0]" />
                 <div>
-                  <p className="font-medium text-white">Privacy Officer</p>
-                  <p className="text-white/70">
+                  <p className="font-medium !text-white">Privacy Officer</p>
+                  <p className="text-white/84">
                     Strategia Technology Partners Pty Limited
                   </p>
                   <a
                     href="mailto:privacy@strategiatech.io"
-                    className="text-[#6ed9d6] transition-colors hover:text-[#fcf099]"
+                    className="font-semibold text-[#A5DCD0] transition-colors hover:text-[#5CC8E8]"
                   >
                     privacy@strategiatech.io
                   </a>
@@ -446,15 +446,15 @@ export default function PrivacyPolicyPage() {
         </div>
       </main>
 
-      <footer className="border-t border-white/10 bg-[#041e2e] py-12">
+      <footer className="border-t border-white/12 bg-[#012236] py-12">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-white/70">
             © {new Date().getFullYear()} Strategia Technology Partners Pty
             Limited. All rights reserved.
           </p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full bg-[#fcf099] px-6 py-2.5 text-sm font-semibold text-[#041e2e] shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-lg bg-[linear-gradient(135deg,#00C6C1_0%,#5CC8E8_100%)] px-6 py-2.5 text-sm font-semibold !text-[#012236] shadow-[0_16px_34px_-18px_rgba(92,200,232,0.95)] transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-18px_rgba(92,200,232,1)]"
           >
             Return to Home
           </Link>
@@ -472,9 +472,9 @@ function Section({
   children: React.ReactNode
 }) {
   return (
-    <section className="rounded-xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm">
-      <h2 className="mb-6 font-serif text-xl text-white">{title}</h2>
-      <div className="space-y-4 leading-relaxed text-white/72">{children}</div>
+    <section className="rounded-xl border border-white/15 bg-white/[0.075] p-8 shadow-[0_28px_70px_-45px_rgba(0,0,0,0.75)] backdrop-blur-sm">
+      <h2 className="mb-6 font-serif text-xl !text-white">{title}</h2>
+      <div className="space-y-4 leading-relaxed text-white/86">{children}</div>
     </section>
   )
 }
@@ -488,7 +488,7 @@ function SubSection({
 }) {
   return (
     <div className="space-y-3">
-      <h3 className="text-base font-semibold text-white/88">{title}</h3>
+      <h3 className="text-base font-semibold !text-[#A5DCD0]">{title}</h3>
       <div className="space-y-2 text-sm">{children}</div>
     </div>
   )
@@ -499,7 +499,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="ml-4 space-y-2">
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3">
-          <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#6ed9d6]" />
+          <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[linear-gradient(135deg,#00C6C1,#5CC8E8)]" />
           <span className="text-sm">{item}</span>
         </li>
       ))}

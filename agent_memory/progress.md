@@ -83,6 +83,7 @@
 - Added Open Graph and Twitter card metadata for the root frontend layout and `/v27`, pointing social previews to `https://strategiatech.ai/og-image.png`.
 - Added a new root `/privacy-policy` route with the full November 2025 privacy policy content from the old Azure Static Web Apps privacy page, styled as a standalone Strategia legal page.
 - Updated the v27 footer Privacy links in both the Company column and footer bottom row to point to `/privacy-policy`.
+- Updated `/privacy-policy` visual colours to match the v25/v27 homepage palette more closely: white policy titles, stronger white body text, teal accent subsection headings, and Teal-to-Sky gradient buttons.
 
 ## Next
 
@@ -215,3 +216,6 @@
 - Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; the build route list includes `/privacy-policy`.
 - Not verified: default Turbopack `npm run build:pages`; it did not emit an error but hung in the production build stage and was interrupted. Full `tsc --noEmit` still fails on pre-existing missing questionnaire test dependencies (`vitest`, `fast-check`, `@testing-library/react`).
 - Verified: focused ESLint passed for `src/components/v27/V27Footer.tsx` after wiring footer Privacy links to `/privacy-policy`.
+- Verified: focused ESLint passed for `src/app/(frontend)/privacy-policy/page.tsx` after the contrast and gradient-button update.
+- Verified: in-app Browser computed styles for local `/privacy-policy` show H1/H2 as `rgb(255, 255, 255)`, H3 as `rgb(165, 220, 208)`, both navigation buttons using a Teal-to-Sky gradient, no console errors, and horizontal overflow `0`.
+- Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; `/privacy-policy` remains in the static route list.
