@@ -148,10 +148,10 @@ export default function TermsPage() {
               contact us.
             </p>
             <a
-              href="mailto:legal@strategia.ai"
+              href="mailto:info@strategiatech.ai"
               className="font-semibold text-[#A5DCD0] transition-colors hover:text-[#5CC8E8]"
             >
-              legal@strategia.ai
+              info@strategiatech.ai
             </a>
           </section>
         </div>

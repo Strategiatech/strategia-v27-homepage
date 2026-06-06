@@ -149,10 +149,10 @@ export default function VxPrivacyBody() {
               For any privacy enquiry, contact the Privacy Officer at Strategia
               Technology Partners Pty Limited:{' '}
               <a
-                href="mailto:privacy@strategiatech.io"
+                href="mailto:info@strategiatech.ai"
                 style={{ color: 'var(--v25-accent-text, #A5DCD0)' }}
               >
-                privacy@strategiatech.io
+                info@strategiatech.ai
               </a>
               .
             </p>

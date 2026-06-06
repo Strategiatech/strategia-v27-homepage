@@ -80,6 +80,7 @@
 - Moved ROI calculator before Security and set the surrounding v27 band rhythm to Process dark, ROI light, Security dark, FAQs light.
 - Replaced the v27 footer version line with `Strategia is a Lateralus Group company`, matched the footer paragraph font, and linked it to `https://lateralusgroup.ai`.
 - Copied the supplied `Final-Hero.mp4` into `public/vx/videos/final-hero.mp4` and replaced the `/v27` hero tetra visual with a concept-E-style soft-fade video treatment while keeping `/vx` on the original tetra hero.
+- Fixed the `/v27` mobile hero video diagonal background mismatch by making the outer video stage transparent and moving the clipped background/border onto the clipped video box.
 - Added `public/og-image.png`, a 1200x630 social preview image using the same deep-blue background and white glow inline Strategia logo as the v27 header.
 - Added Open Graph and Twitter card metadata for the root frontend layout and `/v27`, pointing social previews to `https://strategiatech.ai/og-image.png`.
 - Added a new root `/privacy-policy` route with the full November 2025 privacy policy content from the old Azure Static Web Apps privacy page, styled as a standalone Strategia legal page.
@@ -89,6 +90,7 @@
 - Updated the v27 footer Terms links in both the Company column and footer bottom row to point to `/terms`.
 - Restored the shared VX/v27 Solutions `Explore` labels as working anchors: Hospital CEO to V-Insights, CHRO to V-Fit, Talent Acquisition to the Stats band, and Clinical Operations to V-Psych.
 - Replaced the simplified `/terms` and `/privacy-policy` footers with the shared v27 footer; legal-page footer section links route to `/v27#...` in local dev and `/#...` in the production Pages build.
+- Replaced legal/privacy contact emails across root and VX legal pages with `info@strategiatech.ai`.
 
 ## Next
 
@@ -213,6 +215,7 @@
 - Verified: Browser path used first for local `/v27`; the hero video source is `/vx/videos/final-hero.mp4`, it reaches `readyState=4`, plays muted, the legacy tetra stage is absent, no framework overlay is visible, and there is no horizontal scrolling.
 - Verified: Browser confirmed `/vx` still renders the legacy `v25Stage` tetra hero and does not render the `/v27` hero video stage.
 - Verified: desktop viewport fallback confirmed the concept-E horizontal fade mask on the `/v27` hero video stage.
+- Verified: Browser path used first for local `/v27` at 390x844 after the mobile video background fix; the hero video stage computes transparent, the clipped video box owns the background/border, and document horizontal overflow remains `0`.
 - Not verified: full npm run lint is not clean because of pre-existing unrelated lint errors across older pages/components.
 - Not verified: successful live contact email submission with valid contact data, because that would send a real notification email.
 - Verified: focused ESLint passed for `src/app/(frontend)/privacy-policy/page.tsx`.

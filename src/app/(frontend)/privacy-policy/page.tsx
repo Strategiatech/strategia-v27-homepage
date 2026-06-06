@@ -88,10 +88,10 @@ export default function PrivacyPolicyPage() {
                     Strategia Technology Partners Pty Limited
                   </p>
                   <a
-                    href="mailto:privacy@strategiatech.io"
+                    href="mailto:info@strategiatech.ai"
                     className="font-semibold text-[#A5DCD0] transition-colors hover:text-[#5CC8E8]"
                   >
-                    privacy@strategiatech.io
+                    info@strategiatech.ai
                   </a>
                 </div>
               </div>

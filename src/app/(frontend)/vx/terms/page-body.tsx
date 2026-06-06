@@ -188,7 +188,7 @@ export default function VxTermsBody() {
               <span style={NOTE_STYLE}>Strategia to confirm</span>
             </h2>
             <p style={P_STYLE}>
-              The service is provided on an "as is" and "as available" basis,
+              The service is provided on an &quot;as is&quot; and &quot;as available&quot; basis,
               without warranties of any kind, whether express or implied.
               Strategia does not warrant that the service will be uninterrupted,
               error-free, or free of harmful components, or that the results
@@ -269,10 +269,10 @@ export default function VxTermsBody() {
               For questions about these Terms, contact Strategia Technology
               Partners Pty Limited at{' '}
               <a
-                href="mailto:legal@strategiatech.io"
+                href="mailto:info@strategiatech.ai"
                 style={{ color: 'var(--v25-accent-text, #A5DCD0)' }}
               >
-                legal@strategiatech.io
+                info@strategiatech.ai
               </a>
               .
             </p>
