@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | Strategia',
   description:
     'This Privacy Policy applies to information collected and processed by Strategia Technology Partners Pty Limited.',
+  alternates: {
+    canonical: 'https://strategiatech.ai/privacy-policy/',
+  },
 }
 
 const homeSectionRoot =

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /brand
+Disallow: /brand-
+Disallow: /demo
+Disallow: /questionnaire
+Disallow: /v
+Disallow: /vx
+
+Sitemap: https://strategiatech.ai/sitemap.xml

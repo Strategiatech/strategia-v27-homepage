@@ -1104,16 +1104,15 @@ html:has(.v25.vx-self-contained) {
     width: min(100%, 720px);
     height: clamp(280px, 56vw, 480px);
     margin: 2.5rem 0 0;
-    border: 0;
-    background: transparent;
+    border: 1px solid rgba(232, 255, 252, 0.16);
+    background: #012236;
   }
   .v25.vx-self-contained .vx-hero-video-box {
     inset: 0;
     overflow: hidden;
-    border: 1px solid rgba(232, 255, 252, 0.16);
-    background: rgba(1, 34, 54, 0.36);
-    -webkit-clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%);
-            clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%);
+    background: #012236;
+    -webkit-clip-path: none;
+            clip-path: none;
     -webkit-mask-image: none;
             mask-image: none;
   }

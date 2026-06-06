@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: 'Terms of Service | Strategia',
   description:
     "These terms govern your use of Strategia's AI-powered HR platform.",
+  alternates: {
+    canonical: 'https://strategiatech.ai/terms/',
+  },
 }
 
 type TermsSection = {
