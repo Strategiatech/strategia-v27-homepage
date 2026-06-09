@@ -27,6 +27,7 @@ type DemoFormState = {
   name: string
   title: string
   email: string
+  phoneCountryCode: string
   phone: string
   company: string
   message: string
@@ -36,6 +37,7 @@ const DEMO_FORM_INITIAL: DemoFormState = {
   name: '',
   title: '',
   email: '',
+  phoneCountryCode: '+61',
   phone: '',
   company: '',
   message: '',
@@ -46,6 +48,17 @@ const CONTACT_API_URL =
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const moduleAnchorId = (title: string) => `module-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+
+const CONTACT_TITLE_OPTIONS = ['Mr', 'Ms', 'Mrs', 'Miss', 'Mx', 'Dr', 'Prof'] as const
+const PHONE_COUNTRY_CODES = [
+  { label: 'AU +61', value: '+61' },
+  { label: 'UAE +971', value: '+971' },
+  { label: 'SG +65', value: '+65' },
+  { label: 'US +1', value: '+1' },
+  { label: 'UK +44', value: '+44' },
+  { label: 'IN +91', value: '+91' },
+  { label: 'NZ +64', value: '+64' },
+] as const
 
 const MODULES: Module[] = [
   { num: 'M01', tag: 'Foundation', title: 'V-Job',
@@ -529,7 +542,7 @@ export default function VxPage({
 
   const updateDemoForm =
     (field: keyof DemoFormState) =>
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       setDemoForm((current) => ({ ...current, [field]: event.target.value }))
       if (demoSubmitStatus === 'error') {
         setDemoSubmitStatus('idle')
@@ -545,7 +558,9 @@ export default function VxPage({
       name: demoForm.name.trim(),
       title: demoForm.title.trim(),
       email: demoForm.email.trim(),
-      phone: demoForm.phone.trim(),
+      phone: demoForm.phone.trim()
+        ? `${demoForm.phoneCountryCode} ${demoForm.phone.trim()}`
+        : '',
       company: demoForm.company.trim(),
       message: demoForm.message.trim(),
     }
@@ -1418,15 +1433,19 @@ export default function VxPage({
                   </div>
                   <div className="vx-demo-field">
                     <label htmlFor="demo-title">Title</label>
-                    <input
+                    <select
                       id="demo-title"
                       name="title"
-                      type="text"
                       required
-                      autoComplete="organization-title"
+                      autoComplete="honorific-prefix"
                       value={demoForm.title}
                       onChange={updateDemoForm('title')}
-                    />
+                    >
+                      <option value="" disabled>Select title</option>
+                      {CONTACT_TITLE_OPTIONS.map((title) => (
+                        <option key={title} value={title}>{title}</option>
+                      ))}
+                    </select>
                   </div>
                   <div className="vx-demo-field">
                     <label htmlFor="demo-email">Email</label>
@@ -1443,14 +1462,30 @@ export default function VxPage({
                   </div>
                   <div className="vx-demo-field">
                     <label htmlFor="demo-phone">Phone number</label>
-                    <input
-                      id="demo-phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      value={demoForm.phone}
-                      onChange={updateDemoForm('phone')}
-                    />
+                    <div className="vx-demo-phone-row">
+                      <select
+                        id="demo-phone-country"
+                        name="phoneCountryCode"
+                        aria-label="Phone country code"
+                        autoComplete="tel-country-code"
+                        value={demoForm.phoneCountryCode}
+                        onChange={updateDemoForm('phoneCountryCode')}
+                      >
+                        {PHONE_COUNTRY_CODES.map((countryCode) => (
+                          <option key={countryCode.value} value={countryCode.value}>
+                            {countryCode.label}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        id="demo-phone"
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel-national"
+                        value={demoForm.phone}
+                        onChange={updateDemoForm('phone')}
+                      />
+                    </div>
                   </div>
                   <div className="vx-demo-field">
                     <label htmlFor="demo-company">Company</label>

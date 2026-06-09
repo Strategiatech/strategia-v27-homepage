@@ -1970,8 +1970,8 @@ html:has(.v25.vx-self-contained) {
    ============================================================ */
 .vx-demo-cta.v25-cta-wrap {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.76fr);
-  gap: clamp(36px, 5vw, 72px);
+  grid-template-columns: minmax(0, 0.82fr) minmax(430px, 1fr);
+  gap: clamp(32px, 4.5vw, 64px);
   align-items: center;
   text-align: left;
   padding: clamp(52px, 7vw, 88px) clamp(28px, 5vw, 64px);
@@ -2050,6 +2050,7 @@ html:has(.v25.vx-self-contained) {
   color: rgba(255, 255, 255, 0.68);
 }
 .vx-demo-field input,
+.vx-demo-field select,
 .vx-demo-field textarea {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -2063,15 +2064,38 @@ html:has(.v25.vx-self-contained) {
   appearance: none;
   -webkit-appearance: none;
 }
+.vx-demo-field select {
+  min-height: 48px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.72) 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  color-scheme: dark;
+}
+.vx-demo-field select option {
+  background: #012236;
+  color: #ffffff;
+}
+.vx-demo-phone-row {
+  display: grid;
+  grid-template-columns: minmax(128px, 0.36fr) minmax(0, 1fr);
+  gap: 10px;
+}
 .vx-demo-field textarea {
   min-height: 126px;
   resize: vertical;
 }
 .vx-demo-field input::placeholder,
+.vx-demo-field select:invalid,
 .vx-demo-field textarea::placeholder {
   color: rgba(255, 255, 255, 0.42);
 }
 .vx-demo-field input:focus,
+.vx-demo-field select:focus,
 .vx-demo-field textarea:focus {
   border-color: rgba(165, 220, 208, 0.82);
   background: rgba(255, 255, 255, 0.08);
@@ -2128,6 +2152,10 @@ html:has(.v25.vx-self-contained) {
   .vx-demo-cta.v25-cta-wrap {
     padding: 40px 22px;
     border-radius: 20px;
+  }
+  .vx-demo-phone-row {
+    grid-template-columns: minmax(112px, 0.42fr) minmax(0, 1fr);
+    gap: 8px;
   }
   .vx-demo-submit {
     width: 100%;
