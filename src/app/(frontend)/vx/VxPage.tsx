@@ -23,9 +23,23 @@ type DemoSubmitStatus = 'idle' | 'submitting' | 'success' | 'error'
 type ContactApiResponse = { success?: boolean; message?: string }
 
 type Module = { num: string; tag: PhaseName; title: string; desc: string }
-type DemoFormState = { name: string; email: string; company: string; message: string }
+type DemoFormState = {
+  name: string
+  title: string
+  email: string
+  phone: string
+  company: string
+  message: string
+}
 
-const DEMO_FORM_INITIAL: DemoFormState = { name: '', email: '', company: '', message: '' }
+const DEMO_FORM_INITIAL: DemoFormState = {
+  name: '',
+  title: '',
+  email: '',
+  phone: '',
+  company: '',
+  message: '',
+}
 const CONTACT_API_URL =
   process.env.NEXT_PUBLIC_CONTACT_API_URL ||
   'https://strategia-home-api.azurewebsites.net/api/contact'
@@ -529,14 +543,22 @@ export default function VxPage({
 
     const trimmedForm = {
       name: demoForm.name.trim(),
+      title: demoForm.title.trim(),
       email: demoForm.email.trim(),
+      phone: demoForm.phone.trim(),
       company: demoForm.company.trim(),
       message: demoForm.message.trim(),
     }
 
-    if (!trimmedForm.name || !trimmedForm.email || !trimmedForm.message) {
+    if (
+      !trimmedForm.name ||
+      !trimmedForm.title ||
+      !trimmedForm.email ||
+      !trimmedForm.company ||
+      !trimmedForm.message
+    ) {
       setDemoSubmitStatus('error')
-      setDemoError('Please complete name, email and message.')
+      setDemoError('Please complete name, title, email, company and message.')
       return
     }
 
@@ -1395,6 +1417,18 @@ export default function VxPage({
                     />
                   </div>
                   <div className="vx-demo-field">
+                    <label htmlFor="demo-title">Title</label>
+                    <input
+                      id="demo-title"
+                      name="title"
+                      type="text"
+                      required
+                      autoComplete="organization-title"
+                      value={demoForm.title}
+                      onChange={updateDemoForm('title')}
+                    />
+                  </div>
+                  <div className="vx-demo-field">
                     <label htmlFor="demo-email">Email</label>
                     <input
                       id="demo-email"
@@ -1408,11 +1442,23 @@ export default function VxPage({
                     />
                   </div>
                   <div className="vx-demo-field">
+                    <label htmlFor="demo-phone">Phone number</label>
+                    <input
+                      id="demo-phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      value={demoForm.phone}
+                      onChange={updateDemoForm('phone')}
+                    />
+                  </div>
+                  <div className="vx-demo-field">
                     <label htmlFor="demo-company">Company</label>
                     <input
                       id="demo-company"
                       name="company"
                       type="text"
+                      required
                       autoComplete="organization"
                       value={demoForm.company}
                       onChange={updateDemoForm('company')}
