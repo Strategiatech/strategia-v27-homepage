@@ -5,7 +5,7 @@ import QuestionnaireProviders from './QuestionnaireProviders'
 
 export const metadata: Metadata = {
   title: 'Discovery Questionnaire | Strategia',
-  description: 'Initial pilot setup discovery questionnaire for Strategia',
+  description: 'Initial go-live setup discovery questionnaire for Strategia',
 }
 
 export default function QuestionnairePage() {

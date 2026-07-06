@@ -337,7 +337,7 @@ const DEPLOYMENT = [
   {
     phase: 'Phase 03',
     weeks: 'Weeks 7 to 8',
-    title: 'Pilot',
+    title: 'Go Live',
     desc: 'First triangulated pipeline goes live on a target role family. Real resumes, real assessments, real shortlists, your team in the loop on every weighting decision.',
   },
   {
@@ -447,7 +447,7 @@ const FAQS = [
       'Twelve weeks from contract to your first live triangulated hiring pipeline.',
       'Calibration in Weeks 1 to 2: your role families mapped, your existing job descriptions rebuilt into world-class specifications.',
       'Configuration in Weeks 3 to 6: API integration with your stack, SSO setup, security review, single-tenant build if required.',
-      'Pilot in Weeks 7 to 8: the first triangulated pipeline goes live on a target role family.',
+      'Go Live in Weeks 7 to 8: the first triangulated pipeline goes live on a target role family.',
       'Scale in Weeks 9 to 11: roll out across remaining role families.',
       'Compound from Week 12: V-Insights surfaces patterns, V-Agent activates.',
       'The output of every step is auditable, exportable, and yours.',

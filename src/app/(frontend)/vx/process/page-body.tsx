@@ -57,7 +57,7 @@ const TIMELINE = [
     delivers:
       'Solutions architect assigned. Working sessions with talent leadership, hiring managers, and IT. Role-family inventory drafted.',
     provides:
-      'Org chart, current requisition list, ATS contact, two priority roles to anchor the pilot.',
+      'Org chart, current requisition list, ATS contact, two priority roles to anchor the go-live.',
   },
   {
     phase: 'Week 1 to 2',

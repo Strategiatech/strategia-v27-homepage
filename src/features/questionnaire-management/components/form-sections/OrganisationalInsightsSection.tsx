@@ -39,13 +39,13 @@ export function OrganisationalInsightsSection({ formData, onInputChange }: FormS
         <Input value={formData.annualTurnoverRate ? `${formData.annualTurnoverRate}%` : ''} disabled placeholder="Auto-calculated" />
       </FormField>
 
-      <FormField label="DEI Priorities" note="Optional strategic context for pilot design.">
+      <FormField label="DEI Priorities" note="Optional strategic context for go-live design.">
         <Textarea
           name="deiPriorities"
           value={formData.deiPriorities}
           onChange={onInputChange}
           rows={4}
-          placeholder="Describe any DEI priorities that should shape the pilot..."
+          placeholder="Describe any DEI priorities that should shape the go-live..."
           className="bg-white"
         />
       </FormField>

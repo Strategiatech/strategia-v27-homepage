@@ -18,7 +18,7 @@ export function QuestionnaireHeroSection() {
         >
           <div className="mb-4 inline-flex items-center rounded-full border border-cyan-500/30 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 px-4 py-2 text-sm font-medium backdrop-blur-sm">
             <FileText className="mr-2 h-4 w-4" />
-            Initial Pilot Setup
+            Initial Go Live Setup
           </div>
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Discovery Questionnaire
@@ -28,7 +28,7 @@ export function QuestionnaireHeroSection() {
             don&apos;t feel pressured to have all the exact figures at hand.
             Your best estimates or approximations are perfectly fine at this
             stage. The goal is to help us better understand your current
-            processes and structure so we can tailor the pilot to suit your
+            processes and structure so we can tailor the go-live to suit your
             needs.
           </p>
         </motion.div>

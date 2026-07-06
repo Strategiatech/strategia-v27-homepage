@@ -98,7 +98,7 @@ export interface QuestionnaireFormData {
   successCriteria: string[]
   successCriteriaOther: string
 
-  // Section 9: Pilot Details
+  // Section 9: Go Live Details
   proposedStartDate: string
   pilotDuration: string
   pilotOfficeLocations: OfficeLocation[]

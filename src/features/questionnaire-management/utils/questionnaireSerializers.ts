@@ -56,7 +56,7 @@ export const serializePilotJobDescriptions = (
     .map((entry) => {
       const linkedRole = entry.roleIndex !== '' ? roles[Number(entry.roleIndex)] : null
       const lines = [
-        linkedRole?.title ? `Pilot Role: ${linkedRole.title}` : '',
+        linkedRole?.title ? `Go-Live Role: ${linkedRole.title}` : '',
         entry.title.trim() ? `JD Title / Reference: ${entry.title.trim()}` : '',
         entry.text.trim() ? `Job Description:\n${entry.text.trim()}` : '',
       ].filter(Boolean)

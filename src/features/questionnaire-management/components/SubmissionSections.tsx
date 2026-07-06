@@ -230,7 +230,7 @@ export function PilotProjectSubmissionSection({ formData }: SectionProps) {
   const data = toQuestionnaireFormData(formData)
   const legacyFields = [
     data.pilotRolesDetails.trim()
-      ? { label: 'Legacy Roles To Include In Pilot', value: textOrNA(data.pilotRolesDetails) }
+      ? { label: 'Legacy Roles To Include In Go Live', value: textOrNA(data.pilotRolesDetails) }
       : null,
     data.jobDescriptions.trim()
       ? { label: 'Legacy Job Descriptions', value: textOrNA(data.jobDescriptions) }

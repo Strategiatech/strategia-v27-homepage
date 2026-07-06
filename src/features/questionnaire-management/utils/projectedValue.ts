@@ -141,7 +141,7 @@ const INDUSTRY_DATA: Record<string, IndustryBenchmark> = {
     turnoverAdd: 5,
     notes: [
       { statement: 'Operational roles: 45–60 day time-to-fill', source: 'Industry estimates' },
-      { statement: 'Pilot recruitment costs can exceed $25,000 per hire', source: 'Aviation recruitment benchmarks' },
+      { statement: 'Flight crew recruitment costs can exceed $25,000 per hire', source: 'Aviation recruitment benchmarks' },
     ],
   },
   'Oil & Gas / Energy': {

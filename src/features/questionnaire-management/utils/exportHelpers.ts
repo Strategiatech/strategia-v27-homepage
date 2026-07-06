@@ -291,7 +291,7 @@ const buildSections = (submission: QuestionnaireSubmission): ExportSection[] => 
         },
         ...(data.pilotRolesDetails.trim()
           ? [{
-              label: 'Legacy Roles To Include In Pilot',
+              label: 'Legacy Roles To Include In Go Live',
               value: textOrNA(data.pilotRolesDetails),
               multiline: true,
             }]
