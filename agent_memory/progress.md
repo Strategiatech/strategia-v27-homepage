@@ -7,7 +7,7 @@
 ## Status
 
 - Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, the live Discovery Questionnaire flow verified end-to-end, homepage contact sender updated to `info@strategiatech.ai`, and contact-form notification recipients expanded.
-- 2026-07-13 temporary questionnaire recovery is backend-live and frontend-local: dev SQL schema/table, Function App table mapping, and CORS are configured; the v27 frontend now validates the temporary password locally and targets the dev Function App, but these frontend changes are not committed, pushed, or deployed yet.
+- 2026-07-13 temporary questionnaire recovery is live: dev SQL schema/table, Function App table mapping, Key Vault-backed admin auth, CORS, and the v27 frontend are deployed. GitHub Pages run `29236025662` and backend dev run `29236025592` succeeded; Browser smoke confirmed the public password opens all 11 sections and the admin password opens `Questionnaire Submissions` without console errors.
 
 ## Done
 
@@ -97,7 +97,7 @@
 
 ## Next
 
-- Obtain explicit authorization to commit and push the v27 frontend changes to `main`, then watch the Pages workflow and smoke `https://strategiatech.ai/questionnaire/`.
+- Replace the temporary frontend-only public questionnaire password and public dev submission route with a durable anti-abuse/auth design when the permanent Home API is restored.
 - Decide whether to improve the questionnaire POST response so it returns the inserted submission id instead of `submissionId: null`.
 
 ## Validation
