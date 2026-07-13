@@ -34,6 +34,8 @@
 - Public GitHub Pages uses the custom domain `strategiatech.ai`; the Pages workflow should build at the root path with no `NEXT_PUBLIC_BASE_PATH`.
 - The v27 questionnaire must not expose `FUNCTION_APP_API_KEY` or `NEXT_PUBLIC_FUNCTION_APP_API_KEY`; browser clients use short-lived bearer tokens issued by `strategia-home-api` after password/admin-key validation.
 - Questionnaire backend changes live in `/Users/minghao/Documents/GitHub/strategia-home-website/function-app`, not this v27 repo, because `strategia-home-api` is owned by the old home website repo.
+- 2026-07-13 temporary recovery: the deleted `strategia-home-api` is not being rebuilt yet. Public questionnaire submissions use the existing dev Function App route `POST https://func-stg-api-dev-aue.azurewebsites.net/api/questionnaire`, which writes to `ai-stg.questionnaire.submissions` through `ADMIN_QUESTIONNAIRE_SUBMISSIONS_TABLE=questionnaire.submissions`.
+- 2026-07-13 temporary recovery: public questionnaire password validation is intentionally frontend-only (`Strategia2025`). Treat it as a UI gate, not a security boundary, because the password is present in the static bundle.
 
 ## Assumptions
 

@@ -7,6 +7,7 @@
 ## Status
 
 - Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, the live Discovery Questionnaire flow verified end-to-end, homepage contact sender updated to `info@strategiatech.ai`, and contact-form notification recipients expanded.
+- 2026-07-13 temporary questionnaire recovery is backend-live and frontend-local: dev SQL schema/table, Function App table mapping, and CORS are configured; the v27 frontend now validates the temporary password locally and targets the dev Function App, but these frontend changes are not committed, pushed, or deployed yet.
 
 ## Done
 
@@ -92,9 +93,11 @@
 - Replaced the simplified `/terms` and `/privacy-policy` footers with the shared v27 footer; legal-page footer section links route to `/v27#...` in local dev and `/#...` in the production Pages build.
 - Replaced legal/privacy contact emails across root and VX legal pages with `info@strategiatech.ai`.
 - Added SEO migration signals for the new `strategiatech.ai` homepage: root/Privacy/Terms canonical URLs, `public/robots.txt`, and `public/sitemap.xml` listing the canonical public pages while excluding internal version/questionnaire routes from crawling.
+- Updated Namecheap DNS for old `strategiatech.io`: removed `@` and `www` URL Redirect records, kept `@` as an ALIAS to the Azure SWA default host, and kept `www` as a CNAME to the same Azure SWA host so the old Azure Static Web Apps 301 redirect handles HTTPS.
 
 ## Next
 
+- Obtain explicit authorization to commit and push the v27 frontend changes to `main`, then watch the Pages workflow and smoke `https://strategiatech.ai/questionnaire/`.
 - Decide whether to improve the questionnaire POST response so it returns the inserted submission id instead of `submissionId: null`.
 
 ## Validation
@@ -222,6 +225,7 @@
 - Verified: focused ESLint passed for `src/app/(frontend)/privacy-policy/page.tsx`.
 - Verified: local dev server returned HTTP 200 for `/privacy-policy`; saved HTML contains the policy title, version line, company name, privacy email, section 3, and section 10 content.
 - Verified: GitHub Pages-style build passes after SEO migration updates; static export includes `out/robots.txt` and `out/sitemap.xml`, and `out/index.html`, `out/privacy-policy/index.html`, and `out/terms/index.html` each include the expected canonical URL.
+- Verified: Namecheap authoritative DNS for `strategiatech.io` now returns only Azure IP `20.64.189.4` for apex and `www.strategiatech.io` CNAMEs to `wonderful-glacier-0df9f8000.4.azurestaticapps.net`; `https://strategiatech.io/` and forced-resolve `https://www.strategiatech.io/` return `301` to `https://strategiatech.ai/`.
 - Verified: in-app Browser path used for local `/privacy-policy`; page title is `Privacy Policy | Strategia`, H1 is `Privacy Policy`, key policy content is present, console error logs are empty, and horizontal overflow is `0`.
 - Verified: GitHub Pages production build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true GITHUB_PAGES=true ./node_modules/.bin/next build --webpack`; the build route list includes `/privacy-policy`.
 - Not verified: default Turbopack `npm run build:pages`; it did not emit an error but hung in the production build stage and was interrupted. Full `tsc --noEmit` still fails on pre-existing missing questionnaire test dependencies (`vitest`, `fast-check`, `@testing-library/react`).

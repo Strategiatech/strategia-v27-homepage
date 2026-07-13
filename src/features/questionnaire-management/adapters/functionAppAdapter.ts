@@ -7,8 +7,9 @@ import type {
 import type { QuestionnaireFormData } from '../types/questionnaireForm'
 import type { QuestionnaireSubmission } from '../types/questionnaire'
 
-const PUBLIC_TOKEN_KEY = 'questionnaire_access_token'
 const ADMIN_TOKEN_KEY = 'questionnaire_admin_auth_token'
+const TEMPORARY_QUESTIONNAIRE_PASSWORD = 'Strategia2025'
+const TEMPORARY_ACCESS_TOKEN = 'temporary-questionnaire-access'
 
 function getSessionToken(key: string): string | null {
   if (typeof window === 'undefined') {
@@ -31,11 +32,9 @@ export class FunctionAppAdapter implements IQuestionnaireApiPort {
     data: QuestionnaireFormData,
     turnstileToken: string
   ): Promise<QuestionnaireSubmitResult> {
-    const accessToken = getSessionToken(PUBLIC_TOKEN_KEY) ?? getSessionToken(ADMIN_TOKEN_KEY)
     const result = await functionAppClient.post<{ submissionId: number }>(
       '/api/questionnaire',
-      { ...data, turnstileToken },
-      { accessToken }
+      { ...data, turnstileToken }
     )
 
     if (result.success) {
@@ -58,22 +57,12 @@ export class FunctionAppAdapter implements IQuestionnaireApiPort {
   }
 
   async validateAccess(password: string): Promise<QuestionnaireAccessResult> {
-    const result = await functionAppClient.post<{
-      success: boolean
-      accessToken?: string
-      expiresIn?: number
-    }>(
-      '/api/questionnaire/access',
-      { password }
-    )
+    const success = password.trim() === TEMPORARY_QUESTIONNAIRE_PASSWORD
 
     return {
-      success: result.success,
-      accessToken: (result as unknown as Record<string, unknown>).accessToken as string | undefined,
-      expiresIn: (result as unknown as Record<string, unknown>).expiresIn as number | undefined,
-      message: result.success
-        ? undefined
-        : result.message || 'Invalid password',
+      success,
+      accessToken: success ? TEMPORARY_ACCESS_TOKEN : undefined,
+      message: success ? undefined : 'Invalid password',
     }
   }
 
