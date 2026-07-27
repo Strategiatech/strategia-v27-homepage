@@ -87,7 +87,7 @@ const COMPARISON: ComparisonRow[] = [
     axis: 'Predicts job performance',
     bigFive: 'Conscientiousness corrects-for-range-restriction r approx 0.22, the strongest non-cognitive predictor (Sackett et al., 2022).',
     mbti: 'No significant relationship to performance (Hunsley et al., 2003; APA reviews).',
-    disc: 'Not validated for selection use by the publisher.',
+    disc: 'The publisher does not support its use for employee selection.',
   },
   {
     axis: 'Cross-cultural replication',
@@ -146,15 +146,6 @@ const VALIDITY_STUDIES: ValidityStudy[] = [
     unit: '',
     outcome: 'Composite vs. 24-month performance composite.',
     method: 'Concurrent design, four academic medical centres, 2023 cohort.',
-  },
-  {
-    cohort: 'Healthcare administrative leaders',
-    n: 'n = 884',
-    metric: 'r',
-    value: '0.53',
-    unit: '',
-    outcome: 'Composite vs. promotion within 18 months.',
-    method: 'Predictive design, multi-system, follow-up via HRIS audit trail.',
   },
 ]
 
@@ -252,7 +243,7 @@ export default function VxScienceBody() {
       {/* HERO */}
       <section className="v25-section" style={{ paddingTop: 'clamp(140px, 18vw, 220px)' }}>
         <div className="v25-section-inner v25-reveal">
-          <div className="v25-eyebrow">The Science &middot; Validated psychometrics</div>
+          <div className="v25-eyebrow">The Science &middot; Published psychometrics</div>
           <h1
             style={{
               fontFamily: 'var(--font-display, "Literata", Georgia, serif)',
@@ -266,14 +257,14 @@ export default function VxScienceBody() {
               textWrap: 'balance',
             }}
           >
-            Validated psychometric rigour.{' '}
+            Psychometric rigour.{' '}
             <span className="accent accent--sky">Not pattern matching.</span>
           </h1>
           <p className="v25-desc" style={{ maxWidth: '60ch', fontSize: '1.15rem' }}>
-            Strategia is built on Item Response Theory, peer-reviewed Big Five inventories,
-            and adversarial debiasing. Every score has a published methodology, a healthcare
-            norm sample, and an audit packet. This page is the long version, written for
-            psychologists, data scientists, and the General Counsel who signs off on selection.
+            V-Psych draws on published Big Five research and structured assessment design.
+            The V-Psych methodology has been reviewed by an independent PhD-level
+            Industrial-Organizational Psychologist. This page documents the research
+            foundations and evidence framework used to evaluate the method.
           </p>
           <div className="v25-hero-actions" style={{ marginTop: 32 }}>
             <a href="#why-ocean" className="v25-btn-primary">
@@ -486,15 +477,15 @@ export default function VxScienceBody() {
         <div className="v25-section-inner v25-reveal">
           <div className="v25-section-header">
             <div>
-              <div className="v25-eyebrow">Predictive validity &middot; Healthcare cohorts</div>
+              <div className="v25-eyebrow">Evidence studies &middot; Healthcare cohorts</div>
               <h2 className="v25-h2">
-                The numbers we publish,{' '}
-                <span className="accent accent--teal">on the populations we serve</span>.
+                Read each result in context:{' '}
+                <span className="accent accent--teal">cohort, outcome and design</span>.
               </h2>
               <p className="v25-desc" style={{ marginTop: 16, maxWidth: '62ch' }}>
-                Generic norms understate the signal. Every Strategia model is criterion-validated
-                on the cohort it will score, then re-validated quarterly. Coefficients below are
-                corrected for range restriction per Schmidt and Hunter (2015).
+                These study summaries are presented with their stated cohort, outcome and design.
+                Request the methodology brief for sources, correction methods and interpretation
+                details.
               </p>
             </div>
             <div className="v25-hero-actions">

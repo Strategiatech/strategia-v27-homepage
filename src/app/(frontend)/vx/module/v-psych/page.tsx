@@ -4,7 +4,7 @@ import ModulePage from '@/components/vx/ModulePage'
 export const metadata: Metadata = {
   title: 'V-Psych | Strategia Tech',
   description:
-    'A 5 to 7 minute proprietary OCEAN based assessment with T-score conversion, validated against role-specific performance indicators.',
+    'A proprietary OCEAN-based assessment with structured scoring and role-specific interpretation.',
 }
 
 export default function VPsychPage() {
@@ -15,24 +15,24 @@ export default function VPsychPage() {
       num="M03"
       phase="Assess"
       accent="teal"
-      headline="Big Five psychometrics, calibrated on the people who actually do the work."
-      headlineAccent="calibrated on the people who actually do the work."
-      description="V-Psych is a proprietary assessment suite built by clinical psychologists. It measures the Big Five personality traits alongside cognitive aptitude, and converts every score to a T-score benchmarked against high performers in the same role family."
-      statValue="0.85"
-      statLabel="Predictive validity coefficient"
-      statSub="Versus 0.18 for resume review and 0.21 for unstructured interview"
+      headline="Big Five psychometrics, structured for role-specific assessment."
+      headlineAccent="structured for role-specific assessment."
+      description="V-Psych is a proprietary assessment suite grounded in the Big Five model and structured scoring. It measures the Big Five personality traits and produces a role-specific profile for interpretation."
+      statValue="Reviewed"
+      statLabel="Independent methodology review"
+      statSub="By a PhD-level Industrial-Organizational Psychologist"
       features={[
         {
           title: 'OCEAN methodology',
           body: 'Measures Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism, scored against role-fit cohorts.',
         },
         {
-          title: 'Adaptive testing',
-          body: 'Item Response Theory adjusts question difficulty in real time, producing a sharper signal in five to seven minutes.',
+          title: 'Structured assessment',
+          body: 'A consistent response format supports transparent scoring and repeatable administration.',
         },
         {
-          title: 'Role benchmarking',
-          body: 'Compare candidate profiles against high-performer baselines specific to your organization and service line.',
+          title: 'Role context',
+          body: 'Interpret candidate profiles against documented role requirements and assessment criteria.',
         },
       ]}
       related={[
@@ -60,7 +60,7 @@ export default function VPsychPage() {
       ]}
       ctaLead="Replace gut-feel screening."
       ctaAccent="Defend every assessment."
-      ctaDesc="See V-Psych run against your role family. Validity studies and norm-group documentation included."
+      ctaDesc="See V-Psych run against your role family. Methodology and evidence documentation available for review."
     />
   )
 }

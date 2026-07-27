@@ -369,9 +369,9 @@ const COMPARISON: { factor: string; legacy: string; agency: string; strategia: s
   },
   {
     factor: 'Scientific Rigour',
-    legacy: 'Generic, unvalidated tests.',
+    legacy: 'Generic tests with unclear job relevance.',
     agency: 'Recruiter judgement, ad hoc.',
-    strategia: 'Big Five + STAR method. Built on validated psychometric and behavioural science.',
+    strategia: 'Big Five + STAR method. Grounded in published psychometric and behavioural research.',
   },
   {
     factor: 'Workforce Impact',
@@ -422,7 +422,7 @@ const FAQS = [
     q: 'How do you handle bias in the platform?',
     a: [
       'Bias enters most hiring platforms in one of two places: through the training data the model was built on, or through the human reviewing a candidate’s name, gender, age, or background while making the call. Strategia is designed to address both.',
-      'The platform is calibrated against role-specific frameworks built on validated psychometric and behavioural science. During triangulation (the screening, assessment, and ranking phase) all Personal Identification Information is stripped from the candidate record. The platform sees the signals, not the person. PII is re-attached only when a candidate progresses to in-person interview, where human judgement rightly takes over. The result: the strongest role-relevant signals surface to the top, not the most familiar names.',
+      'The platform is calibrated against role-specific frameworks grounded in published psychometric and behavioural research. During triangulation (the screening, assessment, and ranking phase) all Personal Identification Information is stripped from the candidate record. The platform sees the signals, not the person. PII is re-attached only when a candidate progresses to in-person interview, where human judgement rightly takes over. The result: the strongest role-relevant signals surface to the top, not the most familiar names.',
     ],
   },
   {
@@ -492,7 +492,7 @@ const FAQS = [
     a: [
       'Technically, anyone with the right team, capital, and time can build a workforce intelligence platform. The real question is whether it is worth building rather than buying.',
       'Three things make Strategia hard to replicate even if you started today.',
-      'Calibrated frameworks: V-Psych, V-Interview, V-Scenario, and V-RefCheck each carry validated psychometric and behavioural science built with organisational psychologists. Replicating that takes years, not months.',
+      'Documented methods: V-Psych applies published psychometric methods reviewed by an independent PhD-level Industrial-Organizational Psychologist. V-Interview, V-Scenario, and V-RefCheck use structured, role-specific evidence. Reproducing that system takes years, not months.',
       'Compounding data: every hire feeds the platform’s intelligence layer. Each subsequent decision is sharper than the last because there are more signals to triangulate against. A platform built from scratch starts at zero and stays there for a long time.',
       'The Microsoft partnership: Azure hosting and a Microsoft-aligned commercial path support procurement, security, compliance, and Marketplace readiness from day one. Building those in-house consumes IT capacity that most organisations have already allocated elsewhere.',
       'Build versus buy is a real decision. We are happy to help you scope what an in-house equivalent would cost. We would rather give you the maths than the sales pitch.',
@@ -1067,16 +1067,16 @@ export default function VxPage({
             <div>
               <div className="v25-eyebrow">The Science</div>
               <h2 className="v25-h2">
-                Built on validated frameworks. <span className="accent accent--sky">Calibrated to your sector.</span>
+                Grounded in published frameworks. <span className="accent accent--sky">Reviewed independently.</span>
               </h2>
               <div className="vx-science-copy">
                 <p>
-                  Every signal the platform produces comes from a peer-reviewed methodology:
-                  adapted, calibrated, and applied consistently across&nbsp;workforces.
+                  V-Psych draws on the Big Five model and structured, documented assessment
+                  methods, applied consistently across&nbsp;workforces.
                 </p>
                 <p>
-                  Anyone can use AI. The question is whether it is structured enough to be
-                  effective at scale, where every result is defensible by the framework behind it.
+                  The V-Psych methodology has been reviewed by an independent PhD-level
+                  Industrial-Organizational Psychologist.
                 </p>
               </div>
             </div>
@@ -1093,7 +1093,7 @@ export default function VxPage({
           <div className="vx-science-frameworks">
             <article className="vx-science-framework">
               <div className="vx-science-framework-title">Big Five (OCEAN)</div>
-              <div className="vx-science-framework-tag">The most rigorously validated framework in personality science.</div>
+              <div className="vx-science-framework-tag">One of the most extensively researched frameworks in personality science.</div>
               <p>V-Psych applies it, calibrated to role families.</p>
             </article>
             <article className="vx-science-framework">
