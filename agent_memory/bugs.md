@@ -2,6 +2,7 @@
 
 ## Active Issues
 
+- The unified favicon is not complete until GitHub Pages deploy and live `strategiatech.ai` readback pass. Google Search can continue showing the cached prior favicon until Google recrawls the homepage.
 - The 2026-07-13 temporary questionnaire password is checked in frontend JavaScript and is discoverable by anyone inspecting the static bundle; it is only a UI gate.
 - The temporary questionnaire submission endpoint is the public dev `POST /api/questionnaire`. CORS restricts browser origins but is not an authentication or anti-abuse control; the current dev route does not enforce the old Home Function App Turnstile validation.
 - The dev questionnaire INSERT succeeds, but the existing SQL adapter returns `submissionId: null` for `INSERT ... OUTPUT INSERTED.Id`; database readback confirmed the row is written.
@@ -25,6 +26,7 @@
 
 ## Failed Attempts
 
+- 2026-08-12 clean `npm ci --ignore-scripts` failed because the existing `package-lock.json` has `@emnapi/wasi-threads` dependency drift. The release workflow already uses `npm install`; local verification used `npm install --package-lock=false` and did not modify the lockfile, then the Pages build passed.
 - Attempted `npm run lint` before dependency install; command could not find local eslint.
 - Attempted full `npm run lint` after install; it failed on existing unrelated lint debt.
 - Initial private Pages workflow build used `/strategia-v27-homepage` as a base path, but the assigned private Pages URL is a root domain. Corrected workflow to build without a base path.
