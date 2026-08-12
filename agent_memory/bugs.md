@@ -2,7 +2,7 @@
 
 ## Active Issues
 
-- The unified favicon is not complete until GitHub Pages deploy and live `strategiatech.ai` readback pass. Google Search can continue showing the cached prior favicon until Google recrawls the homepage.
+- The unified favicon is deployed and live-verified. Google Search can continue showing the cached prior favicon until Google recrawls the homepage; this timing is controlled by Google rather than the site deployment.
 - The 2026-07-13 temporary questionnaire password is checked in frontend JavaScript and is discoverable by anyone inspecting the static bundle; it is only a UI gate.
 - The temporary questionnaire submission endpoint is the public dev `POST /api/questionnaire`. CORS restricts browser origins but is not an authentication or anti-abuse control; the current dev route does not enforce the old Home Function App Turnstile validation.
 - The dev questionnaire INSERT succeeds, but the existing SQL adapter returns `submissionId: null` for `INSERT ... OUTPUT INSERTED.Id`; database readback confirmed the row is written.
