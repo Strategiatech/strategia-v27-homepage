@@ -6,6 +6,7 @@
 
 ## Status
 
+- 2026-08-12 unified circular favicon is implemented and validated on a clean `origin/main` worktree. The SVG and six-size ICO match the homepage glowing triangle; commit, Pages deployment, and live readback are the remaining Home gates before Dev promotion.
 - Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, the live Discovery Questionnaire flow verified end-to-end, homepage contact sender updated to `info@strategiatech.ai`, and contact-form notification recipients expanded.
 - 2026-07-13 temporary questionnaire recovery is live: dev SQL schema/table, Function App table mapping, Key Vault-backed admin auth, CORS, and the v27 frontend are deployed. GitHub Pages run `29236025662` and backend dev run `29236025592` succeeded; Browser smoke confirmed the public password opens all 11 sections and the admin password opens `Questionnaire Submissions` without console errors.
 
@@ -102,6 +103,7 @@
 
 ## Validation
 
+- Verified: circular `icon.svg` is valid XML; `favicon.ico` contains 16/32/48/64/128/256px 32-bit PNG entries; `npm run build:pages` generated all 59 static pages; in-app Browser confirmed the local homepage references both icon formats and the served SVG is a true circle with the expected triangle and glow.
 - Verified: repo pulled from origin/main; no matching GitHub issue found; npm ci completed after user confirmation.
 - Verified: npm run build passed.
 - Verified: GitHub Pages static export build passed with `NEXT_PUBLIC_HIDE_PAGE_NAV=true NEXT_PUBLIC_PUBLISH_V27_AS_HOME=true` and no base path for the private Pages root domain.
