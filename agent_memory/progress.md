@@ -6,7 +6,7 @@
 
 ## Status
 
-- 2026-08-12 unified circular favicon is implemented and validated on a clean `origin/main` worktree. The SVG and six-size ICO match the homepage glowing triangle; commit, Pages deployment, and live readback are the remaining Home gates before Dev promotion.
+- 2026-08-12 unified circular favicon is live on `strategiatech.ai`: PR #2 merged as `0aee461`, GitHub Pages run `31563659296` succeeded, and the live SVG/ICO hashes match the repository. Google recrawl remains external and pending.
 - Code pulled, v27 implementation pass complete, GitHub Pages custom-domain deployment verified, secure Contact us wiring deployed through `strategia-home-api`, the live Discovery Questionnaire flow verified end-to-end, homepage contact sender updated to `info@strategiatech.ai`, and contact-form notification recipients expanded.
 - 2026-07-13 temporary questionnaire recovery is live: dev SQL schema/table, Function App table mapping, Key Vault-backed admin auth, CORS, and the v27 frontend are deployed. GitHub Pages run `29236025662` and backend dev run `29236025592` succeeded; Browser smoke confirmed the public password opens all 11 sections and the admin password opens `Questionnaire Submissions` without console errors.
 
