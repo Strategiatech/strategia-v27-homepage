@@ -53,6 +53,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: publishV27AsHome ? homeTitle : legacyTitle,
   description: publishV27AsHome ? homeDescription : legacyDescription,
+  icons: {
+    icon: [
+      {
+        url: '/strategia-favicon.svg',
+        type: 'image/svg+xml',
+        sizes: 'any',
+      },
+    ],
+  },
   openGraph: {
     type: 'website',
     url: siteUrl,
