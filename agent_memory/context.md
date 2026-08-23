@@ -29,6 +29,7 @@
 ## Decisions
 
 - Unified Strategia app icon contract: a circular Abyss navy background (`#06293E`) with a subtle lighter navy centre, plus the homepage white triangle and teal/cyan glow. Use the standalone mark for favicons and compact app icons; retain the full wordmark for wide navigation/logo placements.
+- Google favicon rediscovery uses one permanent canonical URL, `/strategia-favicon.svg`, declared as the homepage's only primary `rel="icon"`. Keep `/icon.svg` and `/favicon.ico` available as undeclared compatibility URLs serving the same approved artwork; do not rotate the canonical URL again.
 - Existing GitHub issues were checked read-only; no matching issue was found for v27/go-live/PPT homepage work.
 - Do not create a real GitHub issue, commit, push, or deploy without explicit user authorization.
 - /v27 uses the shared VX homepage body; content/style changes in VxPage also affect /vx unless the page is later forked.

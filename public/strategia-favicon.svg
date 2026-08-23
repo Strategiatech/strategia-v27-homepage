@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="icon-shape">
+      <circle cx="32" cy="32" r="32" />
+    </clipPath>
+    <radialGradient id="navy-background" cx="50%" cy="44%" r="72%">
+      <stop offset="0" stop-color="#0A3A56" />
+      <stop offset="1" stop-color="#06293E" />
+    </radialGradient>
+    <filter id="teal-glow" x="-55%" y="-55%" width="210%" height="210%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.2" flood-color="#FFFFFF" flood-opacity="0.75" />
+      <feDropShadow dx="0" dy="0" stdDeviation="2.8" flood-color="#00C6C1" flood-opacity="0.95" />
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#5CC8E8" flood-opacity="0.58" />
+    </filter>
+  </defs>
+  <g clip-path="url(#icon-shape)">
+    <circle cx="32" cy="32" r="32" fill="url(#navy-background)" />
+    <path
+      d="M32 9L54 51H10L32 9Z"
+      fill="none"
+      stroke="#FFFFFF"
+      stroke-width="3.4"
+      stroke-linejoin="round"
+      filter="url(#teal-glow)"
+    />
+  </g>
+</svg>
