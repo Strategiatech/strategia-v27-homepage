@@ -372,6 +372,18 @@ export default function PrivacyPolicyPage() {
             </SubSection>
           </Section>
 
+          <Section title="8A. Data breach notification">
+            <p>
+              If we experience a data breach involving your personal information
+              that we assess is likely to result in serious harm, we will notify
+              the Office of the Australian Information Commissioner (OAIC) and
+              affected individuals as soon as practicable, in accordance with the
+              Notifiable Data Breach scheme under the Privacy Act 1988 (Cth).
+              This assessment and notification process forms part of our certified
+              ISO 27001 information security management system.
+            </p>
+          </Section>
+
           <Section title="9. Information transfers outside Australia">
             <p>
               We may transfer personal information to service providers and
