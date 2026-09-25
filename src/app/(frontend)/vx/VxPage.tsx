@@ -1338,8 +1338,8 @@ export default function VxPage({
             <div className="vx-team-grid">
               {[
                 { name: 'James Scott', role: 'Group CEO', image: 'james-scott-linkedin.jpeg', className: 'vx-team-photo--james' },
-                { name: 'Johnny Mayer', role: 'Executive Advisor', image: 'johnny-whatsapp.jpeg', className: 'vx-team-photo--johnny' },
                 { name: 'Michael Murray', role: 'Founder and Chairman', image: 'michael-murray-no-tie-draft.png', className: 'vx-team-photo--michael' },
+                { name: 'Johnny Mayer', role: 'Executive Advisor', image: 'johnny-whatsapp.jpeg', className: 'vx-team-photo--johnny' },
               ].map((person) => (
                 <article className="vx-team-member" key={person.name}>
                   <img
