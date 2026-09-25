@@ -1328,6 +1328,36 @@ export default function VxPage({
         </div>
       </section>
 
+      {selfContained && (
+        <section className="v25-section v25-section--light vx-team-section" id="team" aria-labelledby="vx-team-heading">
+          <div className="v25-section-inner v25-reveal">
+            <div className="v25-eyebrow">The people behind Strategia</div>
+            <h2 className="v25-h2" id="vx-team-heading">
+              The people behind <span className="accent accent--teal">Strategia.</span>
+            </h2>
+            <div className="vx-team-grid">
+              {[
+                { name: 'James Scott', role: 'Group CEO', image: 'james-scott-linkedin.jpeg', className: 'vx-team-photo--james' },
+                { name: 'Johnny Mayer', role: 'Executive Advisor', image: 'johnny-whatsapp.jpeg', className: 'vx-team-photo--johnny' },
+                { name: 'Michael Murray', role: 'Founder and Chairman', image: 'michael-murray-no-tie-draft.png', className: 'vx-team-photo--michael' },
+              ].map((person) => (
+                <article className="vx-team-member" key={person.name}>
+                  <img
+                    className={`vx-team-photo ${person.className}`}
+                    src={assetPath(`/v27/team/${person.image}`)}
+                    alt={`Portrait of ${person.name}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <h3>{person.name}</h3>
+                  <p>{person.role}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ================================================================
           FAQs
           ================================================================ */}
