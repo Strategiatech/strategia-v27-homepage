@@ -4,8 +4,8 @@
    Links stay in-page because /v27 is "just the homepage" with no V27
    subpages to point to. The CTA is an in-page jump to #demo.
 
-   Below 860px the inline links are hidden (see v25.css) and replaced by a
-   hamburger that opens a slide-in drawer. The drawer markup is mobile-only
+   At 1200px and below the inline links are hidden and replaced by a
+   hamburger that opens a slide-in drawer. The drawer markup is narrow-screen
    behaviour — desktop never shows the toggle or the panel. */
 
 import Link from 'next/link'
@@ -22,6 +22,7 @@ const LINKS = [
   { label: 'Science', href: '#science' },
   { label: 'Process', href: '#process' },
   { label: 'Security', href: '#security' },
+  { label: 'Team', href: '#team' },
 ]
 
 type CtaConfig = { label: string; href: string }
@@ -83,7 +84,7 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
       if (event.key === 'Escape') setMenuOpen(false)
     }
     const onResize = () => {
-      if (window.innerWidth > 860) setMenuOpen(false)
+      if (window.innerWidth > 1200) setMenuOpen(false)
     }
 
     window.addEventListener('keydown', onKeyDown)
@@ -99,7 +100,7 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
   }, [menuOpen])
 
   return (
-    <nav className={`v25-nav vx-nav${menuOpen ? ' vx-nav--menu-open' : ''}`} ref={navRef}>
+    <nav className={`v25-nav vx-nav vx-nav--drawer${menuOpen ? ' vx-nav--menu-open' : ''}`} ref={navRef}>
       <Link href={homeHref} className="v25-nav-logo" onClick={() => setMenuOpen(false)}>
         <svg
           className="v25-nav-mark vx-nav-mark-visible"

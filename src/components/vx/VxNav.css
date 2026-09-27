@@ -86,12 +86,10 @@
 }
 
 /* ==========================================================================
-   MOBILE NAV — hamburger + slide-in drawer (≤860px only)
+   V27 NAV — hamburger + slide-in drawer (≤1200px)
 
-   The inline link list is hidden below 860px (see v25.css). This block adds
-   the toggle and drawer that replace it. Everything here is gated so the
-   desktop bar is byte-for-byte unchanged: the toggle, overlay, and panel all
-   default to display:none and only switch on at ≤860px.
+   V27 hides its inline links before they crowd the wordmark. The VX sub-page
+   nav has no drawer and keeps its existing breakpoint from v25.css.
    ========================================================================== */
 
 /* Right-side group. On desktop it simply holds the CTA where the CTA used to
@@ -137,7 +135,7 @@
 
 /* Belt-and-braces: even if state somehow flips open on a wide viewport, the
    mobile chrome stays hidden above the breakpoint. */
-@media (min-width: 861px) {
+@media (min-width: 1201px) {
   .vx-nav-toggle,
   .vx-nav-drawer,
   .vx-nav-drawer-overlay {
@@ -145,7 +143,10 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1200px) {
+  .vx-nav--drawer .v25-nav-links {
+    display: none;
+  }
   /* The inline CTA moves into the drawer so the bar is just logo + toggle —
      no three-up crowding on narrow phones. */
   .vx-nav-actions .v25-nav-cta {
