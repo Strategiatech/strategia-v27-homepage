@@ -4,8 +4,8 @@
    Links stay in-page because /v27 is "just the homepage" with no V27
    subpages to point to. The CTA is an in-page jump to #demo.
 
-   At 1200px and below the inline links are hidden and replaced by a
-   hamburger that opens a slide-in drawer. The drawer markup is narrow-screen
+   Below 861px the inline links are hidden and replaced by a
+   hamburger that opens a slide-in drawer. The drawer markup is mobile-only
    behaviour — desktop never shows the toggle or the panel. */
 
 import Link from 'next/link'
@@ -24,13 +24,20 @@ const LINKS = [
   { label: 'Security', href: '#security' },
   { label: 'Team', href: '#team' },
 ]
+const MORE_LINKS = LINKS.filter((link) => link.label === 'Process' || link.label === 'Security')
+const PRIMARY_LINKS = LINKS.filter((link) =>
+  link.label !== 'Process' && link.label !== 'Security' && link.label !== 'Team'
+)
 
 type CtaConfig = { label: string; href: string }
 const DEFAULT_CTA: CtaConfig = { label: 'Book demo', href: '#demo' }
 
 export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) {
   const navRef = useRef<HTMLElement>(null)
+  const moreRef = useRef<HTMLLIElement>(null)
+  const moreButtonRef = useRef<HTMLButtonElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
 
   useEffect(() => {
     const _nav = navRef.current
@@ -84,7 +91,7 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
       if (event.key === 'Escape') setMenuOpen(false)
     }
     const onResize = () => {
-      if (window.innerWidth > 1200) setMenuOpen(false)
+      if (window.innerWidth > 860) setMenuOpen(false)
     }
 
     window.addEventListener('keydown', onKeyDown)
@@ -98,6 +105,33 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
       document.body.style.overflow = previousOverflow
     }
   }, [menuOpen])
+
+  useEffect(() => {
+    if (!moreOpen) return
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!moreRef.current?.contains(event.target as Node)) setMoreOpen(false)
+    }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMoreOpen(false)
+        moreButtonRef.current?.focus()
+      }
+    }
+    const closeOnResize = () => {
+      if (window.innerWidth <= 860) setMoreOpen(false)
+    }
+
+    document.addEventListener('pointerdown', closeOnOutsideClick)
+    document.addEventListener('keydown', closeOnEscape)
+    window.addEventListener('resize', closeOnResize)
+
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsideClick)
+      document.removeEventListener('keydown', closeOnEscape)
+      window.removeEventListener('resize', closeOnResize)
+    }
+  }, [moreOpen])
 
   return (
     <nav className={`v25-nav vx-nav vx-nav--drawer${menuOpen ? ' vx-nav--menu-open' : ''}`} ref={navRef}>
@@ -121,13 +155,37 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
       </Link>
 
       <ul className="v25-nav-links">
-        {LINKS.map((link) => (
+        {PRIMARY_LINKS.map((link) => (
           <li key={link.label}>
             <a href={link.href} className="v25-nav-link">
               {link.label}
             </a>
           </li>
         ))}
+        <li className="vx-nav-more" ref={moreRef}>
+          <button
+            type="button"
+            className="v25-nav-link vx-nav-more-toggle"
+            ref={moreButtonRef}
+            aria-expanded={moreOpen}
+            aria-controls="v27-nav-more"
+            onClick={() => setMoreOpen((open) => !open)}
+          >
+            More <span className="vx-nav-more-chevron" aria-hidden="true" />
+          </button>
+          <ul className="vx-nav-more-menu" id="v27-nav-more" hidden={!moreOpen}>
+            {MORE_LINKS.map((link) => (
+              <li key={link.label}>
+                <a href={link.href} onClick={() => setMoreOpen(false)}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+        <li>
+          <a href="#team" className="v25-nav-link">Team</a>
+        </li>
       </ul>
 
       <div className="vx-nav-actions">
