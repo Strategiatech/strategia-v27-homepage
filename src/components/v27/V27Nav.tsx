@@ -22,11 +22,11 @@ const LINKS = [
   { label: 'Science', href: '#science' },
   { label: 'Process', href: '#process' },
   { label: 'Security', href: '#security' },
-  { label: 'Team', href: '#team' },
+  { label: 'Leadership', href: '#team' },
 ]
 const MORE_LINKS = LINKS.filter((link) => link.label === 'Process' || link.label === 'Security')
 const PRIMARY_LINKS = LINKS.filter((link) =>
-  link.label !== 'Process' && link.label !== 'Security' && link.label !== 'Team'
+  link.label !== 'Process' && link.label !== 'Security' && link.label !== 'Leadership'
 )
 
 type CtaConfig = { label: string; href: string }
@@ -184,7 +184,7 @@ export default function V27Nav({ cta = DEFAULT_CTA }: { cta?: CtaConfig } = {}) 
           </ul>
         </li>
         <li>
-          <a href="#team" className="v25-nav-link">Team</a>
+          <a href="#team" className="v25-nav-link">Leadership</a>
         </li>
       </ul>
 
