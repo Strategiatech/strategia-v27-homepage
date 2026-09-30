@@ -1862,11 +1862,10 @@ html:has(.v25.vx-self-contained) {
   width: 100%;
   aspect-ratio: 1.24;
   object-fit: cover;
+  object-position: center top;
   filter: grayscale(1);
 }
-.vx-team-photo--james { object-position: center 34%; }
-.vx-team-photo--johnny { object-position: center 25%; }
-.vx-team-photo--michael { object-position: center 40%; }
+.vx-team-photo--johnny { object-position: center 12%; }
 .vx-team-member h3 {
   margin: 18px 0 4px;
   font-family: var(--font-display, 'Literata', Georgia, serif);

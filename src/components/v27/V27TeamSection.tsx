@@ -5,7 +5,6 @@ const TEAM_MEMBERS = [
     name: 'James Scott',
     role: 'Group Chief Executive Officer',
     image: 'james-scott-linkedin.jpeg',
-    photoClass: 'vx-team-photo--james',
     biography: [
       'James Scott is a global workforce executive with more than 25 years of experience across healthcare staffing, workforce technology, executive leadership and international business growth.',
       'His career has spanned Australia, New Zealand, the United Kingdom, the United States and Canada, with much of that time spent selling, configuring and deploying the technology hospitals use to source, book and pay clinical staff.',
@@ -18,7 +17,6 @@ const TEAM_MEMBERS = [
     name: 'Michael Murray',
     role: 'Founder & Executive Chairman',
     image: 'michael-murray-no-tie-draft.png',
-    photoClass: 'vx-team-photo--michael',
     biography: [
       'Michael Murray is an entrepreneur and workforce technology founder whose career has spanned global consulting, financial services, healthcare and enterprise workforce strategy.',
       'He began his career working across major organisations including Accenture, KPMG and Credit Suisse, before co-founding Litmus Solutions, a healthcare workforce SaaS platform. Litmus was subsequently acquired by Medacs Global Group, one of the UK’s largest healthcare workforce organisations and part of Impellam Group plc, a publicly listed global workforce and specialist recruitment group. The platform continues to support healthcare organisations internationally.',
@@ -29,9 +27,8 @@ const TEAM_MEMBERS = [
   },
   {
     name: 'Johny Mair',
-    role: 'Co-Founder & Strategic Advisor',
+    role: 'Executive Strategic Advisor',
     image: 'johnny-whatsapp.jpeg',
-    photoClass: 'vx-team-photo--johnny',
     biography: [
       'Johny Mair is a New York-based technology entrepreneur, product leader and co-founder of Ethic, a technology-driven investment platform that has scaled from startup to a major institutional business managing billions of dollars in client assets.',
       'Johny has helped shape Ethic’s product, technology, strategy and governance as the company has grown and attracted more than US$160 million in institutional capital from investors including State Street Global Advisors, Fidelity Investments, UBS, Oak HC/FT, Nyca Partners and Jordan Park Group.',
@@ -62,7 +59,7 @@ export default function V27TeamSection() {
               {/* Static GitHub Pages export uses the original team portraits. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                className={`vx-team-photo ${person.photoClass}`}
+                className={`vx-team-photo${person.name === 'Johny Mair' ? ' vx-team-photo--johnny' : ''}`}
                 src={assetPath(`/v27/team/${person.image}`)}
                 alt={`Portrait of ${person.name}`}
                 loading="lazy"
