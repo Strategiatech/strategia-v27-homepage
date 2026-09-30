@@ -1842,6 +1842,9 @@ html:has(.v25.vx-self-contained) {
   column-gap: clamp(32px, 4vw, 56px);
 }
 .vx-team-member {
+  display: grid;
+  grid-row: span 5;
+  grid-template-rows: subgrid;
   min-width: 0;
   position: relative;
 }
@@ -1934,7 +1937,7 @@ html:has(.v25.vx-self-contained) {
 }
 @media (max-width: 760px) {
   .vx-team-grid { grid-template-columns: 1fr; row-gap: 38px; }
-  .vx-team-member { max-width: 520px; }
+  .vx-team-member { display: block; grid-row: auto; max-width: 520px; }
   .vx-team-member + .vx-team-member::before { display: none; }
   .vx-team-intro { margin-bottom: 44px; }
 }
