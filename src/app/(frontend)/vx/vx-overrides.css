@@ -1818,7 +1818,23 @@ html:has(.v25.vx-self-contained) {
 }
 .vx-team-section .v25-h2 {
   max-width: none;
-  margin-bottom: clamp(48px, 5vw, 72px);
+  margin-bottom: 22px;
+}
+.vx-team-subtitle {
+  max-width: 54ch;
+  margin: 0 0 20px;
+  color: var(--v25-abyss);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+.vx-team-intro {
+  max-width: 76ch;
+  margin: 0 0 clamp(48px, 5vw, 72px);
+  color: rgba(1, 34, 54, 0.78);
+  font-size: 16px;
+  line-height: 1.7;
 }
 .vx-team-grid {
   display: grid;
@@ -1857,17 +1873,70 @@ html:has(.v25.vx-self-contained) {
   letter-spacing: -0.02em;
   color: var(--v25-abyss);
 }
-.vx-team-member p {
+.vx-team-role {
   margin: 0;
-  color: rgba(1, 34, 54, 0.75);
-  font-size: 15px;
+  color: #08646a;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.5;
+}
+.vx-team-bio-lead,
+.vx-team-bio-content p {
+  color: rgba(1, 34, 54, 0.82);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.vx-team-bio-lead {
+  margin: 20px 0 0;
+}
+.vx-team-bio {
+  margin-top: 18px;
+  border-top: 1px solid rgba(1, 34, 54, 0.16);
+}
+.vx-team-bio summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  color: #075b65;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  list-style: none;
+}
+.vx-team-bio summary::-webkit-details-marker { display: none; }
+.vx-team-bio summary::after {
+  content: '+';
+  flex: 0 0 auto;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+}
+.vx-team-bio[open] summary::after { content: '−'; }
+.vx-team-bio-hide,
+.vx-team-bio[open] .vx-team-bio-read { display: none; }
+.vx-team-bio[open] .vx-team-bio-hide { display: inline; }
+.vx-team-bio summary:hover { color: var(--v25-abyss); }
+.vx-team-bio summary:focus-visible {
+  outline: 2px solid #08646a;
+  outline-offset: 3px;
+}
+.vx-team-bio-content {
+  padding: 2px 0 8px;
+}
+.vx-team-bio-content p {
+  margin: 0 0 18px;
+}
+.vx-team-bio-content p:last-child {
+  margin-bottom: 0;
 }
 @media (max-width: 760px) {
   .vx-team-grid { grid-template-columns: 1fr; row-gap: 38px; }
   .vx-team-member { max-width: 520px; }
   .vx-team-member + .vx-team-member::before { display: none; }
-  .vx-team-section .v25-h2 { margin-bottom: 40px; }
+  .vx-team-intro { margin-bottom: 44px; }
 }
 
 /* ============================================================
