@@ -21,9 +21,9 @@ jobs:
       GITHUB_PAGES: 'true'
       NEXT_PUBLIC_HIDE_PAGE_NAV: 'true'
       NEXT_PUBLIC_PUBLISH_V27_AS_HOME: 'true'
-      NEXT_PUBLIC_FUNCTION_APP_URL: 'https://func-stg-api-dev-aue.azurewebsites.net'
-      NEXT_PUBLIC_CONTACT_API_URL: 'https://strategia-home-api.azurewebsites.net/api/contact'
-      NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+      NEXT_PUBLIC_FUNCTION_APP_URL: 'https://func-str-web-prod-aue.azurewebsites.net'
+      NEXT_PUBLIC_CONTACT_API_URL: 'https://func-str-web-prod-aue.azurewebsites.net/api/contact'
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: '0x4AAAAAAFnnGS29FDJP9xi1'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
