@@ -5,6 +5,16 @@
  * requests use short-lived bearer tokens issued after password validation.
  */
 
+// Inlined at build time. Production builds fail in next.config.mjs when this
+// is missing; there is deliberately no fallback host.
+const FUNCTION_APP_URL = (process.env.NEXT_PUBLIC_FUNCTION_APP_URL ?? '').trim()
+
+const NOT_CONFIGURED: ApiResponse<never> = {
+  success: false,
+  message: 'Function App URL is not configured',
+  error: 'NEXT_PUBLIC_FUNCTION_APP_URL is not set',
+}
+
 interface FunctionAppClientConfig {
   baseUrl: string
 }
@@ -24,11 +34,7 @@ class FunctionAppClient {
   private config: FunctionAppClientConfig
 
   constructor() {
-    this.config = {
-      baseUrl:
-        process.env.NEXT_PUBLIC_FUNCTION_APP_URL ||
-        'https://strategia-home-api.azurewebsites.net',
-    }
+    this.config = { baseUrl: FUNCTION_APP_URL }
   }
 
   private getHeaders(options?: RequestOptions): HeadersInit {
@@ -48,6 +54,10 @@ class FunctionAppClient {
     body: unknown,
     options?: RequestOptions
   ): Promise<ApiResponse<T>> {
+    if (!this.config.baseUrl) {
+      return NOT_CONFIGURED
+    }
+
     try {
       const url = `${this.config.baseUrl}${endpoint}`
       const response = await fetch(url, {
@@ -82,6 +92,10 @@ class FunctionAppClient {
     params?: Record<string, string>,
     options?: RequestOptions
   ): Promise<ApiResponse<T>> {
+    if (!this.config.baseUrl) {
+      return NOT_CONFIGURED
+    }
+
     try {
       let url = `${this.config.baseUrl}${endpoint}`
       if (params) {
