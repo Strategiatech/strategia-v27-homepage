@@ -14,6 +14,12 @@ ARG MONGODB_URI=mongodb://mongo:27017/strategiatech
 ARG PAYLOAD_SECRET=build-time-placeholder
 ENV MONGODB_URI=${MONGODB_URI}
 ENV PAYLOAD_SECRET=${PAYLOAD_SECRET}
+# Required build-time public API targets (no defaults: the build fails fast
+# in next.config.mjs when they are missing).
+ARG NEXT_PUBLIC_CONTACT_API_URL
+ARG NEXT_PUBLIC_FUNCTION_APP_URL
+ENV NEXT_PUBLIC_CONTACT_API_URL=${NEXT_PUBLIC_CONTACT_API_URL}
+ENV NEXT_PUBLIC_FUNCTION_APP_URL=${NEXT_PUBLIC_FUNCTION_APP_URL}
 RUN npm run build
 
 FROM base AS runner

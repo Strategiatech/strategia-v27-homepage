@@ -43,9 +43,10 @@ const DEMO_FORM_INITIAL: DemoFormState = {
   company: '',
   message: '',
 }
-const CONTACT_API_URL =
-  process.env.NEXT_PUBLIC_CONTACT_API_URL ||
-  'https://strategia-home-api.azurewebsites.net/api/contact'
+// Inlined at build time. Production builds fail in next.config.mjs when this
+// is missing; there is deliberately no fallback host. An empty value disables
+// the form via `contactFormConfigured` below.
+const CONTACT_API_URL = (process.env.NEXT_PUBLIC_CONTACT_API_URL ?? '').trim()
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ''
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const moduleAnchorId = (title: string) => `module-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
