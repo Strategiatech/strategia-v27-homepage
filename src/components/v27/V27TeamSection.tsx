@@ -8,9 +8,9 @@ const TEAM_MEMBERS = [
     biography: [
       'James Scott is a global workforce executive with more than 25 years of experience across healthcare staffing, workforce technology, executive leadership and international business growth.',
       'His career has spanned Australia, New Zealand, the United Kingdom, the United States and Canada, with much of that time spent selling, configuring and deploying the technology hospitals use to source, book and pay clinical staff.',
-      'James built an Allied Health division into the UK’s largest managed service provider in its field at the time, supporting 120 NHS Trusts. He later repeated elements of that model at two further businesses, where he led the design and deployment of a proprietary procure-to-pay platform for NHS clients.',
-      'As Managing Director, Australasia for a global healthcare workforce group, James led four brands before later serving as CEO of an Australian business.',
-      'As Group CEO, James leads the execution, commercial growth and international scaling of Strategia and the broader group.',
+      'At Pulse, James built the Allied Health division into the UK’s largest managed service provider in its field at the time, supporting 120 NHS Trusts. He later repeated elements of that model at DRC Locums and MSI Group, where he led the design and deployment of i-Engage, a proprietary procure-to-pay platform for NHS clients.',
+      'As Managing Director, Australasia for Medacs Global Group, James led four brands, including Litmus, before later serving as CEO of HealthX Australia.',
+      'As Group CEO of Lateralus Group, James leads the execution, commercial growth and international scaling of Strategia and the broader group.',
     ],
   },
   {
@@ -19,10 +19,10 @@ const TEAM_MEMBERS = [
     image: 'michael-murray-no-tie-draft.png',
     biography: [
       'Michael Murray is an entrepreneur and workforce technology founder whose career has spanned global consulting, financial services, healthcare and enterprise workforce strategy.',
-      'He began his career working across major global consulting and financial services organisations, before co-founding a healthcare workforce SaaS platform. The platform was subsequently acquired by one of the UK’s largest healthcare workforce organisations, part of a publicly listed global workforce and specialist recruitment group, and continues to support healthcare organisations internationally.',
-      'Michael later founded an executive search and leadership advisory firm, building the business across Australia, Asia and the Middle East and advising Boards, CEOs and executive teams on leadership and workforce strategy.',
+      'He began his career working across major organisations including Accenture, KPMG and Credit Suisse, before co-founding Litmus Solutions, a healthcare workforce SaaS platform. Litmus was subsequently acquired by Medacs Global Group, one of the UK’s largest healthcare workforce organisations and part of Impellam Group plc, a publicly listed global workforce and specialist recruitment group. The platform continues to support healthcare organisations internationally.',
+      'Michael later founded C-Suite Partners, building the business across Australia, Asia and the Middle East and advising Boards, CEOs and executive teams on leadership and workforce strategy.',
       'That experience became the foundation for Strategia — bringing together AI, behavioural science and workforce intelligence to help enterprises better understand, assess and deploy their people.',
-      'Michael now leads strategy, enterprise relationships and international growth across Strategia and the broader group.',
+      'Michael now leads strategy, enterprise relationships and international growth across Lateralus Group.',
     ],
   },
   {
@@ -41,9 +41,9 @@ const TEAM_MEMBERS = [
     role: 'Executive Strategic Advisor',
     image: 'johnny-whatsapp.jpeg',
     biography: [
-      'Johny Mair is a New York-based technology entrepreneur, product leader and co-founder of a technology-driven investment platform that has scaled from startup to a major institutional business managing billions of dollars in client assets.',
-      'Johny has helped shape the company’s product, technology, strategy and governance as it has grown and attracted more than US$160 million in institutional capital.',
-      'Before this, Johny built and led technology products across multiple markets and worked with major global financial institutions.',
+      'Johny Mair is a New York-based technology entrepreneur, product leader and co-founder of Ethic, a technology-driven investment platform that has scaled from startup to a major institutional business managing billions of dollars in client assets.',
+      'Johny has helped shape Ethic’s product, technology, strategy and governance as the company has grown and attracted more than US$160 million in institutional capital from investors including State Street Global Advisors, Fidelity Investments, UBS, Oak HC/FT, Nyca Partners and Jordan Park Group.',
+      'Before Ethic, Johny built and led technology products across multiple markets and worked with organisations including Goldman Sachs, J.P. Morgan, BlackRock, Fidelity and Deutsche Bank.',
       'His experience spans enterprise technology, product architecture, institutional partnerships, venture financing and the commercialisation of technology in highly regulated environments.',
       'At Strategia, Johny brings direct experience in building enterprise-grade technology, attracting institutional capital and scaling a sophisticated technology platform globally.',
     ],
