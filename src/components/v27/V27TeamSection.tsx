@@ -30,9 +30,10 @@ const TEAM_MEMBERS = [
     role: 'Group Managing Director',
     image: 'david-taylor.jpeg',
     biography: [
-      "David Taylor is Group Managing Director of Lateralus, supporting international growth, enterprise delivery and operating execution across the group's core markets.",
-      'David brings more than 25 years of experience scaling workforce, managed services and technology-enabled businesses across the Middle East, UK, Europe, APAC and Africa. His career includes senior leadership roles with Randstad, Adecco and Impellam Group, alongside deep experience supporting healthcare and workforce transformation across complex international environments.',
-      'At Lateralus, David focuses on regional growth, enterprise partnerships, and the practical application of technology and AI across workforce systems. His strength is turning strategy, people, systems and technology into commercial outcomes across multiple markets.',
+      'David Taylor is an international workforce executive with more than 25 years of experience scaling workforce, managed services and technology-enabled businesses across the Middle East, the United Kingdom, Europe, APAC and Africa.',
+      'His career includes senior leadership roles with Randstad, Adecco and Impellam Group, alongside deep experience supporting healthcare and workforce transformation across complex international environments.',
+      'David’s strength is turning strategy, people, systems and technology into commercial outcomes across multiple markets.',
+      'As Group Managing Director, David supports international growth, enterprise delivery and operating execution across Strategia and the broader group, with a focus on regional growth, enterprise partnerships and the practical application of technology and AI across workforce systems.',
     ],
   },
   {
