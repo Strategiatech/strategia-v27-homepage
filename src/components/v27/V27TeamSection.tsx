@@ -30,10 +30,7 @@ const TEAM_MEMBERS = [
     role: 'Group Managing Director',
     image: 'david-taylor.jpeg',
     biography: [
-      'David Taylor is an international workforce executive with more than 25 years of experience scaling workforce, managed services and technology-enabled businesses across the Middle East, the United Kingdom, Europe, APAC and Africa.',
-      'His career includes senior leadership roles with global workforce groups, alongside deep experience supporting healthcare and workforce transformation across complex international environments.',
-      'David’s strength is turning strategy, people, systems and technology into commercial outcomes across multiple markets.',
-      'As Group Managing Director, David supports international growth, enterprise delivery and operating execution across Strategia and the broader group, with a focus on regional growth, enterprise partnerships and the practical application of technology and AI across workforce systems.',
+      'David Taylor is a global workforce and technology executive with more than 26 years of experience across healthcare, managed services and international business growth, including senior leadership roles with Randstad, Adecco and Impellam Group, with a strong focus on the Middle East and UK markets.',
     ],
   },
   {
@@ -79,17 +76,19 @@ export default function V27TeamSection() {
               <h3>{person.name}</h3>
               <p className="vx-team-role">{person.role}</p>
               <p className="vx-team-bio-lead">{person.biography[0]}</p>
-              <details className="vx-team-bio">
-                <summary>
-                  <span className="vx-team-bio-read">Read full biography: {person.name}</span>
-                  <span className="vx-team-bio-hide">Hide biography: {person.name}</span>
-                </summary>
-                <div className="vx-team-bio-content">
-                  {person.biography.slice(1).map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </details>
+              {person.biography.length > 1 && (
+                <details className="vx-team-bio">
+                  <summary>
+                    <span className="vx-team-bio-read">Read full biography: {person.name}</span>
+                    <span className="vx-team-bio-hide">Hide biography: {person.name}</span>
+                  </summary>
+                  <div className="vx-team-bio-content">
+                    {person.biography.slice(1).map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </details>
+              )}
             </article>
           ))}
         </div>
