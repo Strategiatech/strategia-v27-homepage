@@ -26,6 +26,16 @@ const TEAM_MEMBERS = [
     ],
   },
   {
+    name: 'David Taylor',
+    role: 'Group Managing Director',
+    image: 'david-taylor.jpeg',
+    biography: [
+      'David Taylor is a global workforce and technology executive with more than 26 years of experience across healthcare, managed services and international business growth, including senior leadership roles with Randstad, Adecco and Impellam Group, with a strong focus on the Middle East and UK markets.',
+      'He brings deep experience scaling workforce, managed services and technology-enabled businesses across the Middle East, the United Kingdom, Europe, APAC and Africa, alongside supporting healthcare and workforce transformation across complex international environments.',
+      'As Group Managing Director, David supports international growth, enterprise delivery and operating execution across Strategia and the broader group, with a focus on regional growth, enterprise partnerships and the practical application of technology and AI across workforce systems. His strength is turning strategy, people, systems and technology into commercial outcomes across multiple markets.',
+    ],
+  },
+  {
     name: 'Johny Mair',
     role: 'Executive Strategic Advisor',
     image: 'johnny-whatsapp.jpeg',

@@ -1838,8 +1838,8 @@ html:has(.v25.vx-self-contained) {
 }
 .vx-team-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: clamp(32px, 4vw, 56px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: clamp(28px, 3vw, 48px);
 }
 .vx-team-member {
   display: grid;
@@ -1853,7 +1853,7 @@ html:has(.v25.vx-self-contained) {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(clamp(32px, 4vw, 56px) / -2);
+  left: calc(clamp(28px, 3vw, 48px) / -2);
   width: 1px;
   background: rgba(1, 34, 54, 0.15);
 }
@@ -1933,6 +1933,13 @@ html:has(.v25.vx-self-contained) {
 }
 .vx-team-bio-content p:last-child {
   margin-bottom: 0;
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  /* Four portraits are too narrow on tablets: two per row, no divider at row start. */
+  .vx-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
+  /* Subgrid would turn the row gap into extra space between name, role and bio. */
+  .vx-team-member { display: block; grid-row: auto; }
+  .vx-team-member:nth-child(odd)::before { display: none; }
 }
 @media (max-width: 760px) {
   .vx-team-grid { grid-template-columns: 1fr; row-gap: 38px; }
